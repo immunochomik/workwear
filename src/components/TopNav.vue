@@ -14,11 +14,11 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="topNavLiCurrent" class="active nav-li"><a href="/#!/current">Current<span class="sr-only">(current)</span></a></li>
-                    <li id="topNavLiCalendar" class="nav-li"><a href="/#!/calendar">Calendar</a></li>
-                    <li id="topNavLiBackBurner" class="nav-li" ><a href="/#!/todo">Back Burner</a></li>
-                    <li id="topNavLiSummary" class="nav-li"><a href="/#!/analysis">Summary</a></li>
-                    <li id="topNavLiData" class="nav-li" ><a href="/#!/data">Data</a></li>
+                    <li id="topNavLiWorkers" class="active nav-li"><a href="/#!/workers">Workers</a></li>
+                    <li id="topNavLiInventory" class="nav-li"><a href="/#!/inventory">Inventory</a></li>
+                    <li id="topNavLiWorkwearTypes" class="nav-li"><a href="/#!/workweartypes">Workwear Types</a></li>
+                    <li id="topNavLiWorkPositions" class="nav-li"><a href="/#!/workpositions">Work Positions</a></li>
+                    <li id="topNavLiData" class="nav-li"><a href="/#!/data">data</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

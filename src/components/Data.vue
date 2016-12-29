@@ -3,7 +3,6 @@
     display: inline-block;
     width: 23.5%;
   }
-
 </style>
 <template>
   <div class="container-fluid">
@@ -58,7 +57,7 @@
   </div>
 </template>
 <script>
-  const dbName = 'tasks2';
+  const dbName = 'workwear';
   import StoreCollection from '../storeCollection';
   import Vue from 'vue';
   var _ = require('lodash');

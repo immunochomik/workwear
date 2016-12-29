@@ -99,8 +99,7 @@ var Collection = (function() {
       });
     }
   };
-  Collection.prototype.ensureIndexes = function(ddoc)
-  {
+  Collection.prototype.ensureIndexes = function(ddoc) {
       var self = this;
       this.get('_design/index').then(res => {
           //if there than do nothing
