@@ -11,10 +11,13 @@
         <div id="form" class="tab-pane fade in active">
           <div class="panel">
             <div class="panel-body">
-              <div v-for="(name, type) in fields" class="form-group">
-                <label class="control-label col-xs-3 col-md-2 text-right">{{name}}</label>
+              <div v-for="item in fields" class="form-group">
+                <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
-                  <input id="{{name}}" class="form-control {{type}}" type="text" name="{{name}}"/>
+                  <select class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
+                    <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
+                  </select>
+                  <input v-else class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
                 </div>
               </div>
             </div>
@@ -24,7 +27,7 @@
           </div>
         </div>
         <div id="list" class="tab-pane fade">
-          <table id="listTable" class="display" width="100%"></table>
+          <table  @click="tableClick($event)" id="listTable" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -33,20 +36,18 @@
 
 <script>
 
-  var fields = {
-    Name: 'text',
-    Position : 'text',
-    Size : 'text',
-    Office : 'text',
-    Id : 'text',
-    Start : 'date',
-  };
-
+  var fields = [
+    { name : 'Name', type :'text'},
+    { name:  'Position', type: 'text'},
+    { name:  'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
+    { name: 'Start', type: 'text', 'class': 'date' },
+  ];
 
   import StoreCollection from '../storeCollection';
   var _ = require('lodash');
   var store = new StoreCollection.Collection('workwear');
 
+  var cache = {};
   export default {
     name: 'Workers',
     data: function() {
@@ -66,6 +67,25 @@
       }
     },
     methods: {
+      columns : function() {
+        if(!cache._columns) {
+          console.log('calculating columns');
+          cache._columns = [];
+          _.each(this.fields, function (item) {
+            cache._columns.push(item.name);
+          });
+        }
+        return cache._columns;
+      },
+      tableClick: function(e) {
+        var self = this;
+        var elClass = e.target.getAttribute('class') || '';
+        if(elClass.indexOf('delete-item') != -1) {
+          store.removeById(e.target.getAttribute('data-id'), function() {
+            self.refresh();
+          });
+        }
+      },
       refresh: function() {
         var self = this;
         self.items = [];
@@ -82,37 +102,25 @@
           console.log('Error', err);
         });
         setTimeout(function() {
-          $('.date').datetimepicker({
-            timepicker:false,
-            format:'Y-m-d'
-          });
-        }, 500);
+          $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
+        }, 800);
       },
       docToRow: function(doc) {
         var row = [];
-        for(var col in this.fields) {
+        _.each(this.columns(), function(col) {
           row.push(doc[col] || "");
-        }
+        });
+        var temp = '<button class="btn btn-xs btn-danger delete-item" data-id="{0}">Delete</button> \
+                    <button class="btn btn-xs btn-default edit-item" data-id="{0}">Edit</span></button>';
+        row.push(temp.f([doc._id]));
         return row;
-      },
-      submit: function() {
-        var inputs = inputs = document.getElementsByTagName('input');
-        var model = {
-          ver_ : this.title + this.version,
-        };
-        for (var i=0; i<inputs.length; i++){
-          model[inputs[i].name] = inputs[i].value;
-          inputs[i].value = "";
-        }
-        model['_id'] = this.makeId(model);
-        store.put(model);
-        this.refresh();
       },
       renderTable: function() {
         var columns = [];
-        for(var key in this.fields) {
-          columns.push({title:key});
-        }
+        _.each(this.columns(), function(col) {
+          columns.push({title:col});
+        });
+        columns.push({title:""});
         var data = {
           data: this.items,
           columns: columns,
@@ -123,8 +131,22 @@
         table.destroy && table.destroy();
         table.DataTable(data);
       },
+      submit: function() {
+        var model = {
+          ver_ : this.title + this.version,
+        };
+        _.each($('.input'), function(item) {
+          var jitem = $(item);
+          model[jitem.attr('name')] = jitem.val();
+          jitem.val('');
+        });
+        model['_id'] = this.makeId(model);
+        store.put(model);
+        this.refresh();
+      },
       makeId: function(model) {
-        return this.title + this.idTemplate.f(model);
+        var id = this.title + this.idTemplate.f(model);
+        return id.replace(/ /g, '_');
       },
     }
 

@@ -81,18 +81,20 @@ var Collection = (function() {
     return this.db.remove(item);
   };
 
-  Collection.prototype.removeById = function(id) {
+  Collection.prototype.removeById = function(id, callback) {
     var self = this;
     this.db.get(id).then(doc => {
-      return self.db.remove(doc);
+      self.db.remove(doc);
+    }).then(_ => {
+      callback && callback();
     }).catch(err => {
       console.log('Error', err);
     });
   };
   Collection.prototype.init = function(ddoc) {
-    var promiss = this.update(ddoc);
-    if(promiss) {
-      promiss.then(res => {
+    var promise = this.update(ddoc);
+    if(promise) {
+      promise.then(res => {
         console.log(res);
       }).catch(err => {
         console.log('Error', err);
