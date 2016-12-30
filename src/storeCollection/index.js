@@ -39,8 +39,16 @@ var Collection = (function() {
       return this.db.put(item);
     }
   };
-  Collection.prototype.get = function(id) {
-    return this.db.get(id);
+  Collection.prototype.get = function(id, callback) {
+    var promise = this.db.get(id);
+    if(! callback) {
+      return promise;
+    }
+    promise.then(res => {
+      callback(res);
+    }).catch(err => {
+        console.log('Error', err);
+    });
   };
   Collection.prototype.query = function(index, criteria) {
     return this.db.query(index, criteria);
@@ -80,7 +88,6 @@ var Collection = (function() {
   Collection.prototype.remove = function(item) {
     return this.db.remove(item);
   };
-
   Collection.prototype.removeById = function(id, callback) {
     var self = this;
     this.db.get(id).then(doc => {

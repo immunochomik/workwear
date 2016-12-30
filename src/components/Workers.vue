@@ -14,10 +14,10 @@
               <div v-for="item in fields" class="form-group">
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
-                  <select class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
+                  <select id="{{item.name}}" class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
                     <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
                   </select>
-                  <input v-else class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
+                  <input v-else id="{{item.name}}" class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
                 </div>
               </div>
             </div>
@@ -26,8 +26,8 @@
             </div>
           </div>
         </div>
-        <div id="list" class="tab-pane fade">
-          <table  @click="tableClick($event)" id="listTable" class="display" width="100%"></table>
+        <div id="list" class="tab-pane fade in">
+          <table @click="tableClick($event)" id="listTable" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -37,9 +37,9 @@
 <script>
 
   var fields = [
-    { name : 'Name', type :'text'},
-    { name:  'Position', type: 'text'},
-    { name:  'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
+    { name: 'Name', type :'text'},
+    { name: 'Position', type: 'text'},
+    { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
     { name: 'Start', type: 'text', 'class': 'date' },
   ];
 
@@ -64,6 +64,9 @@
         document.title = this.title;
         toggleTopNavActive('topNavLi' + this.title);
         this.refresh();
+        setTimeout(function() {
+          $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
+        }, 800);
       }
     },
     methods: {
@@ -84,7 +87,21 @@
           store.removeById(e.target.getAttribute('data-id'), function() {
             self.refresh();
           });
+        } else if (elClass.indexOf('edit-item') != -1) {
+          this.edit(e.target.getAttribute('data-id'));
         }
+      },
+      edit: function(id) {
+        var self = this;
+        store.get(id, function(doc) {
+          _.each(self.columns(), function(col) {
+            $('#'+col).val(doc[col]);
+          });
+          self.show('form');
+        });
+      },
+      show: function(what) {
+        $('a[href*="#'+what+'"]').click();
       },
       refresh: function() {
         var self = this;
@@ -96,14 +113,12 @@
         }).then(res => {
           _.each(res.rows, function(doc) {
             self.items.push(self.docToRow(doc.doc));
-          })
+          });
           self.renderTable();
         }).catch(err => {
           console.log('Error', err);
         });
-        setTimeout(function() {
-          $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
-        }, 800);
+
       },
       docToRow: function(doc) {
         var row = [];
