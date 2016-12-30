@@ -52,7 +52,8 @@ router.beforeEach(function () {
 });
 
 router.redirect({
-  '*': '/data'
+  '*': '/workers'
 });
+
 
 router.start(App, 'app');

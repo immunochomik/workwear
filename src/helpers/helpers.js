@@ -44,6 +44,7 @@ export default {
 
   dayFrom : dayFrom,
 
+
   toggleTopNavActive : function(id) {
     $('.nav-li').removeClass('active');
     $('#' + id).addClass('active');
@@ -110,5 +111,14 @@ export default {
       mm = '0' + mm
     }
     return yyyy +'-' + mm + '-' + dd;
+  },
+
+  routerCall : function(obj) {
+    document.title = obj.title;
+    toggleTopNavActive('topNavLi' + obj.title.replace(/ /g, ''));
+    setTimeout(function() {
+      obj.refresh();
+      $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
+    }, 800);
   }
 }

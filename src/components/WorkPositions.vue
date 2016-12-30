@@ -1,24 +1,38 @@
 <template>
-  <h1>{{title}}</h1>
+  <div class="container-fluid">
+    <crud :title="title"
+          :fields="fields"
+          id-template="_{Description}_{Gender}_"></crud>
+  </div>
 </template>
 
 <script>
+
+  import Crud from './Crud.vue';
   export default {
     name: 'WorkPositions',
-    data: function () {
+    data: function() {
       return {
-        title:'Work Positions'
+        title: 'Work Positions',
+        fields: [
+          {name: 'Description', type :'text'},
+          {name: 'Workweare types', type :'text'},
+
+        ]
       }
     },
     route: {
-      data: function (to) {
-        document.title = 'Work Positions';
-        toggleTopNavActive('topNavLiWorkPositions');
+      data: function(to) {
+        routerCall(this);
       }
     },
-    methods: {}
+    methods: {
+      refresh: function() {
+        this.$broadcast('refresh');
+      }
+    },
+    components: {
+      crud : Crud,
+    },
   }
 </script>
-
-<style>
-</style>
