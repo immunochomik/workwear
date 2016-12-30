@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
-          id-template="_{Start}_{Name}"></crud>
+          unique="WorkwearTypes"
+          id-template="_{Description}_{Gender}_"></crud>
   </div>
 </template>
 
@@ -13,7 +14,7 @@
     name: 'WorkwearTypes',
     data: function() {
       return {
-        title: 'Workwear Types',
+        title: 'WorkwearTypes',
         fields: [
           { name: 'Description', type :'text'},
           { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},

@@ -2,7 +2,8 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
-          id-template="_{Name}_{Size}_{Origin}"></crud>
+          unique="inventory"
+          id-template="_{Description}_{Size}_{Origin}"></crud>
   </div>
 </template>
 
@@ -15,7 +16,7 @@
       return {
         title: 'Inventory',
         fields: [
-          { name: 'Name', type :'text'},
+          { name: 'Description', type :'text'},
           { name: 'Qty', type :'number'},
           { name: 'Size', type :'text'},
           { name: 'Origin', type :'select', options : {New: 'new', Return : 'return'}},

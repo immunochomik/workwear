@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
+          unique="WorkwearPos"
           id-template="_{Description}_{Gender}_"></crud>
   </div>
 </template>

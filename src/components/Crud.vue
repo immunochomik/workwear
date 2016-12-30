@@ -2,31 +2,32 @@
   <div>
     <div class="panel">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#form">Edit {{title}}</a></li>
-        <li><a data-toggle="tab" href="#list">List</a></li>
+        <li class="active"><a data-toggle="tab" href="#form{{unique}}">Edit {{title}}</a></li>
+        <li><a data-toggle="tab" href="#list{{unique}}">List</a></li>
       </ul>
 
       <div class="tab-content">
-        <div id="form" class="tab-pane fade in active">
+        <div id="form{{unique}}" class="tab-pane fade in active">
           <div class="panel">
             <div class="panel-body">
               <div v-for="item in fields" class="row form-group" style="margin-bottom: 0.5em">
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
-                  <select id="{{item.name}}" class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
+                  <select id="{{item.name + unique}}" class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
                     <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
                   </select>
-                  <input v-else id="{{item.name}}" class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
+                  <input v-else id="{{item.name  + unique}}" class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
                 </div>
               </div>
             </div>
             <div class="panel-footer text-right">
+              <button v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
         </div>
-        <div id="list" class="tab-pane fade in">
-          <table @click="tableClick($event)" id="listTable" class="display" width="100%"></table>
+        <div id="list{{unique}}" class="tab-pane fade in">
+          <table @click="tableClick($event)" id="listTable{{unique}}" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -56,23 +57,16 @@
       version : {
         type: Number,
         'default': 1
-      }
+      },
+      unique : {
+        type: String,
+        required: true,
+      },
     },
     data: function() {
       return {
         items: [],
         currentId: null,
-      }
-    },
-    route: {
-      data: function(to) {
-        document.title = this.title;
-        toggleTopNavActive('topNavLi' + this.title);
-        var self = this;
-        setTimeout(function() {
-          self.refresh();
-          $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
-        }, 800);
       }
     },
     events: {
@@ -81,6 +75,10 @@
       }
     },
     methods: {
+      cancelEdit: function() {
+        this.currentId = null;
+        $('.input').val('')
+      },
       columns : function() {
         if(!cache._columns) {
           console.log('calculating columns');
@@ -106,10 +104,10 @@
         var self = this;
         store.get(id, function(doc) {
           _.each(self.columns(), function(col) {
-            $('#'+col).val(doc[col]);
+            $('#'+col + self.unique).val(doc[col]);
           });
           self.currentId = doc._id;
-          self.show('form');
+          self.show('form' + self.unique);
         });
       },
       show: function(what) {
@@ -153,7 +151,7 @@
           columns: columns,
           destroy:true,
         };
-        var table = $('#listTable');
+        var table = $('#listTable'+ this.unique);
         table.destroy && table.destroy();
         table.DataTable(data);
       },
