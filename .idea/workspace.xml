@@ -35,14 +35,13 @@
       <file leaf-file-name="Workers.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Workers.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63265306">
-              <caret line="103" column="42" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.57125306">
+              <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
               <folding>
-                <element signature="e#3476#3903#0" expanded="false" />
-                <element signature="e#3935#4326#0" expanded="false" />
-                <element signature="e#4358#4781#0" expanded="false" />
-                <element signature="e#4808#5151#0" expanded="false" />
-                <element signature="e#5183#5286#0" expanded="false" />
+                <element signature="e#2505#2768#0" expanded="false" />
+                <element signature="e#2800#3183#0" expanded="false" />
+                <element signature="e#3489#3541#0" expanded="false" />
+                <element signature="e#4062#4453#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -51,9 +50,11 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/storeCollection/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
-              <folding />
+            <state vertical-scroll-proportion="-18.064516">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+              <folding>
+                <element signature="e#1692#2171#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,9 +124,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="840" />
+    <option name="x" value="855" />
     <option name="y" value="52" />
-    <option name="width" value="1080" />
+    <option name="width" value="1065" />
     <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -307,7 +308,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="840" y="52" width="1080" height="1028" extended-state="4" />
+    <frame x="855" y="52" width="1065" height="1028" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2640232" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -344,7 +345,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -705,14 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -721,24 +714,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/storeCollection/index.js">
+    <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storeCollection/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.064516">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+          <folding>
+            <element signature="e#1692#2171#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Workers.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63265306">
-          <caret line="103" column="42" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.57125306">
+          <caret line="24" column="67" selection-start-line="24" selection-start-column="67" selection-end-line="24" selection-end-column="67" />
           <folding>
-            <element signature="e#3476#3903#0" expanded="false" />
-            <element signature="e#3935#4326#0" expanded="false" />
-            <element signature="e#4358#4781#0" expanded="false" />
-            <element signature="e#4808#5151#0" expanded="false" />
-            <element signature="e#5183#5286#0" expanded="false" />
+            <element signature="e#2505#2768#0" expanded="false" />
+            <element signature="e#2800#3183#0" expanded="false" />
+            <element signature="e#3489#3541#0" expanded="false" />
+            <element signature="e#4062#4453#0" expanded="false" />
           </folding>
         </state>
       </provider>

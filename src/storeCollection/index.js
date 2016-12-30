@@ -23,21 +23,17 @@ var Collection = (function() {
   Collection.prototype.put = function(doc) {
     return this.db.put(doc);
   };
-  Collection.prototype.update = function(item) {
-    if(!item._rev && item._id) {
-      this.db.get(item._id).then(res => {
-        item._rev = res._rev;
-        this.db.put(item).then(res => {
-          console.log('Update', res);
-        }).catch(err => {
-          console.log('U Error', err);
-        });
-      }).catch(err => {
-        this.db.put(item);
-      });
-    } else {
-      return this.db.put(item);
-    }
+  Collection.prototype.upsert = function(item, callback) {
+    this.db.get(item._id).then(res => {
+      item._rev = res._rev;
+      this.db.put(item, callback);
+    }).catch(err => {
+      if (err.name === 'not_found') {
+        this.db.put(item, callback);
+      } else {
+        console.log(err);
+      }
+    });
   };
   Collection.prototype.get = function(id, callback) {
     var promise = this.db.get(id);

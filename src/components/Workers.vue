@@ -3,7 +3,7 @@
     <!-- Latest compiled and minified CSS -->
     <div class="panel">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#form">Add {{title}}</a></li>
+        <li class="active"><a data-toggle="tab" href="#form">Edit {{title}}</a></li>
         <li><a data-toggle="tab" href="#list">List</a></li>
       </ul>
 
@@ -22,7 +22,7 @@
               </div>
             </div>
             <div class="panel-footer text-right">
-              <button class="btn btn-danger" @click="submit">Add</button>
+              <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
         </div>
@@ -56,15 +56,17 @@
         fields: fields,
         items: [],
         version : 1,
-        idTemplate : "_{Name}_{Start}"
+        idTemplate : "_{Start}_{Name}",
+        currentId: null,
       }
     },
     route: {
       data: function(to) {
         document.title = this.title;
         toggleTopNavActive('topNavLi' + this.title);
-        this.refresh();
+        var self = this;
         setTimeout(function() {
+          self.refresh();
           $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
         }, 800);
       }
@@ -97,6 +99,7 @@
           _.each(self.columns(), function(col) {
             $('#'+col).val(doc[col]);
           });
+          self.currentId = doc._id;
           self.show('form');
         });
       },
@@ -104,6 +107,7 @@
         $('a[href*="#'+what+'"]').click();
       },
       refresh: function() {
+        console.log('REFRESHING');
         var self = this;
         self.items = [];
         store.allDocs({
@@ -118,7 +122,6 @@
         }).catch(err => {
           console.log('Error', err);
         });
-
       },
       docToRow: function(doc) {
         var row = [];
@@ -142,7 +145,6 @@
           destroy:true,
         };
         var table = $('#listTable');
-        console.log(table.destroy);
         table.destroy && table.destroy();
         table.DataTable(data);
       },
@@ -156,11 +158,18 @@
           jitem.val('');
         });
         model['_id'] = this.makeId(model);
-        store.put(model);
-        this.refresh();
+        var self = this;
+        store.upsert(model, function() {
+          self.refresh();
+        });
       },
       makeId: function(model) {
-        var id = this.title + this.idTemplate.f(model);
+        var id = this.currentId;
+        if(id) {
+          this.currentId = null;
+          return id;
+        }
+        id = this.title + this.idTemplate.f(model);
         return id.replace(/ /g, '_');
       },
     }
