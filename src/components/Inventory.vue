@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
-          unique="inventory"
           id-template="_{Description}_{Size}_{Origin}"></crud>
   </div>
 </template>

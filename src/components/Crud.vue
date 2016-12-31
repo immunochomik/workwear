@@ -2,21 +2,26 @@
   <div>
     <div class="panel">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#form{{unique}}">Edit {{title}}</a></li>
-        <li><a data-toggle="tab" href="#list{{unique}}">List</a></li>
+        <li class="active"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
+        <li><a data-toggle="tab" href="#list{{uni}}">List</a></li>
       </ul>
 
       <div class="tab-content">
-        <div id="form{{unique}}" class="tab-pane fade in active">
+        <div id="form{{uni}}" class="tab-pane fade in active">
           <div class="panel">
             <div class="panel-body">
               <div v-for="item in fields" class="row form-group" style="margin-bottom: 0.5em">
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
-                  <select id="{{item.name + unique}}" class="form-control input" v-if="item.type == 'select'" name="{{item.name}}">
+                  <div  v-if="item.type == 'select' || item.type == 'textarea'">
+                  <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input" name="{{item.name}}">
                     <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
                   </select>
-                  <input v-else id="{{item.name  + unique}}" class="form-control input {{item.class}} " type="{{item.type}}" name="{{item.name}}"/>
+                  <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" class="form-control input {{item.class}} "
+                            name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
+                  </div>
+                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}} "
+                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"/>
                 </div>
               </div>
             </div>
@@ -26,8 +31,8 @@
             </div>
           </div>
         </div>
-        <div id="list{{unique}}" class="tab-pane fade in">
-          <table @click="tableClick($event)" id="listTable{{unique}}" class="display" width="100%"></table>
+        <div id="list{{uni}}" class="tab-pane fade in">
+          <table @click="tableClick($event)" id="listTable{{uni}}" class="display" width="100%"></table>
         </div>
       </div>
     </div>
@@ -35,10 +40,10 @@
 </template>
 
 <script>
+  var debug;
   import StoreCollection from '../storeCollection';
   var _ = require('lodash');
   var store = new StoreCollection.Collection('workwear');
-  var cache = {};
   export default {
     name: 'Crud',
     props : {
@@ -58,74 +63,43 @@
         type: Number,
         'default': 1
       },
-      unique : {
-        type: String,
-        required: true,
-      },
     },
     data: function() {
       return {
         items: [],
         currentId: null,
+        _columns: [],
+        _uni: null,
       }
     },
     events: {
-      router: function() {
-        this.router();
-      },
       refresh: function() {
         this.refresh();
       }
     },
-    methods: {
-      cancelEdit: function() {
-        this.currentId = null;
-        $('.input').val('')
+    computed: {
+      uni: function() {
+        if(!this._uni) {
+          this._uni = this.title.replace(/ /g, '');
+        }
+        return this._uni;
       },
       columns : function() {
-        if(!cache[this.unique]) {
-          cache[this.unique] = {};
-        }
-        if(!cache[this.unique]._columns) {
-          console.log('calculating columns '+ this.unique);
-          cache[this.unique].columns = [];
+        if(!this._columns) {
+          debug && console.log('calculating columns '+ this.uni);
+          this._columns = [];
           var self = this;
           _.each(this.fields, function (item) {
-            cache[self.unique].columns.push(item.name);
+            self._columns.push(item.name);
           });
         }
-        return cache[this.unique].columns;
+        debug && console.log(this._columns);
+        return this._columns;
       },
-
-      tableClick: function(e) {
-        var self = this;
-        var elClass = e.target.getAttribute('class') || '';
-        if(elClass.indexOf('delete-item') != -1) {
-          store.removeById(e.target.getAttribute('data-id'), function() {
-            self.refresh();
-          });
-        } else if (elClass.indexOf('edit-item') != -1) {
-          this.edit(e.target.getAttribute('data-id'));
-        }
-      },
-      edit: function(id) {
-        var self = this;
-        store.get(id, function(doc) {
-          _.each(self.columns(), function(col) {
-            $('#'+col + self.unique).val(doc[col]);
-          });
-          self.currentId = doc._id;
-          self.show('form' + self.unique);
-        });
-      },
-      show: function(what) {
-        $('a[href*="#'+what+'"]').click();
-      },
-      router: function() {
-
-      },
+    },
+    methods: {
       refresh: function() {
-        console.log('REFRESHING');
+        debug && console.log('REFRESHING');
         var self = this;
         self.items = [];
         store.allDocs({
@@ -141,19 +115,10 @@
           console.log('Error', err);
         });
       },
-      docToRow: function(doc) {
-        var row = [];
-        _.each(this.columns(), function(col) {
-          row.push(doc[col] || "");
-        });
-        var temp = '<button class="btn btn-xs btn-danger delete-item" data-id="{0}">Delete</button> \
-                    <button class="btn btn-xs btn-default edit-item" data-id="{0}">Edit</span></button>';
-        row.push(temp.f([doc._id]));
-        return row;
-      },
       renderTable: function() {
+        debug && console.log('RENDER');
         var columns = [];
-        _.each(this.columns(), function(col) {
+        _.each(this.columns, function(col) {
           columns.push({title:col});
         });
         columns.push({title:""});
@@ -162,9 +127,30 @@
           columns: columns,
           destroy:true,
         };
-        var table = $('#listTable'+ this.unique);
+        var table = $('#listTable'+ this.uni);
         table.destroy && table.destroy();
         table.DataTable(data);
+      },
+      docToRow: function(doc) {
+        var row = [];
+        _.each(this.columns, function(col) {
+          row.push(doc[col] || "");
+        });
+        var temp = '<button class="btn btn-xs btn-danger delete-item" data-id="{0}">Delete</button> \
+                    <button class="btn btn-xs btn-default edit-item" data-id="{0}">Edit</span></button>';
+        row.push(temp.f([doc._id]));
+        return row;
+      },
+      edit: function(id) {
+        console.log('Edit', id);
+        var self = this;
+        store.get(id, function(doc) {
+          _.each(self.columns, function(col) {
+            $('#'+col + self.uni).val(doc[col]);
+          });
+          self.currentId = doc._id;
+          self.show('form' + self.uni);
+        });
       },
       submit: function() {
         var model = {
@@ -189,6 +175,24 @@
         }
         id = this.title + this.idTemplate.f(model);
         return id.replace(/ /g, '_');
+      },
+      show: function(what) {
+        $('a[href*="#'+what+'"]').click();
+      },
+      cancelEdit: function() {
+        this.currentId = null;
+        $('.input').val('')
+      },
+      tableClick: function(e) {
+        var self = this;
+        var elClass = e.target.getAttribute('class') || '';
+        if(elClass.indexOf('delete-item') != -1) {
+          store.removeById(e.target.getAttribute('data-id'), function() {
+            self.refresh();
+          });
+        } else if (elClass.indexOf('edit-item') != -1) {
+          this.edit(e.target.getAttribute('data-id'));
+        }
       },
     }
 

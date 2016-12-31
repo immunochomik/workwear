@@ -2,7 +2,6 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
-          unique="WorkwearTypes"
           id-template="_{Description}_{Gender}_"></crud>
   </div>
 </template>
@@ -16,9 +15,10 @@
       return {
         title: 'WorkwearTypes',
         fields: [
+          { name: 'Id', type :'number'},
           { name: 'Description', type :'text'},
           { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
-          { name: 'Sizes', type :'text'},
+          { name: 'Sizes', type :'textarea', placeholder:'Can be list of values or,  range 36-48 s:2, default step is 2 so can be omitted'},
         ]
       }
     },
