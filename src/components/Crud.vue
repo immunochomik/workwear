@@ -70,6 +70,9 @@
       }
     },
     events: {
+      router: function() {
+        this.router();
+      },
       refresh: function() {
         this.refresh();
       }
@@ -80,15 +83,20 @@
         $('.input').val('')
       },
       columns : function() {
-        if(!cache._columns) {
-          console.log('calculating columns');
-          cache._columns = [];
+        if(!cache[this.unique]) {
+          cache[this.unique] = {};
+        }
+        if(!cache[this.unique]._columns) {
+          console.log('calculating columns '+ this.unique);
+          cache[this.unique].columns = [];
+          var self = this;
           _.each(this.fields, function (item) {
-            cache._columns.push(item.name);
+            cache[self.unique].columns.push(item.name);
           });
         }
-        return cache._columns;
+        return cache[this.unique].columns;
       },
+
       tableClick: function(e) {
         var self = this;
         var elClass = e.target.getAttribute('class') || '';
@@ -112,6 +120,9 @@
       },
       show: function(what) {
         $('a[href*="#'+what+'"]').click();
+      },
+      router: function() {
+
       },
       refresh: function() {
         console.log('REFRESHING');
