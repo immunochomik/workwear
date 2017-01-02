@@ -15,6 +15,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li id="topNavLiWorkers" class="active nav-li"><a href="/#!/workers">Workers</a></li>
+                    <li id="topNavLiReleaseHistory" class="nav-li"><a href="/#!/release-history">Release History</a></li>
                     <li id="topNavLiInventory" class="nav-li"><a href="/#!/inventory">Inventory</a></li>
                     <li id="topNavLiWorkwearTypes" class="nav-li"><a href="/#!/workweartypes">Workwear Types</a></li>
                     <li id="topNavLiWorkPositions" class="nav-li"><a href="/#!/workpositions">Work Positions</a></li>

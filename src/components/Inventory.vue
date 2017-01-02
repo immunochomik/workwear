@@ -1,26 +1,20 @@
 <template>
   <div class="container-fluid">
-    <crud :title="title"
-          :fields="fields"
-          id-template="_{Description}_{Size}_{Origin}"></crud>
+    <crud
+        :model="model"
+        ></crud>
   </div>
 </template>
 
 <script>
-
+  import Inventory from '../data/Inventory.js'
   import Crud from './Crud.vue';
   export default {
     name: 'Inventory',
     data: function() {
       return {
-        title: 'Inventory',
-        fields: [
-          { name: 'Description', type :'text'},
-          { name: 'WorkweareId', type :'number'},
-          { name: 'Qty', type :'number'},
-          { name: 'Size', type :'text'},
-          { name: 'Origin', type :'select', options : {New: 'new', Return : 'return'}},
-        ]
+        title:'Inventory',
+        model: Inventory.Inventory,
       }
     },
     route: {

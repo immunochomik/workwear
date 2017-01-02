@@ -119,6 +119,7 @@ export default {
     setTimeout(function() {
       obj.refresh();
       $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
+      $('.datetime').datetimepicker({format:'Y-m-d H:i:s'});
     }, 800);
   }
 }

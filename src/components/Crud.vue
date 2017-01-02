@@ -14,14 +14,14 @@
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
                   <div  v-if="item.type == 'select' || item.type == 'textarea'">
-                  <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input" name="{{item.name}}">
-                    <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
-                  </select>
+                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input" name="{{item.name}}">
+                      <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
+                    </select>
                   <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" class="form-control input {{item.class}} "
                             name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
                   </div>
                   <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}} "
-                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"/>
+                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}" value="{{item.value}}"/>
                 </div>
               </div>
             </div>
@@ -40,29 +40,10 @@
 </template>
 
 <script>
-  var debug;
-  import StoreCollection from '../storeCollection';
-  var _ = require('lodash');
-  var store = new StoreCollection.Collection('workwear');
+  var debug = 1;
   export default {
     name: 'Crud',
     props : {
-      title : {
-        type: String,
-        required: true,
-      },
-      fields: {
-        type: Array,
-        required: true,
-      },
-      idTemplate : {
-        type: String,
-        required: true,
-      },
-      version : {
-        type: Number,
-        'default': 1
-      },
       formActive : {
         type: Boolean,
         'default': true
@@ -70,14 +51,16 @@
       listActive : {
         type: Boolean,
         'default': false
+      },
+      model: {
+        type: Object,
+        required: true,
       }
     },
     data: function() {
       return {
         items: [],
         currentId: null,
-        _columns: [],
-        _uni: null,
       }
     },
     events: {
@@ -87,40 +70,28 @@
     },
     computed: {
       uni: function() {
-        if(!this._uni) {
-          this._uni = this.title.replace(/ /g, '');
-        }
-        return this._uni;
+        return this.model.getUni();
       },
       columns : function() {
-        if(!this._columns) {
-          debug && console.log('calculating columns '+ this.uni);
-          this._columns = [];
-          var self = this;
-          _.each(this.fields, function (item) {
-            self._columns.push(item.name);
-          });
-        }
-        debug && console.log(this._columns);
-        return this._columns;
+        return this.model.columns()
       },
+      fields : function() {
+        return this.model.getFields();
+      },
+      title: function() {
+        return this.model.title;
+      }
     },
     methods: {
       refresh: function() {
         debug && console.log('REFRESHING');
         var self = this;
         self.items = [];
-        store.allDocs({
-          include_docs: true,
-          startkey: this.title,
-          endkey: this.title + '\uffff',
-        }).then(res => {
+        self.model.list( function(res) {
           _.each(res.rows, function(doc) {
             self.items.push(self.docToRow(doc.doc));
           });
           self.renderTable();
-        }).catch(err => {
-          console.log('Error', err);
         });
       },
       renderTable: function() {
@@ -152,9 +123,8 @@
       edit: function(id) {
         console.log('Edit', id);
         var self = this;
-        store.get(id, function(doc) {
+        this.model.get(id, function(doc) {
           _.each(self.columns, function(col) {
-            console.log( $('#'+col + self.uni));
             $('#'+col + self.uni).val(doc[col]);
           });
           self.currentId = doc._id;
@@ -162,27 +132,17 @@
         });
       },
       submit: function() {
-        var model = {
-          ver_ : this.title + this.version,
-        };
+        var data = {};
         _.each($('.input'), function(item) {
           var jitem = $(item);
-          model[jitem.attr('name')] = jitem.val();
+          data[jitem.attr('name')] = jitem.val();
           jitem.val('');
         });
-        model['_id'] = this.makeId(model);
         var self = this;
-        store.upsert(model, function() {
+        this.model.upsert(this.currentId, data, function() {
           self.refresh();
         });
-      },
-      makeId: function(model) {
-        if(this.currentId) {
-          var id = this.currentId;
-          this.currentId = null;
-          return id;
-        }
-        return this.uni + this.idTemplate.f(model);
+        this.currentId = null;
       },
       show: function(what) {
         $('a[href*="#'+what+'"]').click();
@@ -195,7 +155,7 @@
         var self = this;
         var elClass = e.target.getAttribute('class') || '';
         if(elClass.indexOf('delete-item') != -1) {
-          store.removeById(e.target.getAttribute('data-id'), function() {
+          this.model.removeById(e.target.getAttribute('data-id'), function() {
             self.refresh();
           });
         } else if (elClass.indexOf('edit-item') != -1) {
@@ -203,7 +163,6 @@
         }
       },
     }
-
   }
 </script>
 

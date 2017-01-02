@@ -1,25 +1,20 @@
 <template>
   <div class="container-fluid">
-     <crud :title="title"
-           :fields="fields"
-           id-template="_{Start}_{Name}"></crud>
+     <crud
+           :model="model"
+           ></crud>
   </div>
 </template>
 
 <script>
-
+  import Workers from '../data/Workers.js'
   import Crud from './Crud.vue';
   export default {
     name: 'Workers',
     data: function() {
       return {
         title: 'Workers',
-        fields: [
-          { name: 'Name', type :'text'},
-          { name: 'Position', type: 'text'},
-          { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
-          { name: 'Start', type: 'text', 'class': 'date' },
-        ]
+        model: Workers.Workers,
       }
     },
     route: {
