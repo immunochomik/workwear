@@ -2,6 +2,8 @@
   <div class="container-fluid">
     <crud :title="title"
           :fields="fields"
+          :form-active="false"
+          :list-active="true"
           id-template="_{Id}"></crud>
   </div>
 </template>

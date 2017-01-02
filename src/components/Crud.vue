@@ -2,12 +2,12 @@
   <div>
     <div class="panel">
       <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
-        <li><a data-toggle="tab" href="#list{{uni}}">List</a></li>
+        <li v-bind:class="{ active: formActive }"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
+        <li v-bind:class="{ active: listActive }"><a data-toggle="tab" href="#list{{uni}}">List</a></li>
       </ul>
 
       <div class="tab-content">
-        <div id="form{{uni}}" class="tab-pane fade in active">
+        <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
           <div class="panel">
             <div class="panel-body">
               <div v-for="item in fields" class="row form-group" style="margin-bottom: 0.5em">
@@ -31,7 +31,7 @@
             </div>
           </div>
         </div>
-        <div id="list{{uni}}" class="tab-pane fade in">
+        <div id="list{{uni}}" v-bind:class="{ active: listActive }" class="tab-pane fade in">
           <table @click="tableClick($event)" id="listTable{{uni}}" class="display" width="100%"></table>
         </div>
       </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  var debug =1;
+  var debug;
   import StoreCollection from '../storeCollection';
   var _ = require('lodash');
   var store = new StoreCollection.Collection('workwear');
@@ -63,6 +63,14 @@
         type: Number,
         'default': 1
       },
+      formActive : {
+        type: Boolean,
+        'default': true
+      },
+      listActive : {
+        type: Boolean,
+        'default': false
+      }
     },
     data: function() {
       return {

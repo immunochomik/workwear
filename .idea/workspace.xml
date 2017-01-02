@@ -42,17 +42,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="9.3">
-              <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.25559482">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#2196#2490#0" expanded="false" />
-                <element signature="e#3302#3772#0" expanded="false" />
-                <element signature="e#3804#4239#0" expanded="false" />
-                <element signature="e#4271#4660#0" expanded="false" />
+                <element signature="e#3583#4053#0" expanded="false" />
+                <element signature="e#4085#4520#0" expanded="false" />
+                <element signature="e#4552#4941#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -71,27 +70,17 @@
       <file leaf-file-name="WorkwearTypes.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/WorkwearTypes.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.533333">
-              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+            <state vertical-scroll-proportion="-4.133333">
+              <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scratch" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkPositions.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkPositions.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/WorkPositions.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56183743">
+            <state vertical-scroll-proportion="-15.9">
               <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
@@ -135,9 +124,9 @@
         <option value="$PROJECT_DIR$/src/components/Workers.vue" />
         <option value="$PROJECT_DIR$/src/components/Inventory.vue" />
         <option value="$PROJECT_DIR$/deployaws" />
+        <option value="$PROJECT_DIR$/src/components/WorkPositions.vue" />
         <option value="$PROJECT_DIR$/src/components/WorkwearTypes.vue" />
         <option value="$PROJECT_DIR$/src/components/Crud.vue" />
-        <option value="$PROJECT_DIR$/src/components/WorkPositions.vue" />
       </list>
     </option>
   </component>
@@ -153,9 +142,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="729" />
+    <option name="x" value="449" />
     <option name="y" value="52" />
-    <option name="width" value="1181" />
+    <option name="width" value="1461" />
     <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -356,10 +345,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="729" y="52" width="1181" height="1028" extended-state="4" />
+    <frame x="449" y="52" width="1461" height="1028" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22563653" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18111347" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -757,33 +746,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/WorkPositions.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.3">
-          <caret line="42" column="14" selection-start-line="42" selection-start-column="14" selection-end-line="42" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2196#2490#0" expanded="false" />
-            <element signature="e#3302#3772#0" expanded="false" />
-            <element signature="e#3804#4239#0" expanded="false" />
-            <element signature="e#4271#4660#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="-15.9">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/WorkwearTypes.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.533333">
-          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+        <state vertical-scroll-proportion="-4.133333">
+          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/WorkPositions.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56183743">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
+        <state vertical-scroll-proportion="0.25559482">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#3583#4053#0" expanded="false" />
+            <element signature="e#4085#4520#0" expanded="false" />
+            <element signature="e#4552#4941#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
