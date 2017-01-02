@@ -1,9 +1,13 @@
 <template>
   <div class="container-fluid">
-     <crud
-           :model="model"
-         ></crud>
+    <crud
+        :model="model"
+        ></crud>
+    <div class="panel panel-default">
+        <div class="panel-body">
 
+        </div>
+    </div>
   </div>
 
 </template>
@@ -14,6 +18,8 @@
 
   import Workers from '../data/Workers.js';
   var workers = Workers.Workers;
+  import WorkwearTypes from '../data/WorkwearTypes.js';
+  var wTypes = WorkwearTypes.WorkwearTypes;
 
   export default {
     name: 'ReleaseHistory',
@@ -22,6 +28,7 @@
         title: 'ReleaseHistory',
         model : ReleaseHistory.ReleaseHistory,
         workers : {},
+        wTypes : {},
       }
     },
     route: {
@@ -41,7 +48,7 @@
                 show(list)
               }, req.term)
             }
-        });
+          });
         }, 800);
       }
     },

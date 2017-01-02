@@ -4,7 +4,7 @@ var ReleaseHistory = new Model.Model({
   title : 'ReleaseHistory',
   fields: [
     { name: 'DateTime', type: 'text', 'class': 'datetime' },
-    { name: 'Employee', type :'text'},
+    { name: 'Employee', type :'text', placeholder:'Start typing'},
     { name: 'Workweare', type :'text'},
     { name: 'Qty', type :'number', value:1},
   ],

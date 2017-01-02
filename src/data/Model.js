@@ -25,6 +25,7 @@ var Model = (function() {
     return this.fields;
   };
   Model.prototype.list = function(callback, start, end) {
+    console.log('LIST');
     start = start || '';
     end = end ? this.uni + '_' + end : '\uffff';
     start = this.uni + '_' + start;
@@ -33,7 +34,10 @@ var Model = (function() {
       startkey: start,
       endkey: end,
     };
+    console.log(this.uni);
+    pp(args);
     store.allDocs(args).then(res => {
+      //pp(res);
       res.rows = _.filter(res.rows, function(item) {
         return item.id.indexOf(start) == 0;
       });
