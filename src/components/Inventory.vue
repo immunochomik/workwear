@@ -16,6 +16,7 @@
         title: 'Inventory',
         fields: [
           { name: 'Description', type :'text'},
+          { name: 'WorkweareId', type :'number'},
           { name: 'Qty', type :'number'},
           { name: 'Size', type :'text'},
           { name: 'Origin', type :'select', options : {New: 'new', Return : 'return'}},

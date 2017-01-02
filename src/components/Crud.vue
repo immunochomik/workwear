@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  var debug;
+  var debug =1;
   import StoreCollection from '../storeCollection';
   var _ = require('lodash');
   var store = new StoreCollection.Collection('workwear');
@@ -146,6 +146,7 @@
         var self = this;
         store.get(id, function(doc) {
           _.each(self.columns, function(col) {
+            console.log( $('#'+col + self.uni));
             $('#'+col + self.uni).val(doc[col]);
           });
           self.currentId = doc._id;
@@ -168,13 +169,12 @@
         });
       },
       makeId: function(model) {
-        var id = this.currentId;
-        if(id) {
+        if(this.currentId) {
+          var id = this.currentId;
           this.currentId = null;
           return id;
         }
-        id = this.title + this.idTemplate.f(model);
-        return id.replace(/ /g, '_');
+        return this.uni + this.idTemplate.f(model);
       },
       show: function(what) {
         $('a[href*="#'+what+'"]').click();
