@@ -4,7 +4,6 @@ var store = new StoreCollection.Collection('workwear');
 
 var Model = (function() {
   function Model(settings) {
-    console.log(settings);
     this.title = settings.title;
     this.uni = this.title.replace(/ /g, '');
     this.fields = settings.fields;
@@ -27,15 +26,18 @@ var Model = (function() {
   };
   Model.prototype.list = function(callback, start, end) {
     start = start || '';
-    end = end || '';
-    start = this.uni + start;
-    end = this.uni + end + '\uffff';
+    end = end ? this.uni + '_' + end : '\uffff';
+    start = this.uni + '_' + start;
     var args = {
       include_docs: true,
       startkey: start,
       endkey: end,
     };
     store.allDocs(args).then(res => {
+      res.rows = _.filter(res.rows, function(item) {
+        return item.id.indexOf(start) == 0;
+      });
+      res.total_rows = res.rows.length;
       callback(res);
     }).catch(err => {
       console.log('Error', err);

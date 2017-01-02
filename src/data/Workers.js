@@ -9,7 +9,7 @@ var Workers = new Model.Model({
     { name: 'Start', type: 'text', 'class': 'date' },
     { name: 'Sizes', type: 'text'},
   ],
-  idTemplate : "_{Start}_{Name}",
+  idTemplate : "_{Name}_{Start}",
   version : 1
 });
 
