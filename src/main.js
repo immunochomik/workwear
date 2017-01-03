@@ -1,3 +1,16 @@
+
+
+
+import Vue from 'vue';
+import App from './App.vue';
+import Router from 'vue-router';
+import Data from './components/Data.vue';
+import Inventory from './components/Inventory.vue';
+import Workers from './components/Workers.vue';
+import WorkPositions from './components/WorkPositions.vue';
+import WorkwearTypes from './components/WorkwearTypes.vue';
+import ReleaseHistory from './components/ReleaseHistory.vue';
+
 var _ = require('lodash');
 import helpers from './helpers/helpers.js';
 _.extend(window, helpers);
@@ -14,17 +27,6 @@ require( 'jquery-datetimepicker/build/jquery.datetimepicker.min.css' );
 
 require( 'jquery-ui/ui/widgets/autocomplete.js' );
 require( 'jquery-ui/themes/base/all.css' );
-
-import Vue from 'vue';
-import App from './App.vue';
-import Router from 'vue-router';
-import Data from './components/Data.vue';
-import Inventory from './components/Inventory.vue';
-import Workers from './components/Workers.vue';
-import WorkPositions from './components/WorkPositions.vue';
-import WorkwearTypes from './components/WorkwearTypes.vue';
-import ReleaseHistory from './components/ReleaseHistory.vue';
-
 
 // install router
 Vue.use(Router);

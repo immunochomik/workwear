@@ -2,7 +2,7 @@ import StoreCollection from '../storeCollection';
 var _ = require('lodash');
 var store = new StoreCollection.Collection('workwear');
 
-var debug =1;
+var debug;
 var Model = (function() {
   function Model(settings) {
     this.title = settings.title;
@@ -36,7 +36,9 @@ var Model = (function() {
         _.each(oKey, function(part) {
           usedKey.push(doc.doc[part]);
         });
-        options.push([usedKey.join('_').replace(/_$/g, ''), doc.doc[oValue]]);
+        usedKey = usedKey.join('_').replace(/_$/g, '');
+        var usedValue = oValue ? doc.doc[oValue] : usedKey;
+        options.push([usedKey, usedValue]);
       });
       options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
       debug && pp('options', options);
@@ -57,10 +59,8 @@ var Model = (function() {
       startkey: start,
       endkey: end,
     };
-    console.log(this.uni);
-    //pp(args);
+    debug && pp(args);
     store.allDocs(args).then(res => {
-      //pp(res);
       res.rows = _.filter(res.rows, function(item) {
         return item.id.indexOf(start) == 0;
       });

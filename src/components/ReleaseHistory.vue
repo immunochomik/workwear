@@ -16,6 +16,7 @@
   import WorkwearTypes from '../data/WorkwearTypes.js';
   var wTypes = WorkwearTypes.WorkwearTypes;
 
+  var selectsDone = false;
   export default {
     name: 'ReleaseHistory',
     data: function() {
@@ -23,31 +24,31 @@
         title: 'ReleaseHistory',
         model : ReleaseHistory.ReleaseHistory,
         workers : {},
-        wTypes : {},
       }
     },
     route: {
       data: function(to) {
         routerCall(this);
         var self = this;
-        setTimeout(function(){
-          wTypes.setSelect('#WorkwearReleaseHistory', ['Description', 'Gender'], 'Id');
-        },800);
-        setTimeout(function() {
-          $( "#EmployeeReleaseHistory" ).autocomplete({
-            source:  function(req, show) {
-              console.log(req, show);
-              workers.list(function(data) {
-                var list = [];
-                _.each(data.rows, function(doc) {
-                  self.workers[doc.doc.Name] = doc;
-                  list.push(doc.doc.Name);
-                });
-                show(list)
-              }, req.term)
-            }
+        if(!selectsDone) {
+          this.$nextTick(function () {
+            wTypes.setSelect('#WorkwearReleaseHistory', ['Description', 'Gender']);
+            $( "#EmployeeReleaseHistory" ).autocomplete({
+              source:  function(req, show) {
+                console.log(req, show);
+                workers.list(function(data) {
+                  var list = [];
+                  _.each(data.rows, function(doc) {
+                    self.workers[doc.doc.Name] = doc;
+                    list.push(doc.doc.Name);
+                  });
+                  show(list)
+                }, req.term)
+              }
+            });
           });
-        }, 800);
+          selectsDone = true;
+        }
       }
     },
     methods: {

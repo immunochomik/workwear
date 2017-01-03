@@ -12,7 +12,7 @@
   import WorkPositions from '../data/WorkPositions.js';
   var workPositions = WorkPositions.WorkPositions;
 
-
+  var selectsDone = false;
 
   export default {
     name: 'Workers',
@@ -26,9 +26,12 @@
     route: {
       data: function(to) {
         routerCall(this);
-        setTimeout(function(){
-          workPositions.setSelect('#PositionWorkers', 'Description', 'Id');
-        },800);
+        if(! selectsDone) {
+          this.$nextTick(function () {
+            workPositions.setSelect('#PositionWorkers', 'Description', 'Id');
+          });
+          selectsDone = true;
+        }
       }
     },
     methods: {

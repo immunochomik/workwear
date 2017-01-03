@@ -14,13 +14,13 @@
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
                   <div  v-if="item.type == 'select' || item.type == 'textarea'">
-                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input" name="{{item.name}}">
+                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}" name="{{item.name}}">
                       <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
                     </select>
                   <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" class="form-control input {{item.class}} "
                             name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
                   </div>
-                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}} "
+                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
                          placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}" value="{{item.value}}"/>
                 </div>
               </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  var debug = 1;
+  var debug;
   export default {
     name: 'Crud',
     props : {
@@ -58,6 +58,10 @@
       }
     },
     data: function() {
+      // ok I am sorry for that hack 
+      this.$nextTick(function(){
+         $('.ignore-input').removeClass('input');
+      });
       return {
         items: [],
         currentId: null,
