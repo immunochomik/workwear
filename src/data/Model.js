@@ -66,7 +66,7 @@ var Model = (function() {
     });
   };
   Model.prototype.list = function(callback, start, end) {
-    console.log('LIST');
+    debug && console.log('LIST');
     start = start || '';
     end = end ? this.uni + '_' + end : '\uffff';
     start = this.uni + '_' + start;

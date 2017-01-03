@@ -1,5 +1,4 @@
 var d3 = require('d3');
-import Vue from 'vue';
 
 String.prototype.format = String.prototype.f =  function() {
   var args;
@@ -122,11 +121,13 @@ export default {
   routerCall : function(obj) {
     document.title = obj.title;
     toggleTopNavActive('topNavLi' + obj.title.replace(/ /g, ''));
-    Vue.nextTick(function() {
-      obj.refresh();
-      $('.date').datetimepicker({timepicker:false, format:'Y-m-d'});
-      $('.datetime').datetimepicker({format:'Y-m-d H:i:s'});
+    obj.$nextTick(function() {
+      obj.$nextTick(function () {
+        console.log('NEXT TICK');
+        obj.refresh();
+        $('.date').datetimepicker({timepicker: false, format: 'Y-m-d'});
+        $('.datetime').datetimepicker({format: 'Y-m-d H:i:s'});
+      });
     });
-    //setTimeout(, 800);
   }
 }

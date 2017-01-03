@@ -39,12 +39,13 @@
         </div>
       </div>
     </div>
-    <pre>{{ fieldsObject | json }}</pre>
+    <button class="btn btn-default" @click="toggleDebug">DEBUG</button>
+    <pre v-if="debug">{{ fieldsObject | json }}</pre>
   </div>
 </template>
 
 <script>
-  var debug;
+  var debug = false;
   export default {
     name: 'Crud',
     props : {
@@ -70,6 +71,7 @@
         items: [],
         currentId: null,
         fieldsObject : this.model.getFieldsObject(),
+        debug : debug,
       }
     },
     events: {
@@ -92,6 +94,7 @@
       }
     },
     methods: {
+
       refresh: function() {
         debug && console.log('REFRESHING');
         var self = this;
@@ -170,6 +173,9 @@
           this.edit(e.target.getAttribute('data-id'));
         }
       },
+      toggleDebug: function() {
+        this.debug = !this.debug;
+      }
     }
   }
 </script>
