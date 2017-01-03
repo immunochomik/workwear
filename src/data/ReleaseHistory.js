@@ -5,10 +5,10 @@ var ReleaseHistory = new Model.Model({
   fields: [
     { name: 'DateTime', type: 'text', 'class': 'datetime' },
     { name: 'Employee', type :'text', placeholder:'Start typing'},
-    { name: 'Workweare', type :'text'},
+    { name: 'Workwear', type :'select'},
     { name: 'Qty', type :'number', value:1},
   ],
-  idTemplate : "_{Id}",
+  idTemplate : "_{DateTime}_{Employee}_{Workwear}",
   version : 1
 });
 

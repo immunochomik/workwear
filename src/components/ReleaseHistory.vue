@@ -30,6 +30,9 @@
       data: function(to) {
         routerCall(this);
         var self = this;
+        setTimeout(function(){
+          wTypes.setSelect('#WorkwearReleaseHistory', ['Description', 'Gender'], 'Id');
+        },800);
         setTimeout(function() {
           $( "#EmployeeReleaseHistory" ).autocomplete({
             source:  function(req, show) {

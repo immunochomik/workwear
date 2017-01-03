@@ -2,6 +2,7 @@ import StoreCollection from '../storeCollection';
 var _ = require('lodash');
 var store = new StoreCollection.Collection('workwear');
 
+var debug =1;
 var Model = (function() {
   function Model(settings) {
     this.title = settings.title;
@@ -25,17 +26,24 @@ var Model = (function() {
     return this.fields;
   };
   Model.prototype.setSelect = function(selectId, oKey, oValue) {
-    var options = {};
+    var options = [];
+    if(!Array.isArray(oKey)) {
+      oKey = [oKey];
+    }
     this.list(function(resp) {
       _.each(resp.rows, function(doc) {
-        options[doc.doc[oKey]] = doc.doc[oValue];
+        var usedKey = [];
+        _.each(oKey, function(part) {
+          usedKey.push(doc.doc[part]);
+        });
+        options.push([usedKey.join('_').replace(/_$/g, ''), doc.doc[oValue]]);
       });
-      pp('options', options);
-      console.log(options);
+      options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
+      debug && pp('options', options);
       var $el = $(selectId);
       $el.empty();
-      $.each(options, function(key,value) {
-        $el.append("<option value='{0}'>{1}</option>".f([value, key]));
+      _.each(options, function(row) {
+        $el.append("<option value='{1}'>{0}</option>".f(row));
       });
     });
   };
