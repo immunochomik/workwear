@@ -24,6 +24,21 @@ var Model = (function() {
   Model.prototype.getFields = function() {
     return this.fields;
   };
+  Model.prototype.setSelect = function(selectId, oKey, oValue) {
+    var options = {};
+    this.list(function(resp) {
+      _.each(resp.rows, function(doc) {
+        options[doc.doc[oKey]] = doc.doc[oValue];
+      });
+      pp('options', options);
+      console.log(options);
+      var $el = $(selectId);
+      $el.empty();
+      $.each(options, function(key,value) {
+        $el.append("<option value='{0}'>{1}</option>".f([value, key]));
+      });
+    });
+  };
   Model.prototype.list = function(callback, start, end) {
     console.log('LIST');
     start = start || '';
@@ -35,7 +50,7 @@ var Model = (function() {
       endkey: end,
     };
     console.log(this.uni);
-    pp(args);
+    //pp(args);
     store.allDocs(args).then(res => {
       //pp(res);
       res.rows = _.filter(res.rows, function(item) {
@@ -60,7 +75,7 @@ var Model = (function() {
   };
   Model.prototype.makeId = function(data) {
     return this.uni + this.idTemplate.f(data);
-  }
+  };
   return Model;
 })();
 

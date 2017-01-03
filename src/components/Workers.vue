@@ -12,6 +12,8 @@
   import WorkPositions from '../data/WorkPositions.js';
   var workPositions = WorkPositions.WorkPositions;
 
+
+
   export default {
     name: 'Workers',
     data: function() {
@@ -24,22 +26,9 @@
     route: {
       data: function(to) {
         routerCall(this);
-        var self = this;
-        setTimeout(function () {
-          console.log('trying');
-          $("#PositionWorkers").autocomplete({
-            source: function (req, show) {
-              workPositions.list(function (data) {
-                var list = [];
-                _.each(data.rows, function (doc) {
-                  //self.positions[doc.doc.Description] = doc;
-                  //list.push(doc.doc.Name);
-                });
-                show(list)
-              })
-            }
-          });
-        }, 800);
+        setTimeout(function(){
+          workPositions.setSelect('#PositionWorkers', 'Description', 'Id');
+        },800);
       }
     },
     methods: {
