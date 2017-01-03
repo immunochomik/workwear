@@ -9,6 +9,10 @@
 <script>
   import WorkPositions from '../data/WorkPositions.js'
   import Crud from './Crud.vue';
+  import WorkwearTypes from '../data/WorkwearTypes.js';
+  var wTypes = WorkwearTypes.WorkwearTypes;
+
+  var selectsDone;
   export default {
     name: 'WorkPositions',
     data: function() {
@@ -20,6 +24,19 @@
     route: {
       data: function(to) {
         routerCall(this);
+        if(1 || !selectsDone) {
+          var self = this;
+          this.$nextTick(function () {
+            var selectHelper = '#WorkweareTypesHelperWorkPositions';
+            wTypes.setSelect(selectHelper, ['Description', 'Gender']);
+            var wTypesTArea = document.getElementById('WorkweareTypesWorkPositions');
+            $(selectHelper).on('change', function(e) {
+              self.$broadcast('appendInput',
+                  {name:'WorkweareTypes', value: $(this).val() + ' => 12;\n' });
+            });
+          });
+          selectsDone = true;
+        }
       }
     },
     methods: {

@@ -36,7 +36,7 @@
         },
         data : function () {
             return {
-                title: 'Foo Doo'
+                title: 'Workwear'
             }
         }
     }

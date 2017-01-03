@@ -10,18 +10,21 @@
         <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
           <div class="panel">
             <div class="panel-body">
-              <div v-for="item in fields" class="row form-group" style="margin-bottom: 0.5em">
+              <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
                   <div  v-if="item.type == 'select' || item.type == 'textarea'">
-                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}" name="{{item.name}}">
+                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
+                            name="{{item.name}}" v-model="item.value">
                       <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
                     </select>
-                  <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" class="form-control input {{item.class}} "
+                  <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" rows="6"
+                            class="form-control input {{item.class}} " v-model="item.value"
                             name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
                   </div>
                   <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
-                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}" value="{{item.value}}"/>
+                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
+                         value="{{item.value}}" v-model="item.value"/>
                 </div>
               </div>
             </div>
@@ -36,6 +39,7 @@
         </div>
       </div>
     </div>
+    <pre>{{ fieldsObject | json }}</pre>
   </div>
 </template>
 
@@ -58,18 +62,22 @@
       }
     },
     data: function() {
-      // ok I am sorry for that hack 
+      // ok I am sorry for that hack
       this.$nextTick(function(){
          $('.ignore-input').removeClass('input');
       });
       return {
         items: [],
         currentId: null,
+        fieldsObject : this.model.getFieldsObject(),
       }
     },
     events: {
       refresh: function() {
         this.refresh();
+      },
+      appendInput: function(e) {
+        this.fieldsObject[e.name]['value'] += e.value;
       }
     },
     computed: {
@@ -78,9 +86,6 @@
       },
       columns : function() {
         return this.model.columns()
-      },
-      fields : function() {
-        return this.model.getFields();
       },
       title: function() {
         return this.model.title;
@@ -137,11 +142,10 @@
       },
       submit: function() {
         var data = {};
-        _.each($('.input'), function(item) {
-          var jitem = $(item);
-          data[jitem.attr('name')] = jitem.val();
-          jitem.val('');
-        });
+        for(var name in this.fieldsObject) {
+          data[name] = this.fieldsObject[name].value;
+          this.fieldsObject[name].value = "";
+        }
         var self = this;
         this.model.upsert(this.currentId, data, function() {
           self.refresh();

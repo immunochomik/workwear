@@ -1,6 +1,9 @@
 import StoreCollection from '../storeCollection';
 var _ = require('lodash');
 var store = new StoreCollection.Collection('workwear');
+import helpers from '../helpers/helpers.js';
+_.extend(window, helpers);
+
 
 var debug;
 var Model = (function() {
@@ -8,19 +11,32 @@ var Model = (function() {
     this.title = settings.title;
     this.uni = this.title.replace(/ /g, '');
     this.fields = settings.fields;
+    this.fieldsObject = {};
+    var self = this;
+    _.each(this.fields, function(item) {
+      self.fieldsObject[item.name] = item;
+      if(!self.fieldsObject[item.name].value) {
+        self.fieldsObject[item.name].value = "";
+      }
+    });
     this.idTemplate = settings.idTemplate || "_{Id}";
     this.version = settings.version || 1;
     this._columns = [];
-    var self = this;
-    _.each(this.fields, function (item) {
-      self._columns.push(item.name);
-    });
+    for(var i = 0; i< this.fields.length; i++) {
+      if(this.fields[i].class && this.fields[i].class.indexOf('ignore-input') != -1) {
+        continue;
+      }
+      self._columns.push(this.fields[i].name);
+    }
   };
   Model.prototype.getUni = function() {
     return this.uni;
   };
   Model.prototype.columns = function() {
     return this._columns;
+  };
+  Model.prototype.getFieldsObject = function() {
+    return this.fieldsObject;
   };
   Model.prototype.getFields = function() {
     return this.fields;

@@ -39,12 +39,17 @@ var dayFrom = function(count, date) {
   var result = d3.time.day.offset(date, count);
   return dFormat(result);
 };
-
+var c = 1;
+function cuniq() {
+  var d = new Date(),
+    m = d.getMilliseconds() + "",
+    u = ++d + m + (++c === 10000 ? (c = 1) : c);
+  return u;
+};
 export default {
   dFormat : dFormat,
-
   dayFrom : dayFrom,
-
+  cuniq: cuniq,
 
   toggleTopNavActive : function(id) {
     $('.nav-li').removeClass('active');
