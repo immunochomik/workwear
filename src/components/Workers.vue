@@ -28,7 +28,7 @@
         routerCall(this);
         if(! selectsDone) {
           this.$nextTick(function () {
-            workPositions.setSelect('#PositionWorkers', 'Description', 'Id');
+            workPositions.setSelect('#PositionWorkers', 'Description');
           });
           selectsDone = true;
         }

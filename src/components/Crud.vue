@@ -133,9 +133,9 @@
         console.log('Edit', id);
         var self = this;
         this.model.get(id, function(doc) {
-          _.each(self.columns, function(col) {
-            $('#'+col + self.uni).val(doc[col]);
-          });
+          for(var name in self.fieldsObject) {
+            self.fieldsObject[name].value = doc[name];
+          }
           self.currentId = doc._id;
           self.show('form' + self.uni);
         });
