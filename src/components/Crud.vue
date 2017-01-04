@@ -80,6 +80,9 @@
       },
       appendInput: function(e) {
         this.fieldsObject[e.name]['value'] += e.value;
+      },
+      call: function(e) {
+        e.func(e.params);
       }
     },
     computed: {
@@ -94,7 +97,6 @@
       }
     },
     methods: {
-
       refresh: function() {
         debug && console.log('REFRESHING');
         var self = this;

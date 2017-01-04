@@ -15,7 +15,7 @@ var Model = (function() {
     var self = this;
     _.each(this.fields, function(item) {
       self.fieldsObject[item.name] = item;
-      if(!self.fieldsObject[item.name].value) {
+      if(!self.fieldsObject[item.name].value && self.fieldsObject[item.name].value !== 0) {
         self.fieldsObject[item.name].value = "";
       }
     });

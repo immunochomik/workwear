@@ -24,12 +24,11 @@
     route: {
       data: function(to) {
         routerCall(this);
-        if(1 || !selectsDone) {
+        if(!selectsDone) {
           var self = this;
           this.$nextTick(function () {
             var selectHelper = '#WorkweareTypesHelperWorkPositions';
             wTypes.setSelect(selectHelper, ['Description', 'Gender']);
-            var wTypesTArea = document.getElementById('WorkweareTypesWorkPositions');
             $(selectHelper).on('change', function(e) {
               self.$broadcast('appendInput',
                   {name:'WorkweareTypes', value: $(this).val() + ' => 12;\n' });

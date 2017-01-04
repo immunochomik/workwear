@@ -43,7 +43,7 @@
       <hr>
       <div class="col-sm-9"  style="padding: 0 2em">
       <textarea v-model="applyToData" class="form-control" rows="20"
-                placeholder="Function to apply to data"></textarea>
+                placeholder="Function to apply to data minimum code {return doc;}"></textarea>
       </div>
       <div class="col-sm-3">
         <button class="btn btn-danger" style="width: 100%"
@@ -107,24 +107,24 @@
       }
     },
     methods : {
-        validateMapper : function(code) {
-          if(!code) {
-            console.error('We need apply to data model to be set');
-            return;
-          }
-          var func = Function('doc', code);
-          var test = {test:1};
-          try {
-            test = func(test);
-          } catch (e) {
-            console.error('Error while testing transformation function', e);
-            return;
-          }
-          if(!test) {
-            console.error('Transformation function hast to return value');
-            return;
-          }
-          return func;
+      validateMapper : function(code) {
+        if(!code) {
+          console.error('We need apply to data model to be set');
+          return;
+        }
+        var func = Function('doc', code);
+        var test = {test:1};
+        try {
+          test = func(test);
+        } catch (e) {
+          console.error('Error while testing transformation function', e);
+          return;
+        }
+        if(!test) {
+          console.error('Transformation function hast to return value');
+          return;
+        }
+        return func;
       },
       validateReducer: function(code) {
         if(!code) {
@@ -169,6 +169,10 @@
         this.fullData.forEach(function(item) {
           try {
             item.doc = func(item.doc);
+            if(JSON.stringify(item.doc) === JSON.stringify(item.doc)) {
+              pp(item.doc);
+              return;
+            }
             store.update(item.doc).then(res => {
               console.log(res);
             }).catch(err => {
@@ -215,9 +219,9 @@
               data.forEach(function(item) {
                 delete item.doc._rev;
                 store.put(item.doc).then(res => {
-                    console.log(res);
+                  console.log(res);
                 }).catch(err => {
-                    console.log('Error', err);
+                  console.log('Error', err);
                 });
               });
             }
