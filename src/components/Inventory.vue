@@ -23,19 +23,12 @@
     route: {
       data: function(to) {
         routerCall(this);
-        var self = this;
         if(1 || !selectsDone) {
           this.$nextTick(function() {
-            var descriptionId = 'DescriptionInventory';
-            wTypes.setSelect('#' + descriptionId, ['Description', 'Gender']);
-            document.getElementById(descriptionId).addEventListener('change', function(e) {
-              self.$broadcast('call',
-                {params: {value: $(this).val()}, func: function(val) {
-                  console.log('VAl', val);
-               }});
-            });
+            wTypes.setSelect('#DescriptionInventory', ['Description', 'Gender']);
             selectsDone = true;
           });
+
         }
       }
     },

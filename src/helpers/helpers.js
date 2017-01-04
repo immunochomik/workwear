@@ -44,12 +44,64 @@ function cuniq() {
     m = d.getMilliseconds() + "",
     u = ++d + m + (++c === 10000 ? (c = 1) : c);
   return u;
+}
+function array_combine (keys, values) {
+  var newArray = {};
+  if (typeof keys !== 'object') {
+    return false
+  }
+  if (typeof values !== 'object') {
+    return false
+  }
+  if (typeof keys.length !== 'number') {
+    return false
+  }
+  if (typeof values.length !== 'number') {
+    return false
+  }
+  if (!keys.length) {
+    return false
+  }
+  if (keys.length !== values.length) {
+    return false
+  }
+  for (var i = 0; i < keys.length; i++) {
+    newArray[keys[i]] = values[i]
+  }
+  return newArray
+}
+
+function range(start, stop, step) {
+  if (typeof stop == 'undefined') {
+    stop = start;
+    start = 0;
+  }
+  if (typeof step == 'undefined') {
+    step = 1;
+  }
+  start = parseInt(start);
+  stop = parseInt(stop);
+  if ((step > 0 && start >= stop) || (step < 0 && start <= stop)) {
+    return [];
+  }
+  var result = [];
+  var sanity = 1000;
+  for (var i = start; step > 0 ? i < stop : i > stop; i += step) {
+    result.push(i);
+    if(sanity-- <0) {
+      throw new Error('Endless loop detected');
+    }
+  }
+  return result;
 };
+
+
 export default {
   dFormat : dFormat,
   dayFrom : dayFrom,
   cuniq: cuniq,
-
+  range: range,
+  array_combine: array_combine,
   toggleTopNavActive : function(id) {
     $('.nav-li').removeClass('active');
     $('#' + id).addClass('active');

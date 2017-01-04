@@ -64,8 +64,14 @@
     },
     data: function() {
       // ok I am sorry for that hack
+      var self = this;
       this.$nextTick(function(){
-         $('.ignore-input').removeClass('input');
+        $('.ignore-input').removeClass('input');
+        self.$nextTick(function() {
+          $('.on-change').on('change', function(e) {
+            self.fieldsObject[$(this).attr('name')].onchange(self);
+          });
+        });
       });
       return {
         items: [],
@@ -82,7 +88,7 @@
         this.fieldsObject[e.name]['value'] += e.value;
       },
       call: function(e) {
-        e.func(e.params);
+        e.func(this, e.params);
       }
     },
     computed: {

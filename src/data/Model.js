@@ -46,6 +46,7 @@ var Model = (function() {
     if(!Array.isArray(oKey)) {
       oKey = [oKey];
     }
+    var self = this;
     this.list(function(resp) {
       _.each(resp.rows, function(doc) {
         var usedKey = [];
@@ -58,11 +59,14 @@ var Model = (function() {
       });
       options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
       debug && pp('options', options);
-      var $el = $(selectId);
-      $el.empty();
-      _.each(options, function(row) {
-        $el.append("<option value='{1}'>{0}</option>".f(row));
-      });
+      self.replaceSelect(selectId, options);
+    });
+  };
+  Model.prototype.replaceSelect = function(selectId, options) {
+    var $el = $(selectId);
+    $el.empty();
+    _.each(options, function(row) {
+      $el.append("<option value='{1}'>{0}</option>".f(row));
     });
   };
   Model.prototype.list = function(callback, start, end) {
@@ -87,6 +91,9 @@ var Model = (function() {
     });
   };
   Model.prototype.get = function(id, callback) {
+    if(id.indexOf(this.uni) !== 0) {
+      id = this.uni + '_' + id;
+    }
     store.get(id, callback);
   };
   Model.prototype.upsert = function(id, item, callback) {
