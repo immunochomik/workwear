@@ -8,7 +8,6 @@
 
 <script>
   import Inventory from '../data/Inventory.js'
-  import Crud from './Crud.vue';
   import WorkwearTypes from '../data/WorkwearTypes.js';
   var wTypes = WorkwearTypes.WorkwearTypes;
   var selectsDone;
@@ -28,7 +27,6 @@
             wTypes.setSelect('#DescriptionInventory', ['Description', 'Gender']);
             selectsDone = true;
           });
-
         }
       }
     },
@@ -36,9 +34,6 @@
       refresh: function() {
         this.$broadcast('refresh');
       }
-    },
-    components: {
-      crud : Crud,
-    },
+    }
   }
 </script>

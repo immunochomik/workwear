@@ -9,10 +9,9 @@
 
 <script>
   import ReleaseHistory from '../data/ReleaseHistory.js'
-  import Crud from './Crud.vue';
   import Workers from '../data/Workers.js';
-  var workers = Workers.Workers;
   import WorkwearTypes from '../data/WorkwearTypes.js';
+  var workers = Workers.Workers;
   var wTypes = WorkwearTypes.WorkwearTypes;
   export default {
     name: 'ReleaseHistory',
@@ -52,9 +51,6 @@
       refresh: function() {
         this.$broadcast('refresh');
       }
-    },
-    components: {
-      crud : Crud,
     },
   }
 </script>

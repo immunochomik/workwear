@@ -10,7 +10,6 @@
 
 <script>
   import WorkwearTypes from '../data/WorkwearTypes.js'
-  import Crud from './Crud.vue';
   export default {
     name: 'WorkwearTypes',
     data: function() {
@@ -28,9 +27,6 @@
       refresh: function() {
         this.$broadcast('refresh');
       }
-    },
-    components: {
-      crud : Crud,
-    },
+    }
   }
 </script>

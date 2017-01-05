@@ -10,11 +10,12 @@ import Workers from './components/Workers.vue';
 import WorkPositions from './components/WorkPositions.vue';
 import WorkwearTypes from './components/WorkwearTypes.vue';
 import ReleaseHistory from './components/ReleaseHistory.vue';
+import Crud from './components/Crud.vue';
+
 
 var _ = require('lodash');
 import helpers from './helpers/helpers.js';
 _.extend(window, helpers);
-
 require('expose?$!expose?jQuery!jquery');
 require('bootstrap-webpack');
 require('bootstrap/dist/css/bootstrap-theme.min.css');
@@ -28,10 +29,11 @@ require( 'jquery-datetimepicker/build/jquery.datetimepicker.min.css' );
 require( 'jquery-ui/ui/widgets/autocomplete.js' );
 require( 'jquery-ui/themes/base/all.css' );
 
+Vue.component('crud', Crud);
+Vue.config.debug = true;
+
 // install router
 Vue.use(Router);
-
-Vue.config.debug = true;
 
 // routing
 var router = new Router();

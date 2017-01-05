@@ -8,7 +8,6 @@
 
 <script>
   import Workers from '../data/Workers.js'
-  import Crud from './Crud.vue';
   import WorkPositions from '../data/WorkPositions.js';
   var workPositions = WorkPositions.WorkPositions;
 
@@ -38,9 +37,6 @@
       refresh: function() {
         this.$broadcast('refresh');
       }
-    },
-    components: {
-      crud : Crud,
     },
   }
 </script>

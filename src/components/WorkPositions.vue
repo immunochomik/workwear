@@ -8,7 +8,6 @@
 
 <script>
   import WorkPositions from '../data/WorkPositions.js'
-  import Crud from './Crud.vue';
   import WorkwearTypes from '../data/WorkwearTypes.js';
   var wTypes = WorkwearTypes.WorkwearTypes;
 
@@ -30,6 +29,7 @@
             var selectHelper = '#WorkweareTypesHelperWorkPositions';
             wTypes.setSelect(selectHelper, ['Description', 'Gender']);
             $(selectHelper).on('change', function(e) {
+              console.log('brodcasting');
               self.$broadcast('appendInput',
                   {name:'WorkweareTypes', value: $(this).val() + ' => 12;\n' });
             });
@@ -42,9 +42,6 @@
       refresh: function() {
         this.$broadcast('refresh');
       }
-    },
-    components: {
-      crud : Crud,
     },
   }
 </script>
