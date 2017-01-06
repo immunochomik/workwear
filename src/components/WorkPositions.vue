@@ -28,11 +28,6 @@
           this.$nextTick(function () {
             var selectHelper = '#WorkweareTypesHelperWorkPositions';
             wTypes.setSelect(selectHelper, ['Description', 'Gender']);
-            $(selectHelper).on('change', function(e) {
-              console.log('brodcasting');
-              self.$broadcast('appendInput',
-                  {name:'WorkweareTypes', value: $(this).val() + ' => 12;\n' });
-            });
           });
           selectsDone = true;
         }

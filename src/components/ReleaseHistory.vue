@@ -28,18 +28,20 @@
         var self = this;
         this.$nextTick(function () {
           wTypes.setSelect('#WorkwearReleaseHistory', ['Description', 'Gender']);
-          $( "#EmployeeReleaseHistory" ).autocomplete({
-            source:  function(req, show) {
-              console.log(req, show);
-              workers.list(function(data) {
-                var list = [];
-                _.each(data.rows, function(doc) {
-                  self.workers[doc.doc.Name] = doc;
-                  list.push(doc.doc.Name);
-                });
-                show(list)
-              }, req.term)
-            }
+          self.$nextTick(function() {
+            $( "#EmployeeReleaseHistory" ).autocomplete({
+              source:  function(req, show) {
+                console.log(req, show);
+                workers.list(function(data) {
+                  var list = [];
+                  _.each(data.rows, function(doc) {
+                    self.workers[doc.doc.Name] = doc;
+                    list.push(doc.doc.Name);
+                  });
+                  show(list)
+                }, req.term)
+              }
+            });
           });
         });
       }
