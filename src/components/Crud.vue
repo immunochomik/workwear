@@ -67,6 +67,9 @@
       var self = this;
       this.$nextTick(function(){
         $('.ignore-input').removeClass('input');
+        $('.extend-vm').each(function() {
+          self.fieldsObject[$(this).attr('name')].call(self);
+        });
         self.$nextTick(function() {
           $('.on-change').on('change', function(e) {
             self.fieldsObject[$(this).attr('name')].onchange(self);
@@ -143,12 +146,19 @@
       edit: function(id) {
         console.log('Edit', id);
         var self = this;
-        this.model.get(id, function(doc) {
+        var populate = function(doc) {
           for(var name in self.fieldsObject) {
             self.fieldsObject[name].value = doc[name];
           }
+          console.log('populated');
+        };
+        this.model.get(id, function(doc) {
+          populate(doc);
           self.currentId = doc._id;
           self.show('form' + self.uni);
+          self.$nextTick(function() {
+            populate(doc);
+          })
         });
       },
       submit: function() {
