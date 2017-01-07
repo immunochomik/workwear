@@ -63,25 +63,22 @@
       }
     },
     data: function() {
-      // ok I am sorry for that hack
-      var self = this;
-      this.$nextTick(function(){
-        $('.ignore-input').removeClass('input');
-        $('.extend-vm').each(function() {
-          self.fieldsObject[$(this).attr('name')].call(self);
-        });
-        self.$nextTick(function() {
-          $('.on-change').on('change', function(e) {
-            self.fieldsObject[$(this).attr('name')].onchange(self);
-          });
-        });
-      });
       return {
         items: [],
         currentId: null,
         fieldsObject : this.model.getFieldsObject(),
         debug : debug,
       }
+    },
+    created: function() {
+      console.log('CREATED');
+      var self = this;
+      this.$nextTick(function(){
+        $('.ignore-input').removeClass('input');
+        $('.extend-vm').each(function() {
+          self.fieldsObject[$(this).attr('name')].call(self);
+        });
+      });
     },
     events: {
       refresh: function() {
