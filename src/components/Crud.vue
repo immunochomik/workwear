@@ -73,10 +73,16 @@
     created: function() {
       console.log('CREATED');
       var self = this;
-      this.$nextTick(function(){
+      this.$nextTick(function() {
         $('.ignore-input').removeClass('input');
-        $('.extend-vm').each(function() {
-          self.fieldsObject[$(this).attr('name')].call(self);
+        self.$nextTick(function () {
+          $('.extend-vm').each(function () {
+            var elem = $(this);
+            if (self.fieldsObject[elem.attr('name')].call) {
+              self.fieldsObject[elem.attr('name')].call(self);
+              elem.removeClass('extend-vm');
+            }
+          });
         });
       });
     },

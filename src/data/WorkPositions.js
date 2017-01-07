@@ -7,8 +7,9 @@ var WorkPositions = new Model.Model({
     {name: 'WorkweareTypesHelper', type:'select',
       'class':'ignore-input extend-vm', call:function(vm) {
       vm.$watch('fieldsObject.WorkweareTypesHelper.value', function(value) {
-        if(value) {
-          vm.fieldsObject.WorkweareTypes.value += value + ' => 12;\n';
+        var output = vm.fieldsObject.WorkweareTypes;
+        if(value && output.value.indexOf(value) === -1) {
+          output.value += value + ' => 12;\n';
         }
       })}},
     {name: 'WorkweareTypes', type :'textarea', placeholder:'List of workweare type ids'},
