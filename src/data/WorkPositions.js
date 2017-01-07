@@ -5,7 +5,7 @@ var WorkPositions = new Model.Model({
   fields: [
     {name: 'Description', type :'text'},
     {name: 'WorkweareTypesHelper', type:'select',
-      'class':'ignore-input extend-vm', call:function(vm) {
+      'class':'ignore-input', extend:function(vm) {
       vm.$watch('fieldsObject.WorkweareTypesHelper.value', function(value) {
         var output = vm.fieldsObject.WorkweareTypes;
         if(value && output.value.indexOf(value) === -1) {

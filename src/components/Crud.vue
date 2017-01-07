@@ -8,26 +8,30 @@
 
       <div class="tab-content">
         <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
+
           <div class="panel">
             <div class="panel-body">
-              <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
-                <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
-                <div class="col-xs-9 col-md-10">
-                  <div  v-if="item.type == 'select' || item.type == 'textarea'">
-                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
-                            name="{{item.name}}" v-model="item.value">
-                      <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
-                    </select>
+              <form>
+                <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
+                  <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
+                  <div class="col-xs-9 col-md-10">
+                    <div v-if="item.type == 'select' || item.type == 'textarea'">
+                      <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
+                              name="{{item.name}}" v-model="item.value">
+                        <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
+                      </select>
                   <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" rows="6"
                             class="form-control input {{item.class}} " v-model="item.value"
                             name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
+                    </div>
+                    <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
+                           placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
+                           value="{{item.value}}" v-model="item.value"/>
                   </div>
-                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
-                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
-                         value="{{item.value}}" v-model="item.value"/>
                 </div>
-              </div>
+              </form>
             </div>
+
             <div class="panel-footer text-right">
               <button v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
@@ -76,13 +80,11 @@
       this.$nextTick(function() {
         $('.ignore-input').removeClass('input');
         self.$nextTick(function () {
-          $('.extend-vm').each(function () {
-            var elem = $(this);
-            if (self.fieldsObject[elem.attr('name')].call) {
-              self.fieldsObject[elem.attr('name')].call(self);
-              elem.removeClass('extend-vm');
+          for(var key in self.fieldsObject) {
+            if(self.fieldsObject[key].extend) {
+              self.fieldsObject[key].extend(self);
             }
-          });
+          }
         });
       });
     },

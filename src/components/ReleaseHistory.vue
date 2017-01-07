@@ -10,9 +10,9 @@
 <script>
   import ReleaseHistory from '../data/ReleaseHistory.js'
   import Workers from '../data/Workers.js';
-  import WorkwearTypes from '../data/WorkwearTypes.js';
+  import Inventory from '../data/Inventory.js';
   var workers = Workers.Workers;
-  var wTypes = WorkwearTypes.WorkwearTypes;
+  var inventory = Inventory.Inventory;
   export default {
     name: 'ReleaseHistory',
     data: function() {
@@ -27,10 +27,10 @@
         routerCall(this);
         var self = this;
         this.$nextTick(function () {
-          wTypes.setSelect('#WorkwearReleaseHistory', ['Description', 'Gender']);
+          inventory.setSelect('#WorkwearReleaseHistory', ['Description', 'Size', 'Origin']);
           self.$nextTick(function() {
             $( "#EmployeeReleaseHistory" ).autocomplete({
-              source:  function(req, show) {
+              source: function(req, show) {
                 console.log(req, show);
                 workers.list(function(data) {
                   var list = [];

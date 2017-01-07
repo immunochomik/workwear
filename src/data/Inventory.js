@@ -5,7 +5,7 @@ var wTypes = WorkwearTypes.WorkwearTypes;
 var Inventory = new Model.Model({
   title : 'Inventory',
   fields: [
-    { name: 'Description', type :'select', 'class': 'extend-vm', call:function(vm) {
+    { name: 'Description', type :'select',  extend:function(vm) {
       vm.$watch('fieldsObject.Description.value', function (cur) {
         wTypes.get(cur, function(doc) {
           vm.fieldsObject.Size.options = {};
