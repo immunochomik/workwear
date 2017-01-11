@@ -8,35 +8,33 @@
 
       <div class="tab-content">
         <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
-
-          <div class="panel">
+          <form  v-on:submit.prevent="onSubmit">
+            <div class="panel">
             <div class="panel-body">
-              <form>
-                <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
-                  <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
-                  <div class="col-xs-9 col-md-10">
-                    <div v-if="item.type == 'select' || item.type == 'textarea'">
-                      <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
-                              name="{{item.name}}" v-model="item.value">
-                        <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
-                      </select>
+              <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
+                <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
+                <div class="col-xs-9 col-md-10">
+                  <div v-if="item.type == 'select' || item.type == 'textarea'">
+                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
+                            name="{{item.name}}" v-model="item.value">
+                      <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
+                    </select>
                   <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" rows="6"
                             class="form-control input {{item.class}} " v-model="item.value"
                             name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
-                    </div>
-                    <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
-                           placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
-                           value="{{item.value}}" v-model="item.value"/>
                   </div>
+                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
+                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
+                         value="{{item.value}}" v-model="item.value"/>
                 </div>
-              </form>
+              </div>
             </div>
-
             <div class="panel-footer text-right">
               <button v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
+          </form>
         </div>
         <div id="list{{uni}}" v-bind:class="{ active: listActive }" class="tab-pane fade in">
           <table @click="tableClick($event)" id="listTable{{uni}}" class="display" width="100%"></table>
@@ -84,6 +82,12 @@
             if(self.fieldsObject[key].extend) {
               self.fieldsObject[key].extend(self);
             }
+            if(self.fieldsObject[key].attrs) {
+              var $el = $('#'+key + self.uni);
+              for(var attr in self.fieldsObject[key].attrs) {
+                $el.attr(attr, self.fieldsObject[key].attrs[attr]);
+              }
+            }
           }
         });
       });
@@ -111,6 +115,9 @@
       }
     },
     methods: {
+      onSubmit:function() {
+        console.log('DEFAULT');
+      },
       refresh: function() {
         debug && console.log('REFRESHING');
         var self = this;
@@ -151,28 +158,21 @@
       edit: function(id) {
         console.log('Edit', id);
         var self = this;
-        var populate = function(doc) {
+        this.model.get(id, function(doc) {
           for(var name in self.fieldsObject) {
             self.fieldsObject[name].value = doc[name];
           }
-          console.log('populated');
-        };
-        this.model.get(id, function(doc) {
-          populate(doc);
           self.currentId = doc._id;
           self.show('form' + self.uni);
-          self.$nextTick(function() {
-            populate(doc);
-          })
         });
       },
       submit: function() {
         var data = {};
-        for(var name in this.fieldsObject) {
-          data[name] = this.fieldsObject[name].value;
-          this.fieldsObject[name].value = "";
-        }
         var self = this;
+        _.each(this.columns, function(name) {
+          data[name] = self.fieldsObject[name].value;
+          self.fieldsObject[name].value = "";
+        });
         this.model.upsert(this.currentId, data, function() {
           self.refresh();
         });
