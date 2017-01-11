@@ -1,4 +1,6 @@
 import Model from './Model.js';
+import WorkwearTypes from '../data/WorkwearTypes.js';
+var wTypes = WorkwearTypes.WorkwearTypes;
 
 var WorkPositions = new Model.Model({
   title : 'WorkPositions',
@@ -6,6 +8,10 @@ var WorkPositions = new Model.Model({
     {name: 'Description', type :'text'},
     {name: 'WorkweareTypesHelper', type:'select',
       'class':'ignore-input', extend:function(vm) {
+      vm.$nextTick(function () {
+        var selectHelper = '#WorkweareTypesHelperWorkPositions';
+        wTypes.setSelect(selectHelper, ['Description', 'Gender']);
+      });
       vm.$watch('fieldsObject.WorkweareTypesHelper.value', function(value) {
         var output = vm.fieldsObject.WorkweareTypes;
         if(value && output.value.indexOf(value) === -1) {

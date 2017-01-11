@@ -8,9 +8,6 @@
 
 <script>
   import WorkPositions from '../data/WorkPositions.js'
-  import WorkwearTypes from '../data/WorkwearTypes.js';
-  var wTypes = WorkwearTypes.WorkwearTypes;
-
   var selectsDone;
   export default {
     name: 'WorkPositions',
@@ -23,14 +20,6 @@
     route: {
       data: function(to) {
         routerCall(this);
-        if(!selectsDone) {
-          var self = this;
-          this.$nextTick(function () {
-            var selectHelper = '#WorkweareTypesHelperWorkPositions';
-            wTypes.setSelect(selectHelper, ['Description', 'Gender']);
-          });
-          selectsDone = true;
-        }
       }
     },
     methods: {

@@ -41,7 +41,7 @@ var Model = (function() {
   Model.prototype.getFields = function() {
     return this.fields;
   };
-  Model.prototype.setSelect = function(selectId, oKey, oValue) {
+  Model.prototype.setSelect = function(selectId, oKey, oValue, condition) {
     var options = [];
     if(!Array.isArray(oKey)) {
       oKey = [oKey];
@@ -49,6 +49,9 @@ var Model = (function() {
     var self = this;
     this.list(function(resp) {
       _.each(resp.rows, function(doc) {
+        if(condition && !condition(doc.doc)) {
+          return;
+        }
         var usedKey = [];
         _.each(oKey, function(part) {
           usedKey.push(doc.doc[part]);
