@@ -25,8 +25,16 @@
         extension : {
           extend: function(vm) {
             vm.$watch('fieldsObject.Gender.value', gender => {
-              wTypes.setSelect('#SizesHelperWorkers', ['Description', 'Gender'], false, doc => {
-                return doc.Sizes && (doc.Gender === 'U' || doc.Gender === gender);
+              wTypes.generateOptions({
+                oKey: ['Description', 'Gender'],
+                oValue: ['Description', 'Gender', 'Sizes'],
+                condition: function (doc) {
+                  return doc.Sizes && (doc.Gender === 'U' || doc.Gender === gender);
+                },
+                callback:function(options) {
+                  vm.fieldsObject.SizesHelper.options = options;
+                },
+                typeObject: true
               });
             });
             vm.$watch('fieldsObject.SizesHelper.value', clothesType => {

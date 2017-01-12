@@ -4,6 +4,13 @@ var store = new StoreCollection.Collection('workwear');
 import helpers from '../helpers/helpers.js';
 _.extend(window, helpers);
 
+var makeKey = function(parts, doc) {
+  var key = [];
+  _.each(parts, function(part) {
+    key.push(doc.doc[part]);
+  });
+  return key.join('_').replace(/_$/g, '');
+};
 
 var debug;
 var Model = (function() {
@@ -48,28 +55,36 @@ var Model = (function() {
     if(!Array.isArray(oKey)) {
       oKey = [oKey];
     }
+    if(oValue && !Array.isArray(oValue)) {
+      oValue = [oValue];
+    }
     this.list(function(resp) {
       _.each(resp.rows, function(doc) {
         if(args.condition && !args.condition(doc.doc)) {
           return;
         }
-        var usedKey = [];
-        _.each(oKey, function(part) {
-          usedKey.push(doc.doc[part]);
-        });
-        usedKey = usedKey.join('_').replace(/_$/g, '');
-        var usedValue = oValue ? doc.doc[oValue] : usedKey;
+        var usedKey = makeKey(oKey, doc);
+        var usedValue = usedKey;
+        if(oValue) {
+          usedValue = makeKey(oValue, doc);
+        }
         options.push([usedKey, usedValue]);
       });
       options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
+      if(args.typeObject) {
+        var temp = {};
+        _.each(options, row => {
+          temp[row[0]] = row[1];
+        });
+        options = temp;
+      }
       debug && pp('options', options);
       args.callback(options);
     });
   };
   Model.prototype.setSelect = function(selectId, oKey, oValue, condition) {
     var self = this;
-    this.generateOptions(
-      {
+    this.generateOptions({
         oKey: oKey, oValue: oValue, condition: condition,
         callback: function (options) {
           self.replaceSelect(selectId, options);
