@@ -41,15 +41,16 @@ var Model = (function() {
   Model.prototype.getFields = function() {
     return this.fields;
   };
-  Model.prototype.setSelect = function(selectId, oKey, oValue, condition) {
+  Model.prototype.generateOptions = function(args) {
+    var oKey = args.oKey;
+    var oValue = args.oValue;
     var options = [];
     if(!Array.isArray(oKey)) {
       oKey = [oKey];
     }
-    var self = this;
     this.list(function(resp) {
       _.each(resp.rows, function(doc) {
-        if(condition && !condition(doc.doc)) {
+        if(args.condition && !args.condition(doc.doc)) {
           return;
         }
         var usedKey = [];
@@ -62,8 +63,18 @@ var Model = (function() {
       });
       options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
       debug && pp('options', options);
-      self.replaceSelect(selectId, options);
+      args.callback(options);
     });
+  };
+  Model.prototype.setSelect = function(selectId, oKey, oValue, condition) {
+    var self = this;
+    this.generateOptions(
+      {
+        oKey: oKey, oValue: oValue, condition: condition,
+        callback: function (options) {
+          self.replaceSelect(selectId, options);
+        }
+      });
   };
   Model.prototype.replaceSelect = function(selectId, options) {
     var $el = $(selectId);

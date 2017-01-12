@@ -9,13 +9,8 @@ var Workers = new Model.Model({
     { name: 'Position', type: 'select', options: {}},
     { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
     { name: 'Start', type: 'text', 'class': 'date' },
-    { name: 'SizesHelper', type: 'select', 'class' :'ignore-input',
-      extend: function(vm){
-        // gender on change populate sizes helper with workweare types of that
-        // gender and unisex only if they have size
+    { name: 'SizesHelper', type: 'select', 'class' :'ignore-input', options: {}},
 
-        // sizesHelper on change append to sizes that cloths type
-      }},
     { name: 'Sizes', type: 'textarea'},
   ],
   idTemplate : "_{Name}_{Start}",

@@ -62,7 +62,10 @@
       model: {
         type: Object,
         required: true,
-      }
+      },
+      extension: {
+        type: Object,
+      },
     },
     data: function() {
       return {
@@ -70,6 +73,7 @@
         currentId: null,
         fieldsObject : this.model.getFieldsObject(),
         debug : debug,
+
       }
     },
     created: function() {
@@ -78,6 +82,9 @@
       this.$nextTick(function() {
         $('.ignore-input').removeClass('input');
         self.$nextTick(function () {
+          if(self.extension) {
+            self.extension.extend(self);
+          }
           for(var key in self.fieldsObject) {
             if(self.fieldsObject[key].extend) {
               self.fieldsObject[key].extend(self);
