@@ -125,6 +125,9 @@
       onSubmit:function() {
         console.log('DEFAULT');
       },
+      isEdit: function() {
+        return this.currentId;
+      },
       refresh: function() {
         debug && console.log('REFRESHING');
         var self = this;
@@ -165,11 +168,11 @@
       edit: function(id) {
         console.log('Edit', id);
         var self = this;
+        self.currentId = id;
         this.model.get(id, function(doc) {
           for(var name in self.fieldsObject) {
             self.fieldsObject[name].value = doc[name];
           }
-          self.currentId = doc._id;
           self.show('form' + self.uni);
         });
       },

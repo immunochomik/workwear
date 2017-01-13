@@ -9,9 +9,7 @@ var Workers = new Model.Model({
     { name: 'Position', type: 'select', options: {}},
     { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
     { name: 'Start', type: 'text', 'class': 'date' },
-    { name: 'SizesHelper', type: 'select', 'class' :'ignore-input', options: {}},
-
-    { name: 'Sizes', type: 'textarea'},
+    { name: 'Sizes', type: 'textarea', attrs:{rows: 10}},
   ],
   idTemplate : "_{Name}_{Start}",
   version : 1

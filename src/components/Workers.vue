@@ -15,6 +15,14 @@
   var wTypes = WorkwearTypes.WorkwearTypes;
   var selectsDone = false;
 
+  var prepareSizes = function(options) {
+    var sizes = [];
+    for(var option in options) {
+      sizes.push("{0}_{1} => [  ] // reference ({2})".f(option.split('_')));
+    }
+    return sizes.join('\n');
+  };
+
   export default {
     name: 'Workers',
     data: function() {
@@ -24,21 +32,30 @@
         positions : {},
         extension : {
           extend: function(vm) {
-            vm.$watch('fieldsObject.Gender.value', gender => {
+            vm.$watch('fieldsObject.Gender.value', function(gender) {
               wTypes.generateOptions({
-                oKey: ['Description', 'Gender'],
-                oValue: ['Description', 'Gender', 'Sizes'],
-                condition: function (doc) {
+                oKey: ['Description', 'Gender', 'Sizes'],
+                condition: function(doc) {
                   return doc.Sizes && (doc.Gender === 'U' || doc.Gender === gender);
                 },
-                callback:function(options) {
-                  vm.fieldsObject.SizesHelper.options = options;
+                callback: function(options) {
+                  if( vm.isEdit()) {
+                    console.log('EDIT');
+                  } else {
+                    console.log('NOT EDIT');
+                  }
+                  if(vm.fieldsObject.Sizes.value) {
+                    console.log('value', vm.fieldsObject.Sizes.value);
+                    if(vm.isEdit()) {
+                      return;
+                    } else if(!confirm('Do you want to replace sizes?')) {
+                      return;
+                    }
+                  }
+                  vm.fieldsObject.Sizes.value = prepareSizes(options);
                 },
                 typeObject: true
               });
-            });
-            vm.$watch('fieldsObject.SizesHelper.value', clothesType => {
-              console.log(clothesType);
             });
           }
         }
