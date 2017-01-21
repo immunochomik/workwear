@@ -11,13 +11,14 @@
   import Inventory from '../data/Inventory.js'
   import WorkwearTypes from '../data/WorkwearTypes.js';
   var wTypes = WorkwearTypes.WorkwearTypes;
+  var inventory = Inventory.Inventory;
   var selectsDone;
   export default {
     name: 'Inventory',
     data: function() {
       return {
         title:'Inventory',
-        model: Inventory.Inventory,
+        model: inventory,
         extension : {
           extend: function (vm) {
             vm.additionalButtons = [{
@@ -26,7 +27,10 @@
             }];
             vm.addedMethods = {
               insertWorkwearTypes : function() {
-                
+                // get data from types
+                wTypes.list(function(res) {
+                  _.each(res.rows, insertItemIfNotInInventory);
+                });
               }
             }
           }
@@ -50,4 +54,29 @@
       }
     }
   }
+
+  function insertItemIfNotInInventory(wType) {
+    var idBase = wType.id.replace(wTypes.uni, '').replace(/^_/, '');
+    var sizes = wTypes.extractSizes(wType.doc);
+    _.each(sizes, function(size) {
+      var itemId = "{0}_{1}_new".f([idBase, size]);
+      inventory.get(itemId, function(doc) {
+            console.log('Found', doc);
+          },
+          function(err) {
+            if(err.status !== 404) {
+              console.error(err);
+              return;
+            }
+            inventory.put({
+              Description: wType.doc.Description,
+              Size: size,
+              Origin: 'new',
+              Qty: 0,
+            });
+          }
+      );
+    });
+  };
+
 </script>

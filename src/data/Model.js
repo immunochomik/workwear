@@ -48,6 +48,10 @@ var Model = (function() {
   Model.prototype.getFields = function() {
     return this.fields;
   };
+  /**
+   *
+   * @param args
+   */
   Model.prototype.generateOptions = function(args) {
     var oKey = args.oKey;
     var oValue = args.oValue;
@@ -98,6 +102,12 @@ var Model = (function() {
       $el.append("<option value='{1}'>{0}</option>".f(row));
     });
   };
+  /**
+   * List all documents from start to end if provided
+   * @param callback
+   * @param start
+   * @param end
+   */
   Model.prototype.list = function(callback, start, end) {
     debug && console.log('LIST');
     start = start || '';
@@ -119,15 +129,20 @@ var Model = (function() {
       console.log('Error', err);
     });
   };
-  Model.prototype.get = function(id, callback) {
+  Model.prototype.get = function(id, callback, errorCallback) {
     if(id.indexOf(this.uni) !== 0) {
       id = this.uni + '_' + id;
     }
-    store.get(id, callback);
+    store.get(id, callback, errorCallback);
   };
   Model.prototype.upsert = function(id, item, callback) {
     item['ver_'] = this.uni + this.version;
     item['_id'] = id || this.makeId(item);
+    store.upsert(item, callback);
+  };
+  Model.prototype.put = function(item, callback) {
+    item['_id'] = this.makeId(item);
+    item['ver_'] = this.uni + this.version;
     store.upsert(item, callback);
   };
   Model.prototype.removeById = function(id, callback) {

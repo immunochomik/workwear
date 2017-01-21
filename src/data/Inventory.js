@@ -9,14 +9,7 @@ var Inventory = new Model.Model({
       vm.$watch('fieldsObject.Description.value', function (cur) {
         wTypes.get(cur, function(doc) {
           vm.fieldsObject.Size.options = {};
-          var raw = [];
-          if(doc.Sizes.match(/^\d+\-\d+/)) {
-            var minMax = doc.Sizes.split('-');
-            raw = range(minMax[0], minMax[1], 2);
-          } else {
-            raw = doc.Sizes.split(';');
-          }
-          _.each(raw, function(it) {
+          _.each(wTypes.extractSizes(doc), function(it) {
             if(it.trim) {
               it = it.trim();
             }

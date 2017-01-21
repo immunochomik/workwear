@@ -11,6 +11,17 @@ var WorkwearTypes = new Model.Model({
   version : 1
 });
 
+WorkwearTypes.extractSizes = function(doc) {
+  var raw = [];
+  if(doc.Sizes.match(/^\d+\-\d+/)) {
+    var minMax = doc.Sizes.split('-');
+    raw = range(minMax[0], minMax[1], 2);
+  } else {
+    raw = doc.Sizes.split(';').map(it=>{return it.trim()});
+  }
+  return raw;
+};
+
 export default {
   WorkwearTypes
 }

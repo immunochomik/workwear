@@ -35,7 +35,7 @@ var Collection = (function() {
       }
     });
   };
-  Collection.prototype.get = function(id, callback) {
+  Collection.prototype.get = function(id, callback, errorCallback) {
     var promise = this.db.get(id);
     if(! callback) {
       return promise;
@@ -43,7 +43,11 @@ var Collection = (function() {
     promise.then(res => {
       callback(res);
     }).catch(err => {
-        console.log('Error', err);
+      if(errorCallback) {
+        errorCallback(err);
+        return;
+      }
+      console.log('Error', err);
     });
   };
   Collection.prototype.query = function(index, criteria) {
