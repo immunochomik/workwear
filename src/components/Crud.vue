@@ -30,7 +30,9 @@
               </div>
             </div>
             <div class="panel-footer text-right">
-              <button v-if="currentId" @click="cancelEdit">Cancel Edit</button>
+              <button v-for="button in additionalButtons" class="btn btn-default"
+                      id="{{button.id}}" @click="clicked(button.id)">{{button.name}}</button>
+              <button class="btn btn-default" v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
@@ -73,7 +75,8 @@
         currentId: null,
         fieldsObject : this.model.getFieldsObject(),
         debug : debug,
-
+        // To add an additiona button,
+        additionalButtons:[],
       }
     },
     created: function() {
@@ -122,8 +125,11 @@
       }
     },
     methods: {
-      onSubmit:function() {
-        console.log('DEFAULT');
+      clicked: function(id) {
+        this.addedMethods[id]();
+      },
+      onSubmit:function(e, i) {
+        console.log('ON SUBMIT');
       },
       isEdit: function() {
         return this.currentId;

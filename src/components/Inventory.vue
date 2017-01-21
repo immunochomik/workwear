@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <crud
         :model="model"
+        :extension="extension"
         ></crud>
   </div>
 </template>
@@ -17,6 +18,19 @@
       return {
         title:'Inventory',
         model: Inventory.Inventory,
+        extension : {
+          extend: function (vm) {
+            vm.additionalButtons = [{
+              id:'insertWorkwearTypes',
+              name:'Insert Workwear Types'
+            }];
+            vm.addedMethods = {
+              insertWorkwearTypes : function() {
+                
+              }
+            }
+          }
+        }
       }
     },
     route: {
