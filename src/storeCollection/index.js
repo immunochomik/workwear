@@ -47,7 +47,7 @@ var Collection = (function() {
         errorCallback(err);
         return;
       }
-      console.log('Error', err);
+      console.log('Error '+ id, err);
     });
   };
   Collection.prototype.query = function(index, criteria) {

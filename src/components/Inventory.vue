@@ -32,7 +32,14 @@
                   _.each(res.rows, insertItemIfNotInInventory);
                 });
               }
-            }
+            };
+            wTypes.generateOptions({
+              oKey: ['Description', 'Gender'],
+              callback: function(options) {
+                vm.fieldsObject.Description.options = options;
+              },
+              typeObject: true
+            });
           }
         }
       }
@@ -40,12 +47,6 @@
     route: {
       data: function(to) {
         routerCall(this);
-        if(1 || !selectsDone) {
-          this.$nextTick(function() {
-            wTypes.setSelect('#DescriptionInventory', ['Description', 'Gender']);
-            selectsDone = true;
-          });
-        }
       }
     },
     methods: {
@@ -69,7 +70,7 @@
               return;
             }
             inventory.put({
-              Description: wType.doc.Description,
+              Description: wType.doc.Description + '_' + wType.doc.Gender,
               Size: size,
               Origin: 'new',
               Qty: 0,
