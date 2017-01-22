@@ -45,10 +45,12 @@
         });
       }
     },
+    events: {
+      crudSubmit: function(e) {
+        console.log(e);
+      }
+    },
     methods: {
-      callObject: function() {
-        this.$broadcast('callObject');
-      },
       refresh: function() {
         this.$broadcast('refresh');
       }
@@ -58,7 +60,6 @@
   function employeeAutocomplete (self) {
     $( "#EmployeeReleaseHistory" ).autocomplete({
       source: function(req, show) {
-        console.log(req, show);
         workers.list(function(data) {
           var list = [];
           _.each(data.rows, function(doc) {

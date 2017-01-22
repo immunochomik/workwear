@@ -77,6 +77,7 @@
         debug : debug,
         // To add an additiona button,
         additionalButtons:[],
+        preEdit: {},
       }
     },
     created: function() {
@@ -178,12 +179,25 @@
         this.model.get(id, function(doc) {
           for(var name in self.fieldsObject) {
             self.fieldsObject[name].value = doc[name];
+            self.preEdit[name] = doc[name];
           }
           self.show('form' + self.uni);
         });
       },
+      dispatchSubmit: function() {
+        var event = {
+          id: this.currentId,
+          preEdit: {}, postEdit: {},
+        };
+        for(var key in this.fieldsObject) {
+          event.preEdit[key] = this.preEdit[key];
+          event.postEdit[key] = this.fieldsObject[key].value;
+        }
+        this.$dispatch('crudSubmit', event);
+      },
       submit: function() {
         var data = {};
+        this.dispatchSubmit();
         var self = this;
         _.each(this.columns, function(name) {
           data[name] = self.fieldsObject[name].value;
@@ -199,7 +213,10 @@
       },
       cancelEdit: function() {
         this.currentId = null;
-        $('.input').val('')
+        for(var key in this.fieldsObject) {
+          this.fieldsObject[key].value = '';
+        }
+        this.preEdit = {};
       },
       tableClick: function(e) {
         var self = this;
