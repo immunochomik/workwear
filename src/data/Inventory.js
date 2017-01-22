@@ -26,6 +26,14 @@ var Inventory = new Model.Model({
   version : 1
 });
 
+Inventory.updateQuantity = function(id, qty, callback) {
+  var self = this;
+  this.get(id, function(doc) {
+    doc.Qty -= qty;
+    self.upsert(null, doc, callback);
+  })
+};
+
 export default {
   Inventory
 }

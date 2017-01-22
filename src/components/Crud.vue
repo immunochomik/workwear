@@ -1,6 +1,17 @@
 <template>
   <div>
     <div class="panel">
+      <div v-if="messages.success" class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" @click="messages.success = ''">
+          <span aria-hidden="true">&times;</span></button>
+        {{messages.success}}
+      </div>
+      <div v-if="messages.warning" class="alert alert-warning" role="alert">
+        <button type="button" class="close" @click="messages.warning = ''" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> {{messages.warning}}
+      </div>
+
       <ul class="nav nav-tabs">
         <li v-bind:class="{ active: formActive }"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
         <li v-bind:class="{ active: listActive }"><a data-toggle="tab" href="#list{{uni}}">List</a></li>
@@ -32,7 +43,7 @@
             <div class="panel-footer text-right">
               <button v-for="button in additionalButtons" class="btn btn-default"
                       id="{{button.id}}" @click="clicked(button.id)">{{button.name}}</button>
-              <button class="btn btn-default" v-if="currentId" @click="cancelEdit">Cancel Edit</button>
+              <button class="btn btn-default"  v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
@@ -78,6 +89,10 @@
         // To add an additiona button,
         additionalButtons:[],
         preEdit: {},
+        messages : {
+          warning : '',
+          success : '',
+        },
       }
     },
     created: function() {
@@ -104,6 +119,13 @@
       });
     },
     events: {
+      userMessage : function(e) {
+        var self = this;
+        self.messages[e.type] = e.message;
+        setTimeout(function() {
+          self.messages[e.type] = ''
+        }, 15000)
+      },
       refresh: function() {
         this.refresh();
       },
@@ -239,5 +261,8 @@
 <style>
   .tab-pane {
     padding-top: 1em;
+  }
+  div.alert {
+    margin-bottom: 5px;
   }
 </style>

@@ -47,10 +47,46 @@
     },
     events: {
       crudSubmit: function(e) {
-        console.log(e);
+        var itemId = e.postEdit.Workwear,
+            qty = e.postEdit.Qty;
+        if(!qty || !itemId) {
+          return;
+        }
+        var self = this;
+        // if id is null take of inventory
+        if(!e.id) {
+          inventory.updateQuantity(itemId, qty, function() {
+            self.success("Inventory item {0} qty decreased by {1}".f([itemId, qty]))
+          });
+          return;
+        }
+        // else if qty was increased take of inventory
+        console.log(qty, e.preEdit.Qty);
+        if(qty > e.preEdit.Qty) {
+          var dif = qty - e.preEdit.Qty;
+          inventory.updateQuantity(itemId, dif, function() {
+            self.success("Inventory item {0} qty decreased by {1}".f([itemId, dif]))
+          });
+        } else {
+          self.warning("Pre edit value is higher that post edit," +
+              " I do not know what to do, you need to update Inventory yourself for " +
+              itemId);
+        }
       }
     },
     methods: {
+      warning: function(message) {
+        this.$broadcast('userMessage', {
+          type: 'warning',
+          message : message,
+        });
+      },
+      success: function(message) {
+        this.$broadcast('userMessage', {
+          type: 'success',
+          message : message,
+        });
+      },
       refresh: function() {
         this.$broadcast('refresh');
       }
