@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <crud
         :model="model"
+        :extension="extension"
         ></crud>
   </div>
 
@@ -20,6 +21,17 @@
         title: 'ReleaseHistory',
         model : ReleaseHistory.ReleaseHistory,
         workers : {},
+        extension : {
+          extend : function(vm) {
+            inventory.generateOptions({
+              oKey : ['Description', 'Size', 'Origin'],
+              callback: function(options) {
+                vm.fieldsObject.Workwear.options = options;
+              },
+              typeObject : 1,
+            });
+          }
+        }
       }
     },
     route: {
@@ -27,21 +39,8 @@
         routerCall(this);
         var self = this;
         this.$nextTick(function () {
-          inventory.setSelect('#WorkwearReleaseHistory', ['Description', 'Size', 'Origin']);
           self.$nextTick(function() {
-            $( "#EmployeeReleaseHistory" ).autocomplete({
-              source: function(req, show) {
-                console.log(req, show);
-                workers.list(function(data) {
-                  var list = [];
-                  _.each(data.rows, function(doc) {
-                    self.workers[doc.doc.Name] = doc;
-                    list.push(doc.doc.Name);
-                  });
-                  show(list)
-                }, req.term)
-              }
-            });
+            employeeAutocomplete(self);
           });
         });
       }
@@ -55,5 +54,22 @@
       }
     },
   }
+
+  function employeeAutocomplete (self) {
+    $( "#EmployeeReleaseHistory" ).autocomplete({
+      source: function(req, show) {
+        console.log(req, show);
+        workers.list(function(data) {
+          var list = [];
+          _.each(data.rows, function(doc) {
+            self.workers[doc.doc.Name] = doc;
+            list.push(doc.doc.Name);
+          });
+          show(list)
+        }, req.term)
+      }
+    });
+  }
+
 </script>
 
