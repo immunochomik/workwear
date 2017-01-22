@@ -53,16 +53,15 @@
           return;
         }
         var self = this;
-        // if id is null take of inventory
         if(!e.id) {
+          // if id is null take of inventory
           inventory.updateQuantity(itemId, qty, function() {
             self.success("Inventory item {0} qty decreased by {1}".f([itemId, qty]))
           });
           return;
         }
-        // else if qty was increased take of inventory
-        console.log(qty, e.preEdit.Qty);
         if(qty > e.preEdit.Qty) {
+          // else if qty was increased take of inventory
           var dif = qty - e.preEdit.Qty;
           inventory.updateQuantity(itemId, dif, function() {
             self.success("Inventory item {0} qty decreased by {1}".f([itemId, dif]))

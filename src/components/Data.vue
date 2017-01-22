@@ -197,6 +197,14 @@
         }
       },
       deleteItems : function() {
+        if(!this.query || !confirm('Do you want to delete ')) {
+          return;
+        }
+        this.export('delete_backup');
+        var self = this;
+        setTimeout(function() {
+          self.refresh();
+        }, 3000);
         store.all().then(res => {
           var data = this.filterFind(res.rows);
           if(data) {
@@ -229,8 +237,9 @@
         })(input.files[0]);
         reader.readAsText(input.files[0]);
       },
-      export : function() {
-        download('export_{0}.json'.f([today()]), JSON.stringify(this.fullData));
+      export : function(label) {
+        label = label || '';
+        download('export_{0}{1}.json'.f([today(), label]), JSON.stringify(this.fullData));
       },
       find: function() {
         this.refresh();
@@ -245,17 +254,16 @@
         }
       },
       delete : function() {
-        if(this.query) {
-          var doc = JSON.parse(this.query);
-          if(!doc || !doc.id) {
-            return;
-          }
-          store.remove(doc).then(res => {
-            this.refresh();
-          }).catch(err => {
-            console.log('Error', err);
-          });
+
+        var doc = JSON.parse(this.query);
+        if(!doc || !doc.id) {
+          return;
         }
+        store.remove(doc).then(res => {
+          this.refresh();
+        }).catch(err => {
+          console.log('Error', err);
+        });
       },
       filterFind : function(docs) {
         var query = JSON.parse(this.query);
