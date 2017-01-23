@@ -9,21 +9,23 @@
 </template>
 
 <script>
-  import ReleaseHistory from '../data/ReleaseHistory.js'
-  import Workers from '../data/Workers.js';
+  /**
+   * If you want to add return item thtoug goods in you need to add that row to inventory first
+   * or we add that permutation to inventory population script.
+   */
+  import GoodsIn from '../data/GoodsIn.js'
   import Inventory from '../data/Inventory.js';
-  var workers = Workers.Workers;
   var inventory = Inventory.Inventory;
   export default {
-    name: 'ReleaseHistory',
     data: function() {
       return {
-        title: 'ReleaseHistory',
-        model : ReleaseHistory.ReleaseHistory,
+        title: 'GoodsIn',
+        model : GoodsIn.GoodsIn,
         workers : {},
         extension : {
           extend : function(vm) {
             inventory.generateOptions({
+              // we need to being able to accept goods only that have row in inventory
               oKey : ['Description', 'Size', 'Origin'],
               callback: function(options) {
                 vm.fieldsObject.Workwear.options = options;
@@ -37,34 +39,30 @@
     route: {
       data: function(to) {
         routerCall(this);
-        var self = this;
-        this.$nextTick(function () {
-          self.$nextTick(function() {
-            employeeAutocomplete(self);
-          });
-        });
       }
     },
     events: {
       crudSubmit: function(e) {
-        var itemId = e.postEdit.Workwear,
-            qty = parseInt(e.postEdit.Qty);
+        var itemId = e.postEdit.Workwear + 'fdsaf',
+            qty = e.postEdit.Qty;
         if(!qty || !itemId) {
           return;
         }
         var self = this;
         if(!e.id) {
           // if id is null take of inventory
-          inventory.updateQuantity(itemId, -qty, function() {
-            self.success("Inventory item {0} qty decreased by {1}".f([itemId, qty]))
+          inventory.updateQuantity(itemId, qty, function() {
+            self.success("Inventory item {0} qty increase by {1}".f([itemId, qty]))
+          }, function() {
+            self.error("Inventory item not found for " + itemId);
           });
           return;
         }
         if(qty > e.preEdit.Qty) {
           // else if qty was increased take of inventory
           var dif = qty - e.preEdit.Qty;
-          inventory.updateQuantity(itemId, - dif, function() {
-            self.success("Inventory item {0} qty decreased by {1}".f([itemId, dif]))
+          inventory.updateQuantity(itemId, dif, function() {
+            self.success("Inventory item {0} qty increase by {1}".f([itemId, dif]))
           });
         } else {
           self.warning("Pre edit value is higher that post edit," +
@@ -92,20 +90,7 @@
     },
   }
 
-  function employeeAutocomplete (self) {
-    $( "#EmployeeReleaseHistory" ).autocomplete({
-      source: function(req, show) {
-        workers.list(function(data) {
-          var list = [];
-          _.each(data.rows, function(doc) {
-            self.workers[doc.doc.Name] = doc;
-            list.push(doc.doc.Name);
-          });
-          show(list)
-        }, req.term)
-      }
-    });
-  }
+
 
 </script>
 

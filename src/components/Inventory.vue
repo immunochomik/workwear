@@ -3,6 +3,8 @@
     <crud
         :model="model"
         :extension="extension"
+        :form-active="false"
+        :list-active="true"
         ></crud>
   </div>
 </template>

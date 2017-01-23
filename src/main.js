@@ -10,6 +10,7 @@ import Workers from './components/Workers.vue';
 import WorkPositions from './components/WorkPositions.vue';
 import WorkwearTypes from './components/WorkwearTypes.vue';
 import ReleaseHistory from './components/ReleaseHistory.vue';
+import GoodsIn from './components/GoodsIn.vue';
 import Crud from './components/Crud.vue';
 
 
@@ -42,6 +43,9 @@ var router = new Router();
 router.map({
   '/release-history' : {
     component: ReleaseHistory
+  },
+  '/goods-in' : {
+    component: GoodsIn
   },
   '/workers' : {
     component: Workers
