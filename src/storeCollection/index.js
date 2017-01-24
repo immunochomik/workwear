@@ -88,9 +88,10 @@ var Collection = (function() {
   Collection.prototype.remove = function(item) {
     return this.db.remove(item);
   };
-  Collection.prototype.removeById = function(id, callback) {
+  Collection.prototype.removeById = function(id, callback, beforeRemove) {
     var self = this;
     this.db.get(id).then(doc => {
+      beforeRemove && beforeRemove(doc);
       self.db.remove(doc);
     }).then(_ => {
       callback && callback();

@@ -1,6 +1,11 @@
 <template>
   <div>
     <div class="panel">
+      <div v-if="messages.error" class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" @click="messages.error = ''">
+          <span aria-hidden="true">&times;</span></button>
+        {{messages.error}}
+      </div>
       <div v-if="messages.success" class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" @click="messages.success = ''">
           <span aria-hidden="true">&times;</span></button>
@@ -86,12 +91,13 @@
         currentId: null,
         fieldsObject : this.model.getFieldsObject(),
         debug : debug,
-        // To add an additiona button,
+        // To add an additional button,
         additionalButtons:[],
         preEdit: {},
         messages : {
           warning : '',
           success : '',
+          error : '',
         },
       }
     },
@@ -240,13 +246,19 @@
         }
         this.preEdit = {};
       },
-      tableClick: function(e) {
+      deleteItem: function(id) {
+        if(! id ) {
+          return;
+        }
         var self = this;
+        this.model.removeById(id, function() {
+          self.refresh();
+        }, this.$parent.onDelete);
+      },
+      tableClick: function(e) {
         var elClass = e.target.getAttribute('class') || '';
         if(elClass.indexOf('delete-item') != -1) {
-          this.model.removeById(e.target.getAttribute('data-id'), function() {
-            self.refresh();
-          });
+          this.deleteItem(e.target.getAttribute('data-id'));
         } else if (elClass.indexOf('edit-item') != -1) {
           this.edit(e.target.getAttribute('data-id'));
         }

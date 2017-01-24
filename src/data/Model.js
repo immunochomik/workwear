@@ -145,8 +145,8 @@ var Model = (function() {
     item['ver_'] = this.uni + this.version;
     store.upsert(item, callback);
   };
-  Model.prototype.removeById = function(id, callback) {
-    store.removeById(id,callback);
+  Model.prototype.removeById = function(id, callback, beforeRemove) {
+    store.removeById(id, callback, beforeRemove);
   };
   Model.prototype.makeId = function(data) {
     return this.uni + this.idTemplate.f(data);

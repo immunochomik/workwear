@@ -72,9 +72,18 @@
       }
     },
     methods: {
+      onDelete: function(doc) {
+        console.log('OnDElete', doc);
+      },
       warning: function(message) {
         this.$broadcast('userMessage', {
           type: 'warning',
+          message : message,
+        });
+      },
+      error: function(message) {
+        this.$broadcast('userMessage', {
+          type: 'error',
           message : message,
         });
       },
