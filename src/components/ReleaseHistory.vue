@@ -12,9 +12,12 @@
   import ReleaseHistory from '../data/ReleaseHistory.js'
   import Workers from '../data/Workers.js';
   import Inventory from '../data/Inventory.js';
+  import CrudComponents from '../traits/CrudComponent.js';
+  import AffectsInventory from '../traits/AffectsInventory.js';
+
   var workers = Workers.Workers;
   var inventory = Inventory.Inventory;
-  export default {
+  var vueReleaseHistory = {
     name: 'ReleaseHistory',
     data: function() {
       return {
@@ -55,17 +58,12 @@
         var self = this;
         if(!e.id) {
           // if id is null take of inventory
-          inventory.updateQuantity(itemId, -qty, function() {
-            self.success("Inventory item {0} qty decreased by {1}".f([itemId, qty]))
-          });
-          return;
+          return this.updateInventoryQty(itemId, -1 * qty, 'decreased');
         }
-        if(qty > e.preEdit.Qty) {
+        var preQty = parseInt(e.preEdit.Qty);
+        if(qty > preQty) {
           // else if qty was increased take of inventory
-          var dif = qty - e.preEdit.Qty;
-          inventory.updateQuantity(itemId, - dif, function() {
-            self.success("Inventory item {0} qty decreased by {1}".f([itemId, dif]))
-          });
+          return this.updateInventoryQty(itemId, -1 *(qty - preQty), 'decreased');
         } else {
           self.warning("Pre edit value is higher that post edit," +
               " I do not know what to do, you need to update Inventory yourself for " +
@@ -74,23 +72,22 @@
       }
     },
     methods: {
-      warning: function(message) {
-        this.$broadcast('userMessage', {
-          type: 'warning',
-          message : message,
-        });
-      },
-      success: function(message) {
-        this.$broadcast('userMessage', {
-          type: 'success',
-          message : message,
-        });
+      onDelete: function(doc) {
+        var itemId = doc.Workwear;
+        if(!doc.Qty || !itemId) {
+          return;
+        }
+        this.updateInventoryQty(itemId, parseInt(doc.Qty));
       },
       refresh: function() {
         this.$broadcast('refresh');
       }
     },
-  }
+  };
+  _.extend(vueReleaseHistory.methods, CrudComponents.UserMessages);
+  _.extend(vueReleaseHistory.methods, AffectsInventory.AffectsInventory);
+
+  export default vueReleaseHistory;
 
   function employeeAutocomplete (self) {
     $( "#EmployeeReleaseHistory" ).autocomplete({

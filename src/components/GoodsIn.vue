@@ -16,7 +16,10 @@
   import GoodsIn from '../data/GoodsIn.js'
   import Inventory from '../data/Inventory.js';
   var inventory = Inventory.Inventory;
-  export default {
+  import CrudComponents from '../traits/CrudComponent.js';
+  import AffectsInventory from '../traits/AffectsInventory.js';
+
+  var vueGoodsIn = {
     data: function() {
       return {
         title: 'GoodsIn',
@@ -52,9 +55,10 @@
           // if id is null take of inventory
           return this.updateInventoryQty(itemId, qty);
         }
-        if(qty > e.preEdit.Qty) {
+        var preQty = parseInt(e.preEdit.Qty);
+        if(qty > preQty) {
           // else if qty was increased take of inventory
-          return this.updateInventoryQty(itemId, qty - e.preEdit.Qty);
+          return this.updateInventoryQty(itemId, qty - preQty);
         } else {
           this.warning("Pre edit value is higher that post edit," +
               " I do not know what to do, you need to update Inventory yourself for " +
@@ -63,15 +67,6 @@
       }
     },
     methods: {
-      updateInventoryQty: function(itemId, qty, dir) {
-        var self = this;
-        dir = dir || 'increase';
-        inventory.updateQuantity(itemId, qty, function() {
-          self.success("Inventory item {0} qty {2} by {1}".f([itemId, qty, dir]))
-        }, function() {
-          self.error("Inventory item not found for " + itemId);
-        });
-      },
       onDelete: function(doc) {
         var itemId = doc.Workwear;
         if(!doc.Qty || !itemId) {
@@ -79,29 +74,16 @@
         }
         this.updateInventoryQty(itemId, -1 * parseInt(doc.Qty), 'decreased');
       },
-      warning: function(message) {
-        this.$broadcast('userMessage', {
-          type: 'warning',
-          message : message,
-        });
-      },
-      error: function(message) {
-        this.$broadcast('userMessage', {
-          type: 'error',
-          message : message,
-        });
-      },
-      success: function(message) {
-        this.$broadcast('userMessage', {
-          type: 'success',
-          message : message,
-        });
-      },
       refresh: function() {
         this.$broadcast('refresh');
       }
     },
-  }
+  };
+
+  _.extend(vueGoodsIn.methods, CrudComponents.UserMessages);
+  _.extend(vueGoodsIn.methods, AffectsInventory.AffectsInventory);
+
+  export default vueGoodsIn;
 
 
 
