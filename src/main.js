@@ -41,7 +41,7 @@ var router = new Router();
 
 
 router.map({
-  '/release-history' : {
+  '/goods-out' : {
     component: ReleaseHistory
   },
   '/goods-in' : {

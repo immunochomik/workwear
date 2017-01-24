@@ -43,37 +43,41 @@
     },
     events: {
       crudSubmit: function(e) {
-        var itemId = e.postEdit.Workwear + 'fdsaf',
+        var itemId = e.postEdit.Workwear,
             qty = e.postEdit.Qty;
         if(!qty || !itemId) {
           return;
         }
-        var self = this;
         if(!e.id) {
           // if id is null take of inventory
-          inventory.updateQuantity(itemId, qty, function() {
-            self.success("Inventory item {0} qty increase by {1}".f([itemId, qty]))
-          }, function() {
-            self.error("Inventory item not found for " + itemId);
-          });
-          return;
+          return this.updateInventoryQty(itemId, qty);
         }
         if(qty > e.preEdit.Qty) {
           // else if qty was increased take of inventory
-          var dif = qty - e.preEdit.Qty;
-          inventory.updateQuantity(itemId, dif, function() {
-            self.success("Inventory item {0} qty increase by {1}".f([itemId, dif]))
-          });
+          return this.updateInventoryQty(itemId, qty - e.preEdit.Qty);
         } else {
-          self.warning("Pre edit value is higher that post edit," +
+          this.warning("Pre edit value is higher that post edit," +
               " I do not know what to do, you need to update Inventory yourself for " +
               itemId);
         }
       }
     },
     methods: {
+      updateInventoryQty: function(itemId, qty, dir) {
+        var self = this;
+        dir = dir || 'increase';
+        inventory.updateQuantity(itemId, qty, function() {
+          self.success("Inventory item {0} qty {2} by {1}".f([itemId, qty, dir]))
+        }, function() {
+          self.error("Inventory item not found for " + itemId);
+        });
+      },
       onDelete: function(doc) {
-        console.log('OnDElete', doc);
+        var itemId = doc.Workwear;
+        if(!doc.Qty || !itemId) {
+          return;
+        }
+        this.updateInventoryQty(itemId, -1 * parseInt(doc.Qty), 'decreased');
       },
       warning: function(message) {
         this.$broadcast('userMessage', {
