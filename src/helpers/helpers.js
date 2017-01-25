@@ -155,7 +155,10 @@ export default {
     }
     return resp;
   },
-
+  now: function(date) {
+    date = date ? date : new Date();
+    return date.toISOString().replace('T', ' ').replace(/\.\d+Z$/, '');
+  },
   today : function(day) {
     day = day ? day : new Date();
     var dd = day.getDate();
