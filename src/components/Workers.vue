@@ -32,7 +32,17 @@
         positions : {},
         extension : {
           extend: function(vm) {
+            workPositions.generateOptions({
+              oKey:'Description',
+              typeObject:true,
+              callback: function(options) {
+                vm.fieldsObject.Position.options = options;
+              }
+            });
             vm.$watch('fieldsObject.Gender.value', function(gender) {
+              if(!gender) {
+                return;
+              }
               wTypes.generateOptions({
                 oKey: ['Description', 'Gender', 'Sizes'],
                 condition: function(doc) {
@@ -64,12 +74,6 @@
     route: {
       data: function(to) {
         routerCall(this);
-        if(! selectsDone) {
-          this.$nextTick(function () {
-            workPositions.setSelect('#PositionWorkers', 'Description');
-          });
-          selectsDone = true;
-        }
       }
     },
     methods: {

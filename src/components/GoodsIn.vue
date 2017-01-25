@@ -84,8 +84,5 @@
   _.extend(vueGoodsIn.methods, AffectsInventory.AffectsInventory);
 
   export default vueGoodsIn;
-
-
-
 </script>
 

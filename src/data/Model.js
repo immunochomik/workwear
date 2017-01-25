@@ -13,6 +13,7 @@ var makeKey = function(parts, doc) {
 };
 
 var debug;
+// TODO use fields or fieldsObject only
 var Model = (function() {
   function Model(settings) {
     this.title = settings.title;
@@ -89,11 +90,11 @@ var Model = (function() {
   Model.prototype.setSelect = function(selectId, oKey, oValue, condition) {
     var self = this;
     this.generateOptions({
-        oKey: oKey, oValue: oValue, condition: condition,
-        callback: function (options) {
-          self.replaceSelect(selectId, options);
-        }
-      });
+      oKey: oKey, oValue: oValue, condition: condition,
+      callback: function (options) {
+        self.replaceSelect(selectId, options);
+      }
+    });
   };
   Model.prototype.replaceSelect = function(selectId, options) {
     var $el = $(selectId);
@@ -136,9 +137,21 @@ var Model = (function() {
     store.get(id, callback, errorCallback);
   };
   Model.prototype.upsert = function(id, item, callback) {
+    item = this.onUpsert(item);
+    if(!item) {
+      return;
+    }
     item['ver_'] = this.uni + this.version;
     item['_id'] = id || this.makeId(item);
     store.upsert(item, callback);
+  };
+  Model.prototype.onUpsert = function(data) {
+    for(var name in data) {
+      if(this.fieldsObject[name] && this.fieldsObject[name].onUpsert)  {
+        data[name] = this.fieldsObject[name].onUpsert( data[name]);
+      }
+    }
+    return data;
   };
   Model.prototype.put = function(item, callback) {
     item['_id'] = this.makeId(item);
