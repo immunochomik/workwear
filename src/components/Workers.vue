@@ -49,13 +49,7 @@
                   return doc.Sizes && (doc.Gender === 'U' || doc.Gender === gender);
                 },
                 callback: function(options) {
-                  if( vm.isEdit()) {
-                    console.log('EDIT');
-                  } else {
-                    console.log('NOT EDIT');
-                  }
                   if(vm.fieldsObject.Sizes.value) {
-                    console.log('value', vm.fieldsObject.Sizes.value);
                     if(vm.isEdit()) {
                       return;
                     } else if(!confirm('Do you want to replace sizes?')) {

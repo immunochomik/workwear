@@ -76,7 +76,7 @@ var Model = (function() {
         options.push([usedKey, usedValue]);
       });
       options.sort(function(a,b) {return (a[0] > b[0]) ? 1 : ((b[0] > a[0]) ? -1 : 0);});
-      if(args.typeObject) {
+      if(!args.list) {
         var temp = {};
         _.each(options, row => {
           temp[row[0]] = row[1];
@@ -93,7 +93,8 @@ var Model = (function() {
       oKey: oKey, oValue: oValue, condition: condition,
       callback: function (options) {
         self.replaceSelect(selectId, options);
-      }
+      },
+      list: true,
     });
   };
   Model.prototype.replaceSelect = function(selectId, options) {
