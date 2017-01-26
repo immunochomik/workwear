@@ -17,6 +17,7 @@
           <thead>
           <tr>
             <th>Employee</th>
+            <th>Position</th>
             <th>Workwear</th>
             <th>Needed</th>
             <th></th>
@@ -25,6 +26,7 @@
           <tbody>
           <tr v-for="item in todos">
             <td>{{item.worker}}</td>
+            <td>{{item.position}}</td>
             <td>{{item.workwear}}</td>
             <td>{{item.needed}}</td>
             <td class="text-right">
@@ -47,9 +49,9 @@
       return {
         title: 'ToDo',
         todos: [
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now()},
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now()},
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now()},
+          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
+          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
+          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
         ],
       }
     },
@@ -66,7 +68,7 @@
       calculate: function() {
         // Take all workers
         // for each get hers position
-        // for item sin position
+        // for item in position
         // check release history for that worker
         //
       },
