@@ -12,6 +12,7 @@ import WorkwearTypes from './components/WorkwearTypes.vue';
 import ReleaseHistory from './components/ReleaseHistory.vue';
 import GoodsIn from './components/GoodsIn.vue';
 import Crud from './components/Crud.vue';
+import ToDo from './components/ToDo.vue';
 
 
 var _ = require('lodash');
@@ -58,6 +59,9 @@ router.map({
   },
   '/workpositions' : {
     component: WorkPositions
+  },
+  '/todo' : {
+    component: ToDo
   },
   '/data' : {
     component: Data
