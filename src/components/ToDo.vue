@@ -42,7 +42,12 @@
 <script>
   import Workers from '../data/Workers.js'
   import WorkPositions from '../data/WorkPositions.js';
+  import ReleaseHistory from '../data/ReleaseHistory.js';
+  var workers = Workers.Workers;
   var workPositions = WorkPositions.WorkPositions;
+  var rHistory = ReleaseHistory.ReleaseHistory;
+
+  var positions = {};
   export default {
     name: 'ToDo',
     data: function() {
@@ -53,6 +58,7 @@
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
         ],
+        positions : {}
       }
     },
     route: {
@@ -61,18 +67,54 @@
         toggleTopNavActive('topNavLiToDo');
       }
     },
+    created: function() {
+      workPositions.generateOptions({
+        oKey : ['Description'],
+        oValue : ['WorkweareTypes'],
+        callback : function(options) {
+          for(var position in options) {
+            positions[position] = options[position].split('\n').filter(
+                function(x) {return x;});
+          }
+        }
+      })
+    },
     methods: {
       release: function(item) {
         pp(item);
       },
       calculate: function() {
         // Take all workers
-        // for each get hers position
-        // for item in position
-        // check release history for that worker
-        //
+        workers.list(function(data ) {
+          _.each(data.rows, processWorker);
+        });
+
       },
     },
   }
-</script>
+  // for each get hers position
+  // for item in position
+  // check release history for that worker
+  function processWorker(worker) {
+    rHistory.list(function(rHistory) {
+      var received = [];
+      _.each(rHistory.rows, function(item) {
+        // get name from workwear description
+        var workweare = item.doc.Workwear.split('_')[0];
+        if(! received[workweare]) {
+          received[workweare] = []
+        }
+        //save what and when was given to the worker
+        received[workweare].push(item.doc.DateTime);
+      });
+      toDoForWorker(worker, received);
+    }, worker.doc.Name);
+  }
+
+  function toDoForWorker(worker, received) {
+    var position = positions[worker.doc.Position];
+    console.log(worker.doc.Name, received);
+  }
+
+</script>i
 
