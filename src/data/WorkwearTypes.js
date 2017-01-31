@@ -11,6 +11,9 @@ var WorkwearTypes = new Model.Model({
   version : 1
 });
 
+// makes sizes array from string representation
+// 36 - 42  = [36,38,40,42]
+// M;L;XL  => [M,L,XL]
 WorkwearTypes.extractSizes = function(doc) {
   var raw = [];
   if(doc.Sizes.match(/^\d+\-\d+/)) {

@@ -48,7 +48,8 @@
   var rHistory = ReleaseHistory.ReleaseHistory;
 
   var positions = {};
-  export default {
+  var sizes = {};
+  var ToDo = {
     name: 'ToDo',
     data: function() {
       return {
@@ -73,13 +74,18 @@
         oValue : ['WorkweareTypes'],
         callback : function(options) {
           for(var position in options) {
-            positions[position] = options[position].split('\n').filter(
-                function(x) {return x;});
+            positions[position] = preparePosition(options[position].split('\n').filter(
+                function(x) {return x;}));
           }
         }
       })
     },
     methods: {
+      addToDo: function(worker, item) {
+        if(!sizes[worker.Name]) {
+          sizes[worker.Name] = workers.workerSizes(worker.Sizes);
+        }
+      },
       release: function(item) {
         pp(item);
       },
@@ -91,13 +97,14 @@
 
       },
     },
-  }
+  };
+  export default ToDo;
   // for each get hers position
   // for item in position
   // check release history for that worker
   function processWorker(worker) {
     rHistory.list(function(rHistory) {
-      var received = [];
+      var received = {};
       _.each(rHistory.rows, function(item) {
         // get name from workwear description
         var workweare = item.doc.Workwear.split('_')[0];
@@ -107,13 +114,33 @@
         //save what and when was given to the worker
         received[workweare].push(item.doc.DateTime);
       });
-      toDoForWorker(worker, received);
+      toDosForWorker(worker, received);
     }, worker.doc.Name);
   }
 
-  function toDoForWorker(worker, received) {
+  function toDosForWorker(worker, received) {
+    // we know what she received and
+    // for each item in position get the date from last received and calculate nex data
     var position = positions[worker.doc.Position];
-    console.log(worker.doc.Name, received);
+    for(var item in position) {
+      var last = received[item] ? received[item][0] : false;
+      if(!last) {
+        ToDo.methods.addToDo(worker.doc, item)
+      }
+    }
+    //pp(received, position)
+  }
+
+  // build an object from storage format
+  // "Kalesony => 12;"  =  {Kalesony : 12}
+  function preparePosition(list) {
+    var out = {};
+    _.each(list, function(row) {
+      row = row.split('=>').map(function(x) {
+        return x.replace(/^ | $/g, '').replace(';', '');});
+      out[row[0]] = parseInt(row[1]);
+    })
+    return out;
   }
 
 </script>i
