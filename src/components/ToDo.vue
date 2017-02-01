@@ -52,7 +52,46 @@
 
   var positions = {};
   var sizes = {};
-  var ToDo = {
+
+  var privates = (function() {
+    function p(context) {
+      this.context = context;
+    }
+    // for each get hers position
+    // for item in position check release history for that worker
+    p.prototype.processWorker = function(worker) {
+      var self = this;
+      rHistory.list(function(rHistory) {
+        var received = {};
+        _.each(rHistory.rows, function(item) {
+          // get name from workwear description
+          var workweare = item.doc.Workwear.split('_')[0];
+          if(! received[workweare]) {
+            received[workweare] = []
+          }
+          //save what and when was given to the worker
+          received[workweare].push(item.doc.DateTime);
+        });
+        self.toDosForWorker(worker, received);
+      }, worker.doc.Name);
+    };
+
+    p.prototype.toDosForWorker = function(worker, received) {
+      // we know what she received and
+      // for each item in position get the date from last received and calculate nex data
+      var position = positions[worker.doc.Position];
+      for(var item in position) {
+        var last = received[item] ? received[item][0] : false;
+        if(!last) {
+          this.context.addToDo(worker.doc, item)
+        }
+      }
+    };
+    return p;
+  })();
+
+
+  export default {
     name: 'ToDo',
     data: function() {
       return {
@@ -62,11 +101,11 @@
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
         ],
-        positions : {},
+        //positions : {},
         messages : {
           warning : '',
           success : '',
-          error : 'OK',
+          error : '',
         },
       }
     },
@@ -77,6 +116,7 @@
       }
     },
     created: function() {
+      this.privates = new privates(this);
       workPositions.generateOptions({
         oKey : ['Description'],
         oValue : ['WorkweareTypes'],
@@ -93,52 +133,32 @@
         if(!sizes[worker.Name]) {
           sizes[worker.Name] = workers.workerSizes(worker.Sizes);
         }
-
+        var self = this;
+        _.each(sizes[worker.Name][item], function(wokweare) {
+          self.todos.push({
+            worker: worker.Name,
+            workwear: wokweare,
+            needed: now(),
+            position: worker.Position
+          })
+        });
       },
       release: function(item) {
         pp(item);
       },
       calculate: function() {
         // Take all workers
+        var self = this;
+        this.todos = [];
         workers.list(function(data ) {
-          _.each(data.rows, processWorker);
+          _.each(data.rows, function(worker) {
+            self.privates.processWorker(worker);
+          });
         });
 
       },
     },
   };
-  export default ToDo;
-  // for each get hers position
-  // for item in position
-  // check release history for that worker
-  function processWorker(worker) {
-    rHistory.list(function(rHistory) {
-      var received = {};
-      _.each(rHistory.rows, function(item) {
-        // get name from workwear description
-        var workweare = item.doc.Workwear.split('_')[0];
-        if(! received[workweare]) {
-          received[workweare] = []
-        }
-        //save what and when was given to the worker
-        received[workweare].push(item.doc.DateTime);
-      });
-      toDosForWorker(worker, received);
-    }, worker.doc.Name);
-  }
-
-  function toDosForWorker(worker, received) {
-    // we know what she received and
-    // for each item in position get the date from last received and calculate nex data
-    var position = positions[worker.doc.Position];
-    for(var item in position) {
-      var last = received[item] ? received[item][0] : false;
-      if(!last) {
-        ToDo.methods.addToDo(worker.doc, item)
-      }
-    }
-    //pp(received, position)
-  }
 
   // build an object from storage format
   // "Kalesony => 12;"  =  {Kalesony : 12}
@@ -148,9 +168,10 @@
       row = row.split('=>').map(function(x) {
         return x.replace(/^ | $/g, '').replace(';', '');});
       out[row[0]] = parseInt(row[1]);
-    })
+    });
     return out;
   }
 
-</script>i
+
+</script>
 
