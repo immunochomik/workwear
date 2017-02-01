@@ -16,27 +16,7 @@
       </div>
       <div class="panel-body">
         <!-- Table -->
-        <table class="table table-responsive table-hover table-condensed">
-          <thead>
-          <tr>
-            <th>Employee</th>
-            <th>Position</th>
-            <th>Workwear</th>
-            <th>Needed</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr v-for="item in todos">
-            <td>{{item.worker}}</td>
-            <td>{{item.position}}</td>
-            <td>{{item.workwear}}</td>
-            <td>{{item.needed}}</td>
-            <td class="text-right">
-              <button class="btn btn-default" @click="release(item)">Go</button></td>
-          </tr>
-          </tbody>
-        </table>
+        <table @click="tableClick($event)" id="listTableToDo" class="display" width="100%"></table>
       </div>
     </div>
   </div>
@@ -73,6 +53,7 @@
           received[workweare].push(item.doc.DateTime);
         });
         self.toDosForWorker(worker, received);
+        self.context.renderTable();
       }, worker.doc.Name);
     };
 
@@ -82,11 +63,19 @@
       var position = positions[worker.doc.Position];
       for(var item in position) {
         var last = received[item] ? received[item][0] : false;
-        if(!last) {
-          this.context.addToDo(worker.doc, item)
-        }
+        this.context.addToDo(worker.doc, item, whenNeeded(last, position[item]));
       }
     };
+
+    function whenNeeded(lastReceived, monthsAllowed) {
+      if(!lastReceived) {
+        return now();
+      }
+      var last = new Date(lastReceived);
+      last = last.setMonth(last.getMonth() + parseInt(monthsAllowed))
+      return new Date(last).toISOString().replace('T', ' ').replace('.000Z', '');
+    }
+
     return p;
   })();
 
@@ -96,12 +85,7 @@
     data: function() {
       return {
         title: 'ToDo',
-        todos: [
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
-          {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
-        ],
-        //positions : {},
+        todos: [],
         messages : {
           warning : '',
           success : '',
@@ -129,18 +113,37 @@
       })
     },
     methods: {
-      addToDo: function(worker, item) {
+      renderTable: function() {
+        var data = {
+          data: this.todos,
+          columns: [
+            {title:'Employee'},
+            {title:'Workwear'},
+            {title:'Needed'},
+            {title:'Position'},
+            {title:''},
+          ],
+          destroy:true,
+        };
+        var table = $('#listTableToDo');
+        table.destroy && table.destroy();
+        table.DataTable(data);
+      },
+      tableClick: function(e) {
+        var elClass = e.target.getAttribute('class') || '';
+        if(elClass.indexOf('delete-item') != -1) {
+          this.deleteItem(e.target.getAttribute('data-id'));
+        } else if (elClass.indexOf('edit-item') != -1) {
+          this.edit(e.target.getAttribute('data-id'));
+        }
+      },
+      addToDo: function(worker, item, whenToAdd) {
         if(!sizes[worker.Name]) {
           sizes[worker.Name] = workers.workerSizes(worker.Sizes);
         }
         var self = this;
         _.each(sizes[worker.Name][item], function(wokweare) {
-          self.todos.push({
-            worker: worker.Name,
-            workwear: wokweare,
-            needed: now(),
-            position: worker.Position
-          })
+          self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position, ''])
         });
       },
       release: function(item) {

@@ -174,6 +174,7 @@
           columns: columns,
           destroy:true,
         };
+        pp(data);
         var table = $('#listTable'+ this.uni);
         table.destroy && table.destroy();
         table.DataTable(data);
