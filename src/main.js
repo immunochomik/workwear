@@ -12,6 +12,7 @@ import WorkwearTypes from './components/WorkwearTypes.vue';
 import ReleaseHistory from './components/ReleaseHistory.vue';
 import GoodsIn from './components/GoodsIn.vue';
 import Crud from './components/Crud.vue';
+import Messages from './components/Messages.vue';
 import ToDo from './components/ToDo.vue';
 
 
@@ -32,6 +33,7 @@ require( 'jquery-ui/ui/widgets/autocomplete.js' );
 require( 'jquery-ui/themes/base/all.css' );
 
 Vue.component('crud', Crud);
+Vue.component('messages', Messages);
 Vue.config.debug = true;
 
 // install router

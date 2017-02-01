@@ -23,12 +23,11 @@ var Workers = new Model.Model({
 
 /**
  * Get string representation of worker sizes and produce object
- * used in to do generation.
- *  'Kurtka_M => [ 50 ]
- *   Obuwie_U => [ 38 ]'
+ * used in generation of todos .
  *
- *  { Kurtka : [ Kurtka_M_50 ] }
- * @param String sizes
+ * @param sizes string  'Kurtka_M => [ 50 ]
+ *                       Obuwie_U => [ 38 ]'
+ * @return object { Kurtka : [ Kurtka_M_50 ] ... }
  */
 Workers.workerSizes = function(sizes) {
   var out = {};
@@ -36,9 +35,10 @@ Workers.workerSizes = function(sizes) {
      return x.split('=>').map(function(x) {return x.replace(/^ | $/g, '')})});
   _.each(sizes, function(row) {
     var name = row[0].split('_');
-    var numbers = row[1].replace(/^\[\ *|\ *\]$/g, '').split(';');
-    pp(numbers);
+    out[name[0]] = row[1].replace(/^\[\ *|\ *\]$/g, '').split(';')
+      .map(function(x) { return [name[0],name[1],x].join('_')});
   });
+  return out;
 };
 
 export default {

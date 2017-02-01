@@ -1,5 +1,8 @@
 <template>
   <div class="container-fluid">
+    <messages
+        :messages.sync="messages"
+        ></messages>
     <div class="panel panel-default">
       <div class="panel-heading">
         <div class="row">
@@ -59,7 +62,12 @@
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
           {worker: 'Anna Myk', workwear : 'Bluza polarowa_U_52', needed: now(), position:'Magaznier'},
         ],
-        positions : {}
+        positions : {},
+        messages : {
+          warning : '',
+          success : '',
+          error : 'OK',
+        },
       }
     },
     route: {
@@ -85,6 +93,7 @@
         if(!sizes[worker.Name]) {
           sizes[worker.Name] = workers.workerSizes(worker.Sizes);
         }
+
       },
       release: function(item) {
         pp(item);
