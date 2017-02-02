@@ -29,6 +29,8 @@
   var workers = Workers.Workers;
   var workPositions = WorkPositions.WorkPositions;
   var rHistory = ReleaseHistory.ReleaseHistory;
+  import AffectsInventory from '../traits/AffectsInventory.js';
+  import Messages from '../traits/Messages.js';
 
   var positions = {};
   var sizes = {};
@@ -80,8 +82,7 @@
     return p;
   })();
 
-
-  export default {
+  var TODO = {
     name: 'ToDo',
     data: function() {
       return {
@@ -152,26 +153,37 @@
         // for each
         if(sizes[worker.Name][itemClass]) {
           _.each(sizes[worker.Name][itemClass], function (wokweare) {
-            self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position, ''])
+            self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position,
+              self.releaseButton(worker.Name, wokweare)])
           });
         } else {
           // there are items with out sizes like a hat
-          self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position, ''])
+          self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position,
+            self.releaseButton(worker.Name, itemClass)])
         }
+      },
+      releaseButton: function(name, workwear) {
+        return "<button class='btn btn-default btn-sm release-button' data-n='{0}' data-w='{1}'>Release</button>"
+            .f([name,  workwear]);
       },
       tableClick: function(e) {
         var elClass = e.target.getAttribute('class') || '';
-        if(elClass.indexOf('delete-item') != -1) {
-          this.deleteItem(e.target.getAttribute('data-id'));
-        } else if (elClass.indexOf('edit-item') != -1) {
-          this.edit(e.target.getAttribute('data-id'));
+        if(elClass.indexOf('release-button') != -1) {
+          this.release(e.target.getAttribute('data-n'), e.target.getAttribute('data-w'));
         }
       },
-      release: function(item) {
-        pp(item);
+      release: function(name, workwear) {
+        console.log(name, workwear);
+        this.success(name);
+        this.warning(workwear);
       },
     },
   };
+
+  _.extend(TODO.methods, AffectsInventory.AffectsInventory);
+  _.extend(TODO.methods, Messages.UserMessages);
+
+  export default TODO;
 
   // build an object from storage format
   // "Kalesony => 12;"  =  {Kalesony : 12}
