@@ -127,6 +127,7 @@
             {title:''},
           ],
           destroy:true,
+          order : [[2,'asc']]
         };
         var table = $('#listTableToDo');
         table.destroy && table.destroy();
@@ -174,8 +175,15 @@
       },
       release: function(name, workwear) {
         console.log(name, workwear);
-        this.success(name);
-        this.warning(workwear);
+        workwear += '_new';
+        rHistory.put({
+          DateTime: now(),
+          Employee : name,
+          Workwear: workwear,
+          Qty: 1
+        });
+        this.updateInventoryQty(workwear, -1, 'decreased');
+        this.calculate();
       },
     },
   };
