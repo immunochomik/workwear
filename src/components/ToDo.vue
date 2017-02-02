@@ -75,7 +75,7 @@
         return now();
       }
       var last = new Date(lastReceived);
-      last = last.setMonth(last.getMonth() + parseInt(monthsAllowed))
+      last = last.setMonth(last.getMonth() + parseInt(monthsAllowed));
       return new Date(last).toISOString().replace('T', ' ').replace('.000Z', '');
     }
 
@@ -159,8 +159,8 @@
           });
         } else {
           // there are items with out sizes like a hat
-          self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position,
-            self.releaseButton(worker.Name, itemClass)])
+          //self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position,
+          //  self.releaseButton(worker.Name, itemClass)])
         }
       },
       releaseButton: function(name, workwear) {

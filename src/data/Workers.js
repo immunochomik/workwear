@@ -10,7 +10,7 @@ var Workers = new Model.Model({
     { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
     { name: 'Start', type: 'text', 'class': 'date',
       onUpsert: function(value) {
-       return value ? value : today();
+        return value ? value : today();
       }},
     { name: 'Sizes', type: 'textarea', attrs:{rows: 10},
       onUpsert: function(text) {
@@ -31,8 +31,16 @@ var Workers = new Model.Model({
  */
 Workers.workerSizes = function(sizes) {
   var out = {};
-   sizes = sizes.split('\n').map(function(x) {
-     return x.split('=>').map(function(x) {return x.replace(/^ | $/g, '')})});
+  if(!sizes)  {
+    return {};
+  }
+  sizes = sizes.split('\n')
+    // remove empty strings
+    .filter(function(x) {return x.replace(/\s/g, '').length})
+    // each row split on => and trim both parts of the split
+    .map(function(x) {
+      return x.split('=>').map(function(x) {return x.replace(/^ | $/g, '')})});
+  
   _.each(sizes, function(row) {
     var name = row[0].split('_');
     out[name[0]] = row[1].replace(/^\[\ *|\ *\]$/g, '').split(';')
