@@ -37,10 +37,11 @@
     function p(context) {
       this.context = context;
     }
-    // for each get hers position
+    // for each worker get hers position
     // for item in position check release history for that worker
     p.prototype.processWorker = function(worker) {
       var self = this;
+      // get goods out history for that worker
       rHistory.list(function(rHistory) {
         var received = {};
         _.each(rHistory.rows, function(item) {
@@ -101,6 +102,7 @@
     },
     created: function() {
       this.privates = new privates(this);
+      // I need positions cache so will not call pouch to get positions
       workPositions.generateOptions({
         oKey : ['Description'],
         oValue : ['WorkweareTypes'],
@@ -129,26 +131,6 @@
         table.destroy && table.destroy();
         table.DataTable(data);
       },
-      tableClick: function(e) {
-        var elClass = e.target.getAttribute('class') || '';
-        if(elClass.indexOf('delete-item') != -1) {
-          this.deleteItem(e.target.getAttribute('data-id'));
-        } else if (elClass.indexOf('edit-item') != -1) {
-          this.edit(e.target.getAttribute('data-id'));
-        }
-      },
-      addToDo: function(worker, item, whenToAdd) {
-        if(!sizes[worker.Name]) {
-          sizes[worker.Name] = workers.workerSizes(worker.Sizes);
-        }
-        var self = this;
-        _.each(sizes[worker.Name][item], function(wokweare) {
-          self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position, ''])
-        });
-      },
-      release: function(item) {
-        pp(item);
-      },
       calculate: function() {
         // Take all workers
         var self = this;
@@ -159,6 +141,34 @@
           });
         });
 
+      },
+      // args example :  Adma Pentla, Hat, '2017-01-01 12:00:00'
+      addToDo: function(worker, itemClass, whenToAdd) {
+        if(!sizes[worker.Name]) {
+          sizes[worker.Name] = workers.workerSizes(worker.Sizes);
+        }
+        var self = this;
+        // we can have more than one sizes per workware type in sizes so we need
+        // for each
+        if(sizes[worker.Name][itemClass]) {
+          _.each(sizes[worker.Name][itemClass], function (wokweare) {
+            self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position, ''])
+          });
+        } else {
+          // there are items with out sizes like a hat
+          self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position, ''])
+        }
+      },
+      tableClick: function(e) {
+        var elClass = e.target.getAttribute('class') || '';
+        if(elClass.indexOf('delete-item') != -1) {
+          this.deleteItem(e.target.getAttribute('data-id'));
+        } else if (elClass.indexOf('edit-item') != -1) {
+          this.edit(e.target.getAttribute('data-id'));
+        }
+      },
+      release: function(item) {
+        pp(item);
       },
     },
   };
