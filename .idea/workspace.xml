@@ -21,105 +21,133 @@
     <favorites_list name="base" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ToDo.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="87.833336">
-              <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Messages.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/traits/Messages.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReleaseHistory.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ReleaseHistory.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkPositions.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/WorkPositions.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="26" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorkwearTypes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/WorkwearTypes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="221" column="25" selection-start-line="221" selection-start-column="19" selection-end-line="221" selection-end-column="25" />
-              <folding>
-                <element signature="e#3546#4257#0" expanded="false" />
-                <element signature="e#4497#4530#0" expanded="false" />
-                <element signature="e#4563#4627#0" expanded="false" />
-                <element signature="e#6401#6750#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Workers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/data/Workers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3977143">
-              <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Model.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/Model.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
-              <folding>
-                <element signature="e#2868#3022#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReleaseHistory.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/ReleaseHistory.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="25" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.48368147">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="Inventory.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Inventory.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-10.333333">
+                  <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Messages.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/Messages.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="11.366667">
+                  <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Inventory.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/data/Inventory.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="28" column="24" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.4715909">
+                  <caret line="257" column="3" selection-start-line="257" selection-start-column="3" selection-end-line="257" selection-end-column="3" />
+                  <folding>
+                    <element signature="e#3173#3516#0" expanded="false" />
+                    <element signature="e#5186#5482#0" expanded="false" />
+                    <element signature="e#5514#5949#0" expanded="false" />
+                    <element signature="e#5981#6370#0" expanded="false" />
+                    <element signature="e#6397#6746#0" expanded="false" />
+                    <element signature="e#6781#7101#0" expanded="false" />
+                    <element signature="e#7128#7504#0" expanded="false" />
+                    <element signature="e#7533#7585#0" expanded="false" />
+                    <element signature="e#7616#7782#0" expanded="false" />
+                    <element signature="e#7815#8005#0" expanded="false" />
+                    <element signature="e#8037#8340#0" expanded="false" />
+                    <element signature="e#8372#8415#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Model.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/data/Model.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="ToDo.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-6.2">
+                  <caret line="191" column="34" selection-start-line="191" selection-start-column="34" selection-end-line="191" selection-end-column="34" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="GoodsIn.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/GoodsIn.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-6.233333">
+                  <caret line="82" column="46" selection-start-line="82" selection-start-column="46" selection-end-line="82" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#628#1167#0" expanded="false" />
+                    <element signature="e#643#1161#0" expanded="false" />
+                    <element signature="e#1180#1248#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ReleaseHistory.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/components/ReleaseHistory.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-18.6">
+                  <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CrudComponent.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/traits/CrudComponent.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.21052632">
+                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Messages.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/traits/Messages.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -148,14 +176,10 @@
         <option value="$PROJECT_DIR$/src/components/Data.vue" />
         <option value="$PROJECT_DIR$/src/components/AcquireHistory.vue" />
         <option value="$PROJECT_DIR$/src/data/AcquireHistory.js" />
-        <option value="$PROJECT_DIR$/src/components/Inventory.vue" />
         <option value="$PROJECT_DIR$/src/data/Inventory.js" />
         <option value="$PROJECT_DIR$/src/storeCollection/index.js" />
         <option value="$PROJECT_DIR$/src/traits/crud/userMessages" />
         <option value="$PROJECT_DIR$/src/traits/AffectsInventory.js" />
-        <option value="$PROJECT_DIR$/src/traits/CrudComponent.js" />
-        <option value="$PROJECT_DIR$/src/components/ReleaseHistory.vue" />
-        <option value="$PROJECT_DIR$/src/components/GoodsIn.vue" />
         <option value="$PROJECT_DIR$/src/helpers/helpers.js" />
         <option value="$PROJECT_DIR$/src/data/GoodsIn.js" />
         <option value="$PROJECT_DIR$/src/components/TopNav.vue" />
@@ -166,10 +190,14 @@
         <option value="$PROJECT_DIR$/src/data/WorkwearTypes.js" />
         <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/components/Messages.vue" />
+        <option value="$PROJECT_DIR$/src/data/Workers.js" />
+        <option value="$PROJECT_DIR$/src/components/ReleaseHistory.vue" />
+        <option value="$PROJECT_DIR$/src/components/ToDo.vue" />
+        <option value="$PROJECT_DIR$/src/components/GoodsIn.vue" />
+        <option value="$PROJECT_DIR$/src/components/Inventory.vue" />
         <option value="$PROJECT_DIR$/src/components/Crud.vue" />
         <option value="$PROJECT_DIR$/src/traits/Messages.js" />
-        <option value="$PROJECT_DIR$/src/components/ToDo.vue" />
-        <option value="$PROJECT_DIR$/src/data/Workers.js" />
+        <option value="$PROJECT_DIR$/src/traits/CrudComponent.js" />
       </list>
     </option>
   </component>
@@ -185,10 +213,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="703" />
-    <option name="y" value="52" />
-    <option name="width" value="1217" />
-    <option name="height" value="1028" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -214,26 +242,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scratches" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -298,24 +306,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="base" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="workwear" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -340,14 +330,33 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scratches" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyRootNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.intellij.ide.scratch.ScratchProjectViewPane$MyProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="local history&#9;ACTION&#9;LocalHistory&#10;local his&#9;ACTION&#9;LocalHistory&#10;local hi&#9;ACTION&#9;LocalHistory&#10;indent&#9;ACTION&#9;AutoIndentLines&#10;indent &#9;ACTION&#9;EditorIndentLineOrSelection" />
     <property name="JavaScriptLanguageLevel" value="ES6" />
     <property name="JavaScriptPreferStrict" value="false" />
@@ -388,12 +397,6 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
       <method />
     </configuration>
   </component>
@@ -411,14 +414,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="703" y="52" width="1217" height="1028" extended-state="4" />
+    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18616568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15312327" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33654878" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Mongo Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -429,8 +433,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978564" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34767836" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -456,6 +460,9 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -469,21 +476,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="25" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Crud.vue</url>
+          <line>56</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="26" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -507,18 +511,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/error.log">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -538,12 +532,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/datatables.net/Readme.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-datepicker/jquery-datepicker.min.js">
@@ -555,7 +546,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8681319">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1227" column="16" selection-start-line="1227" selection-start-column="6" selection-end-line="1227" selection-end-column="16" />
         </state>
       </provider>
@@ -565,9 +556,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -579,7 +567,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deployaws">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.105802044">
+        <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
         </state>
       </provider>
@@ -589,9 +577,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-autocomplete/jquery.autocomplete.css">
@@ -603,14 +588,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-autocomplete/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0666666">
+        <state vertical-scroll-proportion="0.0">
           <caret line="123" column="0" selection-start-line="123" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-autocomplete/demo/jquery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9706228">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -638,42 +623,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jquery-autocomplete/jquery.autocomplete.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1861012">
+        <state vertical-scroll-proportion="0.0">
           <caret line="253" column="20" selection-start-line="253" selection-start-column="14" selection-end-line="253" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-28.933332">
-          <caret line="28" column="30" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../base/src/components/Crud.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.0721893">
+        <state vertical-scroll-proportion="0.0">
           <caret line="129" column="8" selection-start-line="129" selection-start-column="8" selection-end-line="129" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Data.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.266666">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/WorkwearTypes.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.1666665">
+        <state vertical-scroll-proportion="0.0">
           <caret line="5" column="29" selection-start-line="4" selection-start-column="9" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
@@ -685,40 +656,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Inventory.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.25680473">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/GoodsIn.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/GoodsIn.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TopNav.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.6">
+        <state vertical-scroll-proportion="0.0">
           <caret line="21" column="94" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/Inventory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.078857146">
-          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -731,15 +672,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5502958">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Messages.vue">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -757,31 +691,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/traits/CrudComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="4" selection-start-line="2" selection-start-column="2" selection-end-line="19" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/traits/Messages.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/WorkPositions.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33017752">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="54" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Workers.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33017752">
+        <state vertical-scroll-proportion="0.0">
           <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
         </state>
       </provider>
@@ -790,27 +709,52 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="25" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="221" column="25" selection-start-line="221" selection-start-column="19" selection-end-line="221" selection-end-column="25" />
-          <folding>
-            <element signature="e#3546#4257#0" expanded="false" />
-            <element signature="e#4497#4530#0" expanded="false" />
-            <element signature="e#4563#4627#0" expanded="false" />
-            <element signature="e#6401#6750#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/traits/AffectsInventory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29142857">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/Workers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3977143">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29349113">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/WorkwearTypes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22057143">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/GoodsIn.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.070857145">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/WorkPositions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.504">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -818,50 +762,121 @@
     <entry file="file://$PROJECT_DIR$/src/data/Model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
-          <folding>
-            <element signature="e#2868#3022#0" expanded="false" />
-          </folding>
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
+    <entry file="file://$PROJECT_DIR$/node_modules/core-js/build/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="87.833336">
-          <caret line="99" column="33" selection-start-line="99" selection-start-column="33" selection-end-line="99" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/error.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.933332">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ReleaseHistory.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        <state vertical-scroll-proportion="-18.6">
+          <caret line="86" column="53" selection-start-line="86" selection-start-column="53" selection-end-line="86" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/WorkPositions.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Messages.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="26" />
+        <state vertical-scroll-proportion="11.366667">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/WorkwearTypes.js">
+    <entry file="file://$PROJECT_DIR$/src/data/Inventory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/Workers.js">
+    <entry file="file://$PROJECT_DIR$/src/components/Inventory.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3977143">
-          <caret line="42" column="2" selection-start-line="42" selection-start-column="2" selection-end-line="42" selection-end-column="2" />
+        <state vertical-scroll-proportion="-10.333333">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.2">
+          <caret line="191" column="34" selection-start-line="191" selection-start-column="34" selection-end-line="191" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/traits/Messages.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="71" selection-start-line="2" selection-start-column="71" selection-end-line="2" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/GoodsIn.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.233333">
+          <caret line="82" column="46" selection-start-line="82" selection-start-column="46" selection-end-line="82" selection-end-column="46" />
+          <folding>
+            <element signature="e#628#1167#0" expanded="false" />
+            <element signature="e#643#1161#0" expanded="false" />
+            <element signature="e#1180#1248#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/traits/CrudComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21052632">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4715909">
+          <caret line="257" column="3" selection-start-line="257" selection-start-column="3" selection-end-line="257" selection-end-column="3" />
+          <folding>
+            <element signature="e#3173#3516#0" expanded="false" />
+            <element signature="e#5186#5482#0" expanded="false" />
+            <element signature="e#5514#5949#0" expanded="false" />
+            <element signature="e#5981#6370#0" expanded="false" />
+            <element signature="e#6397#6746#0" expanded="false" />
+            <element signature="e#6781#7101#0" expanded="false" />
+            <element signature="e#7128#7504#0" expanded="false" />
+            <element signature="e#7533#7585#0" expanded="false" />
+            <element signature="e#7616#7782#0" expanded="false" />
+            <element signature="e#7815#8005#0" expanded="false" />
+            <element signature="e#8037#8340#0" expanded="false" />
+            <element signature="e#8372#8415#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

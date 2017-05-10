@@ -10,7 +10,7 @@
 
 <script>
   /**
-   * If you want to add return item thtoug goods in you need to add that row to inventory first
+   * If you want to add return item throughout goods in you need to add that row to inventory first
    * or we add that permutation to inventory population script.
    */
   import GoodsIn from '../data/GoodsIn.js'

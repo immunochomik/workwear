@@ -40,7 +40,7 @@ Workers.workerSizes = function(sizes) {
     // each row split on => and trim both parts of the split
     .map(function(x) {
       return x.split('=>').map(function(x) {return x.replace(/^ | $/g, '')})});
-  
+
   _.each(sizes, function(row) {
     var name = row[0].split('_');
     out[name[0]] = row[1].replace(/^\[\ *|\ *\]$/g, '').split(';')

@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * This messages trait is to be used when we have messages component in
+ * */
 var UserMessages = {
   warning: function(message) {
     var self = this;

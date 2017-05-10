@@ -1,4 +1,9 @@
 "use strict";
+/**
+ * This messages trait is to be used to when we are using messages in
+ * the crud component that is a child of the component that is using
+ * that trait
+ */
 var UserMessages = {
   warning: function(message) {
     this.$broadcast('userMessage', {

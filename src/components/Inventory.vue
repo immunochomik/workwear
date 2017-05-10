@@ -15,30 +15,32 @@
   var wTypes = WorkwearTypes.WorkwearTypes;
   var inventory = Inventory.Inventory;
   var selectsDone;
-  export default {
+
+  var Inventory_vue = {
     name: 'Inventory',
     data: function() {
       return {
         title:'Inventory',
         model: inventory,
         extension : {
-          extend: function (vm) {
-            vm.additionalButtons = [{
+          extend: function (crud_instance) {
+            crud_instance.additionalButtons = [{
               id:'insertWorkwearTypes',
               name:'Insert Workwear Types'
             }];
-            vm.addedMethods = {
+            crud_instance.addedMethods = {
               insertWorkwearTypes : function() {
                 // get data from types
                 wTypes.list(function(res) {
                   _.each(res.rows, insertItemIfNotInInventory);
                 });
+                crud_instance.success('We have inserted workweare types int inventory, now you need to reload the page.')
               }
             };
             wTypes.generateOptions({
               oKey: ['Description', 'Gender'],
               callback: function(options) {
-                vm.fieldsObject.Description.options = options;
+                crud_instance.fieldsObject.Description.options = options;
               },
               typeObject: true
             });
@@ -56,7 +58,9 @@
         this.$broadcast('refresh');
       }
     }
-  }
+  };
+
+  export default Inventory_vue
 
   function insertItemIfNotInInventory(wType) {
     var idBase = wType.id.replace(wTypes.uni, '').replace(/^_/, '');
@@ -81,5 +85,6 @@
       );
     });
   };
+
 
 </script>

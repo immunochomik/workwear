@@ -54,7 +54,7 @@
 
 <script>
   var debug = false;
-  export default {
+  var Crud = {
     name: 'Crud',
     props : {
       formActive : {
@@ -256,6 +256,11 @@
       }
     }
   }
+
+  import Messages from '../traits/Messages.js';
+  _.extend(Crud.methods, Messages.UserMessages);
+
+  export default Crud
 </script>
 
 <style>
