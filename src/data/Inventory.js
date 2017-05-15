@@ -7,6 +7,10 @@ var Inventory = new Model.Model({
   fields: [
     { name: 'Description', type :'select', options:{},  extend:function(vm) {
       vm.$watch('fieldsObject.Description.value', function (cur) {
+        // this is to get sizes for wTypes
+        if(!cur) {
+          return;
+        }
         wTypes.get(cur, function(doc) {
           vm.fieldsObject.Size.options = {};
           _.each(wTypes.extractSizes(doc), function(it) {

@@ -33,8 +33,8 @@
                 // get data from types
                 wTypes.list(function(res) {
                   _.each(res.rows, insertItemIfNotInInventory);
+                  crud_instance.success('We are inserting workweare types int inventory, now you need to reload the page.')
                 });
-                crud_instance.success('We have inserted workweare types int inventory, now you need to reload the page.')
               }
             };
             wTypes.generateOptions({

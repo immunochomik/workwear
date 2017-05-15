@@ -31,7 +31,7 @@ var Collection = (function() {
       if (err.name === 'not_found') {
         this.db.put(item, callback);
       } else {
-        console.log(err);
+        console.log('collection upsert', err);
       }
     });
   };

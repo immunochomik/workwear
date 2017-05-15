@@ -25,15 +25,18 @@
 <script>
   import Workers from '../data/Workers.js'
   import WorkPositions from '../data/WorkPositions.js';
+  import WorkwearTypes from '../data/WorkwearTypes.js'
   import ReleaseHistory from '../data/ReleaseHistory.js';
   var workers = Workers.Workers;
   var workPositions = WorkPositions.WorkPositions;
+  var workweareTypes = WorkwearTypes.WorkwearTypes;
   var rHistory = ReleaseHistory.ReleaseHistory;
   import AffectsInventory from '../traits/AffectsInventory.js';
   import Messages from '../traits/Messages.js';
 
   var positions = {};
   var sizes = {};
+  var sizeLessWorkweare = {};
 
   var privates = (function() {
     function p(context) {
@@ -68,6 +71,16 @@
         var last = received[item] ? received[item][0] : false;
         this.context.addToDo(worker.doc, item, whenNeeded(last, position[item]));
       }
+    };
+    p.prototype.neededSizelessWorkweare = function(itemClass, gender) {
+      // item can be gendered or Unisex so we need two keys to test
+      var keys = ["{0}_{1}".f([itemClass, gender]), "{0}_{1}".f([itemClass, 'U'])];
+      for (var i in keys) {
+        if (sizeLessWorkweare[keys[i]]) {
+          return sizeLessWorkweare[keys[i]];
+        }
+      }
+      return false;
     };
 
     function whenNeeded(lastReceived, monthsAllowed) {
@@ -113,7 +126,18 @@
                 function(x) {return x;}));
           }
         }
-      })
+      });
+      // collect size less workweare so we can add it to to dos with appropriate gender
+      workweareTypes.generateOptions({
+        oKey: ['Description', 'Gender'],
+        condition: function(doc) {
+          return !doc.Sizes;
+        },
+        callback: function(options) {
+          sizeLessWorkweare = options;
+        },
+        typeObject: true
+      });
     },
     methods: {
       renderTable: function() {
@@ -147,20 +171,24 @@
       // args example :  Adma Pentla, Hat, '2017-01-01 12:00:00'
       addToDo: function(worker, itemClass, whenToAdd) {
         if(!sizes[worker.Name]) {
-          sizes[worker.Name] = workers.workerSizes(worker.Sizes);
+          sizes[worker.Name] = workers.workerSizes(worker.Sizes)
         }
         var self = this;
-        // we can have more than one sizes per workware type in sizes so we need
+        // we can have more than one sizes per workweare type in sizes so we need
         // for each
         if(sizes[worker.Name][itemClass]) {
           _.each(sizes[worker.Name][itemClass], function (wokweare) {
             self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position,
               self.releaseButton(worker.Name, wokweare)])
           });
+
         } else {
-          // there are items with out sizes like a hat
-          //self.todos.push([worker.Name, itemClass, whenToAdd || now(), worker.Position,
-          //  self.releaseButton(worker.Name, itemClass)])
+          var sizeLessWorkwear = self.privates.neededSizelessWorkweare(itemClass, worker.Gender);
+          if (sizeLessWorkwear) {
+            // there are items with out sizes like a hat
+            self.todos.push([worker.Name, sizeLessWorkwear, whenToAdd || now(), worker.Position,
+              self.releaseButton(worker.Name, sizeLessWorkwear)])
+          }
         }
       },
       releaseButton: function(name, workwear) {

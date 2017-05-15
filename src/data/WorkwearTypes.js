@@ -25,6 +25,7 @@ WorkwearTypes.extractSizes = function(doc) {
   return raw;
 };
 
+
 export default {
   WorkwearTypes
 }
