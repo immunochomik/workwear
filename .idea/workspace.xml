@@ -32,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Crud.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.046153847">
-              <caret line="192" column="24" selection-start-line="192" selection-start-column="24" selection-end-line="192" selection-end-column="24" />
+            <state vertical-scroll-proportion="-13.7">
+              <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
               <folding>
                 <element signature="e#4267#4696#0" expanded="false" />
                 <element signature="e#5514#5949#0" expanded="false" />
@@ -82,16 +82,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ToDo.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ToDo.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.2295084">
-              <caret line="174" column="9" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.61916465">
+              <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
               <folding>
-                <element signature="e#2992#3249#0" expanded="false" />
-                <element signature="e#4545#4966#0" expanded="false" />
-                <element signature="e#4996#5245#0" expanded="false" />
-                <element signature="e#6326#6484#0" expanded="false" />
+                <element signature="e#2998#3255#0" expanded="false" />
+                <element signature="e#4551#4972#0" expanded="false" />
+                <element signature="e#5002#5251#0" expanded="false" />
+                <element signature="e#6332#6490#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -183,11 +183,11 @@
         <option value="$PROJECT_DIR$/src/components/Inventory.vue" />
         <option value="$PROJECT_DIR$/src/components/Workers.vue" />
         <option value="$PROJECT_DIR$/src/data/WorkwearTypes.js" />
-        <option value="$PROJECT_DIR$/src/components/ToDo.vue" />
         <option value="$PROJECT_DIR$/src/data/Model.js" />
         <option value="$PROJECT_DIR$/src/storeCollection/index.js" />
         <option value="$PROJECT_DIR$/src/components/Crud.vue" />
         <option value="$PROJECT_DIR$/src/data/Inventory.js" />
+        <option value="$PROJECT_DIR$/src/components/ToDo.vue" />
       </list>
     </option>
   </component>
@@ -205,7 +205,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
     <option name="y" value="52" />
-    <option name="width" value="1286" />
+    <option name="width" value="1365" />
     <option name="height" value="1028" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -411,10 +411,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="52" width="1286" height="1028" extended-state="4" />
+    <frame x="65" y="52" width="1365" height="1028" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23870967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22441243" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -813,19 +813,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.2295084">
-          <caret line="174" column="9" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
-          <folding>
-            <element signature="e#2992#3249#0" expanded="false" />
-            <element signature="e#4545#4966#0" expanded="false" />
-            <element signature="e#4996#5245#0" expanded="false" />
-            <element signature="e#6326#6484#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/storeCollection/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -860,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Crud.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.046153847">
-          <caret line="192" column="24" selection-start-line="192" selection-start-column="24" selection-end-line="192" selection-end-column="24" />
+        <state vertical-scroll-proportion="-13.7">
+          <caret line="214" column="22" selection-start-line="214" selection-start-column="22" selection-end-line="214" selection-end-column="22" />
           <folding>
             <element signature="e#4267#4696#0" expanded="false" />
             <element signature="e#5514#5949#0" expanded="false" />
@@ -872,6 +859,19 @@
             <element signature="e#7815#8005#0" expanded="false" />
             <element signature="e#8037#8340#0" expanded="false" />
             <element signature="e#8372#8415#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ToDo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61916465">
+          <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
+          <folding>
+            <element signature="e#2998#3255#0" expanded="false" />
+            <element signature="e#4551#4972#0" expanded="false" />
+            <element signature="e#5002#5251#0" expanded="false" />
+            <element signature="e#6332#6490#0" expanded="false" />
           </folding>
         </state>
       </provider>

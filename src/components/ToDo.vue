@@ -77,7 +77,7 @@
       var keys = ["{0}_{1}".f([itemClass, gender]), "{0}_{1}".f([itemClass, 'U'])];
       for (var i in keys) {
         if (sizeLessWorkweare[keys[i]]) {
-          return sizeLessWorkweare[keys[i]];
+          return sizeLessWorkweare[keys[i]] + '_';
         }
       }
       return false;
