@@ -48,7 +48,10 @@
       </div>
     </div>
     <button class="btn btn-default" @click="toggleDebug">DEBUG</button>
-    <pre v-if="debug">{{ fieldsObject | json }}</pre>
+    <div v-if="debug" style="padding-top: 1em">
+      <pre>{{ currentId | json }}</pre>
+      <pre>{{ fieldsObject | json }}</pre>
+    </div>
   </div>
 </template>
 

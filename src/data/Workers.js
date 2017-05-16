@@ -36,12 +36,15 @@ Workers.workerSizes = function(sizes) {
   }
   sizes = sizes.split('\n')
     // remove empty strings
-    .filter(function(x) {return x.replace(/\s/g, '').length})
+    .filter(function(x) {if(!x) return x; return x.replace(/\s/g, '').length})
     // each row split on => and trim both parts of the split
     .map(function(x) {
       return x.split('=>').map(function(x) {return x.replace(/^ | $/g, '')})});
 
   _.each(sizes, function(row) {
+    if(!row[1]) {
+      return;
+    }
     var name = row[0].split('_');
     out[name[0]] = row[1].replace(/^\[\ *|\ *\]$/g, '').split(';')
       .map(function(x) { return [name[0],name[1],x].join('_')});

@@ -179,40 +179,51 @@
         if(sizes[worker.Name][itemClass]) {
           _.each(sizes[worker.Name][itemClass], function (wokweare) {
             self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position,
-              self.releaseButton(worker.Name, wokweare)])
+              self.makeButtons(worker.Name, wokweare)])
           });
-
         } else {
           var sizeLessWorkwear = self.privates.neededSizelessWorkweare(itemClass, worker.Gender);
           if (sizeLessWorkwear) {
             // there are items with out sizes like a hat
             self.todos.push([worker.Name, sizeLessWorkwear, whenToAdd || now(), worker.Position,
-              self.releaseButton(worker.Name, sizeLessWorkwear)])
+              self.makeButtons(worker.Name, sizeLessWorkwear)])
           }
         }
       },
-      releaseButton: function(name, workwear) {
-        return "<button class='btn btn-default btn-sm release-button' data-n='{0}' data-w='{1}'>Release</button>"
+      makeButtons: function(name, workwear) {
+        return ("<div class='btn-group'><button class='btn btn-default btn-sm release' data-n='{0}' data-w='{1}'>Release</button>" +
+            "<button class='btn btn-danger btn-sm ignore' data-n='{0}' data-w='{1}'>Ignore</button></div>")
             .f([name,  workwear]);
       },
       tableClick: function(e) {
         var elClass = e.target.getAttribute('class') || '';
-        if(elClass.indexOf('release-button') != -1) {
+        if(elClass.indexOf('release') != -1) {
           this.release(e.target.getAttribute('data-n'), e.target.getAttribute('data-w'));
+        } else if(elClass.indexOf('ignore') != -1 && confirm('Do you want to ignore?')) {
+          this.ignoreItem(e.target.getAttribute('data-n'), e.target.getAttribute('data-w'));
         }
       },
+      ignoreItem: function(name, workwear) {
+        this.updateReleaseHistory(name, workwear, 'ignored');
+        this.calculate();
+      },
       release: function(name, workwear) {
+        workwear = this.updateReleaseHistory(name, workwear);
+        this.updateInventoryQty(workwear, -1, 'decreased');
+        this.calculate();
+      },
+      updateReleaseHistory: function(name, workwear, kind) {
         console.log(name, workwear);
-        workwear += '_new';
+        workwear += ('_' + (kind || 'new'));
         rHistory.put({
           DateTime: now(),
           Employee : name,
           Workwear: workwear,
           Qty: 1
         });
-        this.updateInventoryQty(workwear, -1, 'decreased');
-        this.calculate();
-      },
+        this.warning("Item [{0}] added to history for worker [{1}]".f([workwear, name]));
+        return workwear;
+      }
     },
   };
 
