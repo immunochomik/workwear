@@ -58,8 +58,6 @@
           //save what and when was given to the worker
           received[workweare].push(item.doc.DateTime);
         });
-        pp(worker.doc.Id);
-        pp(received);
         self.toDosForWorker(worker, received);
         self.context.renderTable();
       }, worker.doc.Id + '_');
