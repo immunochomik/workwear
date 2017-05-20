@@ -14,7 +14,7 @@ var ReleaseHistory = new Model.Model({
     { name: 'Workwear', type :'select', options: {}},
     { name: 'Qty', type :'number', value:1, attrs: {min:1, step:1}},
   ],
-  idTemplate : "_{EmployeeId}_{Workwear}_{DateTime}",
+  idTemplate : "_{EId}_{Workwear}_{DateTime}",
   version : 1
 });
 

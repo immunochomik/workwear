@@ -58,9 +58,11 @@
           //save what and when was given to the worker
           received[workweare].push(item.doc.DateTime);
         });
+        pp(worker.doc.Id);
+        pp(received);
         self.toDosForWorker(worker, received);
         self.context.renderTable();
-      }, worker.doc.Name);
+      }, worker.doc.Id + '_');
     };
 
     p.prototype.toDosForWorker = function(worker, received) {
@@ -170,58 +172,59 @@
       },
       // args example :  Adma Pentla, Hat, '2017-01-01 12:00:00'
       addToDo: function(worker, itemClass, whenToAdd) {
-        if(!sizes[worker.Name]) {
-          sizes[worker.Name] = workers.workerSizes(worker.Sizes)
+        if(!sizes[worker.Id]) {
+          sizes[worker.Id] = workers.workerSizes(worker.Sizes)
         }
         var self = this;
         // we can have more than one sizes per workweare type in sizes so we need
         // for each
-        if(sizes[worker.Name][itemClass]) {
-          _.each(sizes[worker.Name][itemClass], function (wokweare) {
-            self.todos.push([worker.Name, wokweare, whenToAdd || now(), worker.Position,
-              self.makeButtons(worker.Name, wokweare)])
+        if(sizes[worker.Id][itemClass]) {
+          _.each(sizes[worker.Id][itemClass], function (wokweare) {
+            self.todos.push([worker.Id, wokweare, whenToAdd || now(), worker.Position,
+              self.makeButtons(worker.Id, wokweare)])
           });
         } else {
           var sizeLessWorkwear = self.privates.neededSizelessWorkweare(itemClass, worker.Gender);
           if (sizeLessWorkwear) {
             // there are items with out sizes like a hat
-            self.todos.push([worker.Name, sizeLessWorkwear, whenToAdd || now(), worker.Position,
-              self.makeButtons(worker.Name, sizeLessWorkwear)])
+            self.todos.push([worker.Id, sizeLessWorkwear, whenToAdd || now(), worker.Position,
+              self.makeButtons(worker.Id, sizeLessWorkwear)])
           }
         }
       },
-      makeButtons: function(name, workwear) {
-        return ("<div class='btn-group'><button class='btn btn-default btn-sm release' data-n='{0}' data-w='{1}'>Release</button>" +
-            "<button class='btn btn-danger btn-sm ignore' data-n='{0}' data-w='{1}'>Ignore</button></div>")
-            .f([name,  workwear]);
+      makeButtons: function(workerId, workwear) {
+        return ("<div class='btn-group'>" +
+        "<button class='btn btn-default btn-sm release' data-worker='{0}' data-weare='{1}'>Release</button>" +
+            "<button class='btn btn-danger btn-sm ignore' data-worker='{0}' data-weare='{1}'>Ignore</button></div>")
+            .f([workerId,  workwear]);
       },
       tableClick: function(e) {
         var elClass = e.target.getAttribute('class') || '';
         if(elClass.indexOf('release') != -1) {
-          this.release(e.target.getAttribute('data-n'), e.target.getAttribute('data-w'));
+          this.release(e.target.getAttribute('data-worker'), e.target.getAttribute('data-weare'));
         } else if(elClass.indexOf('ignore') != -1 && confirm('Do you want to ignore?')) {
-          this.ignoreItem(e.target.getAttribute('data-n'), e.target.getAttribute('data-w'));
+          this.ignoreItem(e.target.getAttribute('data-worker'), e.target.getAttribute('data-weare'));
         }
       },
       ignoreItem: function(name, workwear) {
         this.updateReleaseHistory(name, workwear, 'ignored');
         this.calculate();
       },
-      release: function(name, workwear) {
-        workwear = this.updateReleaseHistory(name, workwear);
+      release: function(workerId, workwear) {
+        workwear = this.updateReleaseHistory(workerId, workwear);
         this.updateInventoryQty(workwear, -1, 'decreased');
         this.calculate();
       },
-      updateReleaseHistory: function(name, workwear, kind) {
-        console.log(name, workwear);
+      updateReleaseHistory: function(woekreId, workwear, kind) {
+        console.log(woekreId, workwear);
         workwear += ('_' + (kind || 'new'));
         rHistory.put({
           DateTime: now(),
-          Employee : name,
+          EId : woekreId,
           Workwear: workwear,
           Qty: 1
         });
-        this.warning("Item [{0}] added to history for worker [{1}]".f([workwear, name]));
+        this.warning("Item [{0}] added to history for worker [{1}]".f([workwear, woekreId]));
         return workwear;
       }
     },
