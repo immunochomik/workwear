@@ -10,7 +10,7 @@ var ReleaseHistory = new Model.Model({
       },
       placeholder: 'Equals to now if blank'
     },
-    { name: 'EmployeeId', type :'number'},
+    { name: 'EId', type :'number'},
     { name: 'Workwear', type :'select', options: {}},
     { name: 'Qty', type :'number', value:1, attrs: {min:1, step:1}},
   ],
