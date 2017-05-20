@@ -17,7 +17,7 @@ var debug;
 var Model = (function() {
   function Model(settings) {
     this.title = settings.title;
-    this.uni = this.title.replace(/ /g, '');
+    this.uni = settings.uni || this.title.replace(/ /g, '');
     this.fields = settings.fields;
     this.fieldsObject = {};
     var self = this;
@@ -142,7 +142,6 @@ var Model = (function() {
     if(!item) {
       return;
     }
-    item['ver_'] = this.uni + this.version;
     item['_id'] = id || this.makeId(item);
     store.upsert(item, callback);
   };
@@ -156,7 +155,6 @@ var Model = (function() {
   };
   Model.prototype.put = function(item, callback) {
     item['_id'] = this.makeId(item);
-    item['ver_'] = this.uni + this.version;
     store.upsert(item, callback);
   };
   Model.prototype.removeById = function(id, callback, beforeRemove) {

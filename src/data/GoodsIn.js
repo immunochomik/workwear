@@ -2,6 +2,7 @@ import Model from './Model.js';
 
 var GoodsIn = new Model.Model({
   title : 'Goods In',
+  uni: 'In',
   fields: [
     { name: 'DateTime', type: 'text', 'class': 'datetime',
       onUpsert: function(value) {

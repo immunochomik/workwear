@@ -45,6 +45,16 @@ function cuniq() {
     u = ++d + m + (++c === 10000 ? (c = 1) : c);
   return u;
 }
+
+function randString(len) {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for( var i=0; i < (len || 5); i++ ) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
+
 function array_combine (keys, values) {
   var newArray = {};
   if (typeof keys !== 'object') {
@@ -97,6 +107,7 @@ function range(start, stop, step) {
 
 
 export default {
+  randString: randString,
   dFormat : dFormat,
   dayFrom : dayFrom,
   cuniq: cuniq,

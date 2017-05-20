@@ -4,6 +4,7 @@ var wTypes = WorkwearTypes.WorkwearTypes;
 
 var WorkPositions = new Model.Model({
   title : 'WorkPositions',
+  uni: 'WP',
   fields: [
     {name: 'Description', type :'text'},
     {name: 'WorkweareTypesHelper', type:'select', options: {},

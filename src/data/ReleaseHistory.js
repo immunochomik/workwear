@@ -2,6 +2,7 @@ import Model from './Model.js';
 
 var ReleaseHistory = new Model.Model({
   title : 'ReleaseHistory',
+  uni:  'RH',
   fields: [
     { name: 'DateTime', type: 'text', 'class': 'datetime',
       onUpsert: function(value) {
@@ -9,11 +10,11 @@ var ReleaseHistory = new Model.Model({
       },
       placeholder: 'Equals to now if blank'
     },
-    { name: 'Employee', type :'text', placeholder:'Start typing'},
+    { name: 'EmployeeId', type :'number'},
     { name: 'Workwear', type :'select', options: {}},
     { name: 'Qty', type :'number', value:1, attrs: {min:1, step:1}},
   ],
-  idTemplate : "_{Employee}_{Workwear}_{DateTime}",
+  idTemplate : "_{EmployeeId}_{Workwear}_{DateTime}",
   version : 1
 });
 

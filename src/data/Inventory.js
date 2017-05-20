@@ -4,6 +4,7 @@ var wTypes = WorkwearTypes.WorkwearTypes;
 
 var Inventory = new Model.Model({
   title : 'Inventory',
+  uni: 'I',
   fields: [
     { name: 'Description', type :'select', options:{},  extend:function(vm) {
       vm.$watch('fieldsObject.Description.value', function (cur) {

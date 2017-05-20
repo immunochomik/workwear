@@ -38,14 +38,8 @@
       }
     },
     route: {
-      data: function(to) {
+      data: function() {
         routerCall(this);
-        var self = this;
-        this.$nextTick(function () {
-          self.$nextTick(function() {
-            employeeAutocomplete(self);
-          });
-        });
       }
     },
     events: {
@@ -89,20 +83,20 @@
 
   export default vueReleaseHistory;
 
-  function employeeAutocomplete (self) {
-    $( "#EmployeeReleaseHistory" ).autocomplete({
-      source: function(req, show) {
-        workers.list(function(data) {
-          var list = [];
-          _.each(data.rows, function(doc) {
-            self.workers[doc.doc.Name] = doc;
-            list.push(doc.doc.Name);
-          });
-          show(list)
-        }, req.term)
-      }
-    });
-  }
+//  function employeeAutocomplete (self) {
+//    $( "#EmployeeReleaseHistory" ).autocomplete({
+//      source: function(req, show) {
+//        workers.list(function(data) {
+//          var list = [];
+//          _.each(data.rows, function(doc) {
+//            self.workers[doc.doc.Name] = doc;
+//            list.push(doc.doc.Name + ' ' + doc.doc.Id);
+//          });
+//          show(list)
+//        }, req.term)
+//      }
+//    });
+//  }
 
 </script>
 

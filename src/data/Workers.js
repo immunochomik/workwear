@@ -4,7 +4,9 @@ import Model from './Model.js';
 
 var Workers = new Model.Model({
   title : 'Workers',
+  uni: 'W',
   fields: [
+    { name: 'Id', type :'number'},
     { name: 'Name', type :'text'},
     { name: 'Position', type: 'select', options: {}},
     { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F'}},
@@ -17,7 +19,7 @@ var Workers = new Model.Model({
         return text.replace(/\/\/.*\n/g, '\n').replace(/\/\/\ reference.*$/, '');
       }},
   ],
-  idTemplate : "_{Name}_{Start}",
+  idTemplate : "_{Id}",
   version : 1
 });
 

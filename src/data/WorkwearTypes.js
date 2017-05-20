@@ -2,6 +2,7 @@ import Model from './Model.js';
 
 var WorkwearTypes = new Model.Model({
   title : 'WorkwearTypes',
+  uni: 'T',
   fields: [
     { name: 'Description', type :'text'},
     { name: 'Gender',  type: 'select', options : {Male: 'M',Female : 'F', Universal: 'U'}},
