@@ -9,7 +9,12 @@
         <li v-bind:class="{ active: formActive }"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
         <li v-bind:class="{ active: listActive }"><a data-toggle="tab" href="#list{{uni}}">List</a></li>
       </ul>
-
+      <div class="crud-options">
+        <span class="crud-options-el">
+          <label class="checkboxtext">Allow deleting</label>
+          <input v-model="allow_delete" type="checkbox"/>
+        </span>
+      </div>
       <div class="tab-content">
         <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
           <form  v-on:submit.prevent="onSubmit">
@@ -80,6 +85,7 @@
       return {
         items: [],
         currentId: null,
+        allow_delete: false,
         fieldsObject : this.model.getFieldsObject(),
         debug : debug,
         // To add an additional button,
@@ -241,6 +247,10 @@
         if(! id ) {
           return;
         }
+        if(! this.allow_delete) {
+          this.warning('You need to allow deleting to delete.');
+          return;
+        }
         var self = this;
         this.model.removeById(id, function() {
           self.refresh();
@@ -267,10 +277,35 @@
 </script>
 
 <style>
+  .crud-options {
+    display: inline-block;
+    float: right;
+    position: relative;
+    bottom: 2em;
+  }
   .tab-pane {
     padding-top: 1em;
   }
   div.alert {
     margin-bottom: 5px;
+  }
+
+  input[type=checkbox]
+  {
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    padding: 10px;
+  }
+
+  /* Might want to wrap a span around your checkbox text */
+  .checkboxtext
+  {
+    /* Checkbox text */
+    font-size: 110%;
+    display: inline;
+    margin-right: 1em;
   }
 </style>
