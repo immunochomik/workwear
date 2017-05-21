@@ -1,18 +1,31 @@
-# Foo
+# Workweare the best free workweare management application.
 
-> A Vue.js project
+## Workweare is:
+An in browser workweare management application, so it is suitable for situations where you have few employees
+to manage and do not have expertise for server based deployment of some other solution.  
 
-## Build Setup
+It can be accessed and used under [link](http://workweare.s3-website-eu-west-1.amazonaws.com/).
 
-``` bash
-# install dependencies
+1. First you need to add workweare types,
+1. Then you need to add your work positions with workweare specification,
+1. Then You can populate inventory by clicking Insert Workweare Types button on inventory panel, and adding quantities,
+1. Then you can add your employees,
+1. And finally, in the To Do panel you can be remained about whom needs what and when.  
+1. For backups you can export you data out in the data panel, but be really careful there just use export and 
+import nothing else.
+
+
+
+### Build Setup 
+standard stuff you know:
+
+```bash
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+
+
