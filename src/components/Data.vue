@@ -33,7 +33,7 @@
 
       <div class="col-sm-6 col-md-6">
         <button @click="importItems" class="btn btn-default">Import</button>
-        <button @click="export" class="btn btn-default">Export</button>
+        <button @click="exportData" class="btn btn-default">Export</button>
         <button @click="deleteAll" class="btn btn-danger">Delete All</button>
         <button @click="compact" class="btn btn-danger">Compact</button>
       </div>
@@ -200,7 +200,7 @@
         if(!this.query || !confirm('Do you want to delete ')) {
           return;
         }
-        this.export('delete_backup');
+        this.exportData('delete_backup');
         var self = this;
         setTimeout(function() {
           self.refresh();
@@ -237,7 +237,7 @@
         })(input.files[0]);
         reader.readAsText(input.files[0]);
       },
-      export : function(label) {
+      exportData : function(label) {
         label = label || '';
         download('export_{0}{1}.json'.f([today(), label]), JSON.stringify(this.fullData));
       },

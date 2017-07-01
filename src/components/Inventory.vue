@@ -5,6 +5,7 @@
         :extension="extension"
         :form-active="false"
         :list-active="true"
+        ref="crud"
         ></crud>
   </div>
 </template>
@@ -55,7 +56,7 @@
     },
     methods: {
       refresh: function() {
-        this.$broadcast('refresh');
+        this.$refs.crud.refresh();
       }
     }
   };

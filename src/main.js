@@ -3,7 +3,7 @@
 
 import Vue from 'vue';
 import App from './App.vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 import Data from './components/Data.vue';
 import Inventory from './components/Inventory.vue';
 import Workers from './components/Workers.vue';
@@ -34,49 +34,60 @@ require( 'jquery-ui/themes/base/all.css' );
 
 Vue.component('crud', Crud);
 Vue.component('messages', Messages);
-Vue.config.debug = true;
 
 // install router
-Vue.use(Router);
+Vue.use(VueRouter);
 
 // routing
-var router = new Router();
-
-
-router.map({
-  '/goods-out' : {
-    component: ReleaseHistory
-  },
-  '/goods-in' : {
-    component: GoodsIn
-  },
-  '/workers' : {
-    component: Workers
-  },
-  '/inventory' : {
-    component: Inventory
-  },
-  '/workweartypes' : {
-    component: WorkwearTypes
-  },
-  '/workpositions' : {
-    component: WorkPositions
-  },
-  '/todo' : {
-    component: ToDo
-  },
-  '/data' : {
-    component: Data
-  }
+const router = new VueRouter({
+  routes: [
+    {
+      path: '/goods-out',
+      component: ReleaseHistory
+    },
+    {
+      path: '/goods-in',
+      component: GoodsIn
+    },
+    {
+      path: '/workers',
+      component: Workers
+    },
+    {
+      path: '/inventory',
+      component: Inventory
+    },
+    {
+      path: '/workweartypes',
+      component: WorkwearTypes
+    },
+    {
+      path: '/workpositions',
+      component: WorkPositions
+    },
+    {
+      path: '/todo',
+      component: ToDo
+    },
+    {
+      path: '/data',
+      component: Data
+    },
+    {
+      path: '*',
+      redirect: '/workers'
+    }
+  ]
 });
 
-router.beforeEach(function () {
-  window.scrollTo(0, 0)
-});
 
-router.redirect({
-  '*': '/workers'
-});
+//router.beforeEach(function () {
+//  window.scrollTo(0, 0)
+//});
 
 
-router.start(App, 'app');
+const app = new Vue({
+  router,
+  render: h => h(App)
+}).$mount('app');
+

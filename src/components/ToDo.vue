@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <messages
-        :messages.sync="messages"
+        :messages="messages"
         ></messages>
     <div class="panel panel-default">
       <div class="panel-heading">

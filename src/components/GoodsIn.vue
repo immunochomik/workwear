@@ -3,6 +3,8 @@
     <crud
         :model="model"
         :extension="extension"
+        v-on:crudSubmit="crudSubmit"
+        ref="crud"
         ></crud>
   </div>
 
@@ -44,7 +46,7 @@
         routerCall(this);
       }
     },
-    events: {
+    methods: {
       crudSubmit: function(e) {
         var itemId = e.postEdit.Workwear,
             qty = e.postEdit.Qty;
@@ -64,9 +66,7 @@
               " I do not know what to do, you need to update Inventory yourself for " +
               itemId);
         }
-      }
-    },
-    methods: {
+      },
       onDelete: function(doc) {
         var itemId = doc.Workwear;
         if(!doc.Qty || !itemId) {
@@ -75,7 +75,7 @@
         this.updateInventoryQty(itemId, -1 * parseInt(doc.Qty), 'decreased');
       },
       refresh: function() {
-        this.$broadcast('refresh');
+        this.$refs.crud.refresh();
       }
     },
   };

@@ -2,12 +2,12 @@
   <div>
     <div class="panel">
       <messages
-        :messages.sync="messages"
+        :messages="messages"
           ></messages>
 
       <ul class="nav nav-tabs">
-        <li v-bind:class="{ active: formActive }"><a data-toggle="tab" href="#form{{uni}}">Edit {{title}}</a></li>
-        <li v-bind:class="{ active: listActive }"><a data-toggle="tab" href="#list{{uni}}">List</a></li>
+        <li v-bind:class="{ active: formActive }"><a data-toggle="tab" v-bind:href="'#form' + uni">Edit {{title}}</a></li>
+        <li v-bind:class="{ active: listActive }"><a data-toggle="tab" v-bind:href="'#list' + uni">List</a></li>
       </ul>
       <div class="crud-options">
         <span class="crud-options-el">
@@ -16,46 +16,47 @@
         </span>
       </div>
       <div class="tab-content">
-        <div id="form{{uni}}" v-bind:class="{ active: formActive }" class="tab-pane fade in">
+        <div v-bind:id="'form' + uni" v-bind:class="{ active: formActive }" class="tab-pane fade in">
           <form  v-on:submit.prevent="onSubmit">
             <div class="panel">
             <div class="panel-body">
-              <div v-for="(index, item) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
+              <div v-for="(item, index) in fieldsObject" class="row form-group" style="margin-bottom: 0.5em">
                 <label class="control-label col-xs-3 col-md-2 text-right">{{item.name}}</label>
                 <div class="col-xs-9 col-md-10">
                   <div v-if="item.type == 'select' || item.type == 'textarea'">
-                    <select v-if="item.type == 'select'" id="{{item.name + uni}}" class="form-control input {{item.class}}"
-                            name="{{item.name}}" v-model="item.value">
-                      <option v-for="(key, val) in item.options" :value="val" v-text="key"></option>
+                    <select v-if="item.type == 'select'" v-bind:id="item.name + uni"
+                            v-bind:class="'form-control input '+ item.class"
+                            v-bind:name="item.name" >
+                      <option v-for="(val, key) in item.options" :value="val" v-text="key"></option>
                     </select>
-                  <textarea v-if="item.type == 'textarea'" id="{{item.name  + uni}}" rows="6"
-                            class="form-control input {{item.class}} " v-model="item.value"
-                            name="{{item.name}}" placeholder="{{item.placeholder}}"></textarea>
+                  <textarea v-if="item.type == 'textarea'" v-bind:id="item.name  + uni" rows="6"
+                            v-bind:class="'form-control input ' +item.class"
+                            v-bind:name="item.name" v-bind:placeholder="item.placeholder"></textarea>
                   </div>
-                  <input v-else id="{{item.name  + uni}}" class="form-control input {{item.class}}"
-                         placeholder="{{item.placeholder}}" type="{{item.type}}" name="{{item.name}}"
-                         value="{{item.value}}" v-model="item.value"/>
+                  <input v-else v-bind:id="item.name  + uni" v-bind:class="'form-control input '+ item.class"
+                         v-bind:placeholder="item.placeholder" v-bind:type="item.type" v-bind:name="item.name"
+                         v-bind:value="item.value" />
                 </div>
               </div>
             </div>
             <div class="panel-footer text-right">
               <button v-for="button in additionalButtons" class="btn btn-default"
-                      id="{{button.id}}" @click="clicked(button.id)">{{button.name}}</button>
+                      v-bind:id="button.id" @click="clicked(button.id)">{{button.name}}</button>
               <button class="btn btn-default"  v-if="currentId" @click="cancelEdit">Cancel Edit</button>
               <button class="btn btn-danger" @click="submit">Submit</button>
             </div>
           </div>
           </form>
         </div>
-        <div id="list{{uni}}" v-bind:class="{ active: listActive }" class="tab-pane fade in">
-          <table @click="tableClick($event)" id="listTable{{uni}}" class="display" width="100%"></table>
+        <div v-bind:id="'list' + uni" v-bind:class="{ active: listActive }" class="tab-pane fade in">
+          <table @click="tableClick($event)" v-bind:id="'listTable' + uni" class="display" width="100%"></table>
         </div>
       </div>
     </div>
     <button class="btn btn-default" @click="toggleDebug">DEBUG</button>
     <div v-if="debug" style="padding-top: 1em">
-      <pre>{{ currentId | json }}</pre>
-      <pre>{{ fieldsObject | json }}</pre>
+      <pre>{{ currentId }}</pre>
+      <pre>{{ fieldsObject }}</pre>
     </div>
   </div>
 </template>
@@ -211,6 +212,7 @@
       },
       dispatchSubmit: function() {
         var event = {
+
           id: this.currentId,
           preEdit: {}, postEdit: {},
         };
@@ -218,7 +220,7 @@
           event.preEdit[key] = this.preEdit[key];
           event.postEdit[key] = this.fieldsObject[key].value;
         }
-        this.$dispatch('crudSubmit', event);
+        this.$emit('crudSubmit', event);
       },
       submit: function() {
         var data = {};

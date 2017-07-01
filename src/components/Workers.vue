@@ -3,6 +3,7 @@
      <crud
            :model="model"
            :extension="extension"
+           ref="crud"
            ></crud>
   </div>
 </template>
@@ -72,7 +73,7 @@
     },
     methods: {
       refresh: function() {
-        this.$broadcast('refresh');
+        this.$refs.crud.refresh();
       }
     },
   }

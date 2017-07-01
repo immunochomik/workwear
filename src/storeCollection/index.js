@@ -1,5 +1,7 @@
 var PouchDB = require('pouchdb');
-PouchDB.plugin(require('pouchdb-quick-search/lib'));
+// I think that search need space for indexes and we do not use it in
+// workweare so i will comment it out
+//PouchDB.plugin(require('pouchdb-quick-search/lib'));
 var _ = require('lodash');
 
 function myDeltaFunction(doc) {
@@ -13,13 +15,13 @@ var Collection = (function() {
   function Collection(name) {
     this.db = new PouchDB(name);
   }
-  Collection.prototype.search = function(text, fields) {
-    return this.db.search({
-      query: text,
-      fields: fields,
-      include_docs: true
-    });
-  };
+  //Collection.prototype.search = function(text, fields) {
+  //  return this.db.search({
+  //    query: text,
+  //    fields: fields,
+  //    include_docs: true
+  //  });
+  //};
   Collection.prototype.put = function(doc) {
     return this.db.put(doc);
   };

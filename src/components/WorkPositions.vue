@@ -2,6 +2,7 @@
   <div class="container-fluid">
     <crud
           :model="model"
+          ref="crud"
           ></crud>
   </div>
 </template>
@@ -24,7 +25,7 @@
     },
     methods: {
       refresh: function() {
-        this.$broadcast('refresh');
+        this.$refs.crud.refresh();
       }
     },
   }
