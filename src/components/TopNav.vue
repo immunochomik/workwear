@@ -14,14 +14,14 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="topNavLiWorkers" class="active nav-li"><a href="/#/workers">Workers</a></li>
-                    <li id="topNavLiReleaseHistory" class="nav-li"><a href="/#/goods-out">Goods Out</a></li>
-                    <li id="topNavLiGoodsIn" class="nav-li"><a href="/#/goods-in">Goods In</a></li>
-                    <li id="topNavLiInventory" class="nav-li"><a href="/#/inventory">Inventory</a></li>
-                    <li id="topNavLiWorkwearTypes" class="nav-li"><a href="/#/workweartypes">Workwear Types</a></li>
-                    <li id="topNavLiWorkPositions" class="nav-li"><a href="/#/workpositions">Positions</a></li>
-                    <li id="topNavLiToDo" class="nav-li"><a href="/#/todo">To Do</a></li>
-                    <li id="topNavLiData" class="nav-li"><a href="/#/data">data</a></li>
+                    <li id="topNavLiWorkers" class="active nav-li"><router-link to="/workers">Workers</router-link></li>
+                    <li id="topNavLiReleaseHistory" class="nav-li"><router-link to="/goods-out">Goods Out</router-link></li>
+                    <li id="topNavLiGoodsIn" class="nav-li"><router-link to="/goods-in">Goods In</router-link></li>
+                    <li id="topNavLiInventory" class="nav-li"><router-link to="/inventory">Inventory</router-link></li>
+                    <li id="topNavLiWorkwearTypes" class="nav-li"><router-link to="/workweartypes">Workwear Types</router-link></li>
+                    <li id="topNavLiWorkPositions" class="nav-li"><router-link to="/workpositions">Positions</router-link></li>
+                    <li id="topNavLiToDo" class="nav-li"><router-link to="/todo">To Do</router-link></li>
+                    <li id="topNavLiData" class="nav-li"><router-link to="/data">data</router-link></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->

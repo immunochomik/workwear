@@ -18,10 +18,8 @@
         model: WorkPositions.WorkPositions,
       }
     },
-    route: {
-      data: function(to) {
-        routerCall(this);
-      }
+    created: function() {
+      routerCall(this)
     },
     methods: {
       refresh: function() {

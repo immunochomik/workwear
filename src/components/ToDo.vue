@@ -108,13 +108,9 @@
         },
       }
     },
-    route: {
-      data: function(to) {
-        document.title = 'To Do';
-        toggleTopNavActive('topNavLiToDo');
-      }
-    },
     created: function() {
+      document.title = 'To Do';
+      toggleTopNavActive('topNavLiToDo');
       this.privates = new privates(this);
       // I need positions cache so will not call pouch to get positions
       workPositions.generateOptions({

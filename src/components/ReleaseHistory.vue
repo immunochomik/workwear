@@ -39,10 +39,8 @@
         }
       }
     },
-    route: {
-      data: function() {
-        routerCall(this);
-      }
+    created: function() {
+      routerCall(this)
     },
     methods: {
       crudSubmit: function(e) {

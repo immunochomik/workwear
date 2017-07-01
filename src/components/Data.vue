@@ -100,11 +100,9 @@
         aggregate: null
       }
     },
-    route: {
-      data : function(to) {
-        toggleTopNavActive('topNavLiData');
-        this.refresh();
-      }
+    created: function() {
+      toggleTopNavActive('topNavLiData');
+      this.refresh();
     },
     methods : {
       validateMapper : function(code) {

@@ -17,11 +17,11 @@
    */
   import GoodsIn from '../data/GoodsIn.js'
   import Inventory from '../data/Inventory.js';
-  var inventory = Inventory.Inventory;
+  const inventory = Inventory.Inventory;
   import CrudComponents from '../traits/CrudComponent.js';
   import AffectsInventory from '../traits/AffectsInventory.js';
 
-  var vueGoodsIn = {
+  const vueGoodsIn = {
     data: function() {
       return {
         title: 'GoodsIn',
@@ -41,14 +41,8 @@
         }
       }
     },
-    route: {
-      data: function(to) {
-        console.log('ROUTER_CALL');
-        routerCall(this);
-      }
-    },
     created: function() {
-      console.log('CREATED GOODS IN');
+      routerCall(this)
     },
     methods: {
       crudSubmit: function(e) {

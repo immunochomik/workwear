@@ -53,6 +53,8 @@
         </div>
         <div v-bind:id="'list' + uni" v-bind:class="{ active: listActive }" class="tab-pane fade in">
           <table @click="tableClick($event)" v-bind:id="'listTable' + uni" class="display" width="100%"></table>
+          <hr>
+          <div style="text-align: right"><button class="btn btn-default" @click="refresh">Refresh</button></div>
         </div>
       </div>
     </div>
@@ -105,25 +107,26 @@
     created: function() {
       console.log('CREATED');
       var self = this;
+      $('.ignore-input').removeClass('input');
+      if(self.extension) {
+        debug &&  console.log('LOAD EXTENSIONS');
+        self.extension.extend(self);
+      }
+      for(var key in self.fieldsObject) {
+        if(self.fieldsObject[key].extend) {
+          self.fieldsObject[key].extend(self);
+        }
+        if(self.fieldsObject[key].attrs) {
+          var $el = $('#'+key + self.uni);
+          for(var attr in self.fieldsObject[key].attrs) {
+            $el.attr(attr, self.fieldsObject[key].attrs[attr]);
+          }
+        }
+      }
+      self.refresh();
       this.$nextTick(function() {
-        $('.ignore-input').removeClass('input');
+        debug &&  console.log('NEXT TICK IN CREATED');
         self.$nextTick(function () {
-          debug &&  console.log('NEXT TICK IN CREATED');
-          if(self.extension) {
-            debug &&  console.log('LOAD EXTENSIONS');
-            self.extension.extend(self);
-          }
-          for(var key in self.fieldsObject) {
-            if(self.fieldsObject[key].extend) {
-              self.fieldsObject[key].extend(self);
-            }
-            if(self.fieldsObject[key].attrs) {
-              var $el = $('#'+key + self.uni);
-              for(var attr in self.fieldsObject[key].attrs) {
-                $el.attr(attr, self.fieldsObject[key].attrs[attr]);
-              }
-            }
-          }
         });
       });
     },
@@ -204,8 +207,8 @@
         _.each(this.columns, function(col) {
           row.push(doc[col] || "");
         });
-        var temp = '<button class="btn btn-xs btn-danger delete-item" data-id="{0}">Delete</button> \
-                    <button class="btn btn-xs btn-default edit-item" data-id="{0}">Edit</span></button>';
+        var temp = '<div style="text-align: right"><button class="btn btn-xs btn-danger delete-item" data-id="{0}">Delete</button> \
+                    <button class="btn btn-xs btn-default edit-item" data-id="{0}">Edit</span></button></div>';
         row.push(temp.f([doc._id]));
         return row;
       },

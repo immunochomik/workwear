@@ -2,7 +2,6 @@
 
 
 import Vue from 'vue';
-import App from './App.vue';
 import VueRouter from 'vue-router';
 import Data from './components/Data.vue';
 import Inventory from './components/Inventory.vue';
@@ -11,19 +10,19 @@ import WorkPositions from './components/WorkPositions.vue';
 import WorkwearTypes from './components/WorkwearTypes.vue';
 import ReleaseHistory from './components/ReleaseHistory.vue';
 import GoodsIn from './components/GoodsIn.vue';
-import Crud from './components/Crud.vue';
+const Crud = require('./components/Crud.vue');
 import Messages from './components/Messages.vue';
 import ToDo from './components/ToDo.vue';
 
 
-var _ = require('lodash');
+const _ = require('lodash');
 import helpers from './helpers/helpers.js';
 _.extend(window, helpers);
 require('expose?$!expose?jQuery!jquery');
 require('bootstrap-webpack');
 require('bootstrap/dist/css/bootstrap-theme.min.css');
 
-var $ = require( 'jquery');
+const $ = require( 'jquery');
 require( 'datatables.net/js/jquery.dataTables.js' );
 require( 'datatables.net-dt/css/jquery.dataTables.css' );
 require( 'jquery-datetimepicker/build/jquery.datetimepicker.full.min.js' );
@@ -88,6 +87,6 @@ const router = new VueRouter({
 
 const app = new Vue({
   router,
-  render: h => h(App)
+  render: h => h(require('./App.vue'))
 }).$mount('app');
 
