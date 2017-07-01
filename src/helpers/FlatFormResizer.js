@@ -14,7 +14,6 @@ var FlatFormResizer = (function() {
       if (window.innerWidth < 528) {
         for (var id in this.itemsSizes) {
           try {
-
             document.getElementById(id).style.width = '100%';
             document.getElementById(id).style.dispaly = 'block';
           } catch (err) {

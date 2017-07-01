@@ -26,16 +26,19 @@
                   <div v-if="item.type == 'select' || item.type == 'textarea'">
                     <select v-if="item.type == 'select'" v-bind:id="item.name + uni"
                             v-bind:class="'form-control input '+ item.class"
-                            v-bind:name="item.name" >
+                            v-bind:name="item.name" v-model="item.value">
                       <option v-for="(val, key) in item.options" :value="val" v-text="key"></option>
                     </select>
                   <textarea v-if="item.type == 'textarea'" v-bind:id="item.name  + uni" rows="6"
-                            v-bind:class="'form-control input ' +item.class"
+                            v-bind:class="'form-control input ' +item.class" v-model="item.value"
                             v-bind:name="item.name" v-bind:placeholder="item.placeholder"></textarea>
                   </div>
-                  <input v-else v-bind:id="item.name  + uni" v-bind:class="'form-control input '+ item.class"
-                         v-bind:placeholder="item.placeholder" v-bind:type="item.type" v-bind:name="item.name"
-                         v-bind:value="item.value" />
+                  <input v-if="item.type == 'number'" v-bind:id="item.name  + uni" v-bind:class="'form-control input '+ item.class"
+                         v-bind:placeholder="item.placeholder" type="number" v-bind:name="item.name"
+                         v-bind:value="item.value" v-model="item.value"/>
+                  <input v-if="item.type == 'text'" v-bind:id="item.name  + uni" v-bind:class="'form-control input '+ item.class"
+                         v-bind:placeholder="item.placeholder" type="text" v-bind:name="item.name"
+                         v-bind:value="item.value" v-model="item.value"/>
                 </div>
               </div>
             </div>
@@ -105,7 +108,9 @@
       this.$nextTick(function() {
         $('.ignore-input').removeClass('input');
         self.$nextTick(function () {
+          debug &&  console.log('NEXT TICK IN CREATED');
           if(self.extension) {
+            debug &&  console.log('LOAD EXTENSIONS');
             self.extension.extend(self);
           }
           for(var key in self.fieldsObject) {
@@ -122,6 +127,15 @@
         });
       });
     },
+    mounted: function(x) {
+      debug && console.log('MOUNTED', x);
+    },
+    destroyed: function(x) {
+      debug && console.log('DESTROYED', x);
+    },
+    updated: function(x) {
+      debug && console.log('UPDATED', x);
+    },
     events: {
       userMessage : function(e) {
         var self = this;
@@ -129,9 +143,6 @@
         setTimeout(function() {
           self.messages[e.type] = ''
         }, 15000)
-      },
-      refresh: function() {
-        this.refresh();
       },
       appendInput: function(e) {
         this.fieldsObject[e.name]['value'] += e.value;

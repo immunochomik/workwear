@@ -43,8 +43,12 @@
     },
     route: {
       data: function(to) {
+        console.log('ROUTER_CALL');
         routerCall(this);
       }
+    },
+    created: function() {
+      console.log('CREATED GOODS IN');
     },
     methods: {
       crudSubmit: function(e) {
