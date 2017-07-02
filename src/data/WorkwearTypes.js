@@ -17,9 +17,13 @@ var WorkwearTypes = new Model.Model({
 // M;L;XL  => [M,L,XL]
 WorkwearTypes.extractSizes = function(doc) {
   var raw = [];
-  if(doc.Sizes.match(/^\d+\-\d+/)) {
-    var minMax = doc.Sizes.split('-');
-    raw = range(minMax[0], minMax[1], 2);
+  const regex = /(^\d+)\ *\-\ *(\d+)(\ +s:(\d))?.*/;
+  var match = regex.exec(doc.Sizes);
+  if(match) {
+    var min = parseInt(match[1]);
+    var max = parseInt(match[2]);
+    var step = parseInt(match[4]) || 2;
+    raw = range(min, max + step, step);
   } else {
     raw = doc.Sizes.split(';').map(it=>{return it.trim()});
   }

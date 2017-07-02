@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  var debug = false;
   import Inventory from '../data/Inventory.js'
   import WorkwearTypes from '../data/WorkwearTypes.js';
   var wTypes = WorkwearTypes.WorkwearTypes;
@@ -67,7 +68,7 @@
     _.each(sizes, function(size) {
       var itemId = "{0}_{1}_new".f([idBase, size]);
       inventory.get(itemId, function(doc) {
-            console.log('Found', doc);
+            debug && console.log('Found', doc);
           },
           function(err) {
             if(err.status !== 404) {

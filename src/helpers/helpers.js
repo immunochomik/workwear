@@ -89,6 +89,7 @@ function range(start, stop, step) {
   if (typeof step == 'undefined') {
     step = 1;
   }
+  step = parseInt(step);
   start = parseInt(start);
   stop = parseInt(stop);
   if ((step > 0 && start >= stop) || (step < 0 && start <= stop)) {
