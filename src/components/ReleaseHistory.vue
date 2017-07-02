@@ -79,6 +79,7 @@
   _.extend(vueReleaseHistory.methods, CrudComponents.UserMessages);
   _.extend(vueReleaseHistory.methods, AffectsInventory.AffectsInventory);
 
+
   export default vueReleaseHistory;
 
 //  function employeeAutocomplete (self) {

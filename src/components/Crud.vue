@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  const debug = 1;
+  const debug = 0;
   const Crud = {
     name: 'Crud',
     props : {

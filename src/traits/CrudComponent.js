@@ -6,22 +6,13 @@
  */
 var UserMessages = {
   warning: function(message) {
-    this.$broadcast('userMessage', {
-      type: 'warning',
-      message : message,
-    });
+    this.$refs.crud.warning(message);
   },
   error: function(message) {
-    this.$broadcast('userMessage', {
-      type: 'error',
-      message : message,
-    });
+    this.$refs.crud.error(message);
   },
   success: function(message) {
-    this.$broadcast('userMessage', {
-      type: 'success',
-      message : message,
-    });
+    this.$refs.crud.success(message);
   },
 };
 

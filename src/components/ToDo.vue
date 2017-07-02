@@ -23,6 +23,7 @@
 </template>
 
 <script>
+  var debug = 1;
   import Workers from '../data/Workers.js'
   import WorkPositions from '../data/WorkPositions.js';
   import WorkwearTypes from '../data/WorkwearTypes.js'
