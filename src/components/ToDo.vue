@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  var debug = 1;
+  var debug = 0;
   import Workers from '../data/Workers.js'
   import WorkPositions from '../data/WorkPositions.js';
   import WorkwearTypes from '../data/WorkwearTypes.js'
@@ -167,6 +167,7 @@
       },
       // args example :  Adma Pentla, Hat, '2017-01-01 12:00:00'
       addToDo: function(worker, itemClass, whenToAdd) {
+        debug && console.log('ADDED_TODO', worker.Id, itemClass, whenToAdd);
         if(!sizes[worker.Id]) {
           sizes[worker.Id] = workers.workerSizes(worker.Sizes)
         }
@@ -186,11 +187,12 @@
               self.makeButtons(worker.Id, sizeLessWorkwear)])
           }
         }
+        debug && pp(self.todos)
       },
       makeButtons: function(workerId, workwear) {
-        return ("<div class='btn-group'>" +
+        return ("<div style='text-align: right'><div class='btn-group'>" +
         "<button class='btn btn-default btn-sm release' data-worker='{0}' data-weare='{1}'>Release</button>" +
-            "<button class='btn btn-danger btn-sm ignore' data-worker='{0}' data-weare='{1}'>Ignore</button></div>")
+            "<button class='btn btn-danger btn-sm ignore' data-worker='{0}' data-weare='{1}'>Ignore</button></div></div>")
             .f([workerId,  workwear]);
       },
       tableClick: function(e) {
