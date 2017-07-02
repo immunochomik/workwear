@@ -67,8 +67,8 @@
 </template>
 
 <script>
-  var debug = false;
-  var Crud = {
+  const debug = 1;
+  const Crud = {
     name: 'Crud',
     props : {
       formActive : {
@@ -105,11 +105,11 @@
       }
     },
     created: function() {
-      console.log('CREATED');
+      debug && console.log('CRUD CREATED', this.uni);
       var self = this;
       $('.ignore-input').removeClass('input');
       if(self.extension) {
-        debug &&  console.log('LOAD EXTENSIONS');
+        debug &&  console.log('LOAD EXTENSIONS', self.uni);
         self.extension.extend(self);
       }
       for(var key in self.fieldsObject) {
@@ -125,19 +125,19 @@
       }
       self.refresh();
       this.$nextTick(function() {
-        debug &&  console.log('NEXT TICK IN CREATED');
+        //debug && console.log('NEXT TICK IN CREATED');
         self.$nextTick(function () {
         });
       });
     },
-    mounted: function(x) {
-      debug && console.log('MOUNTED', x);
+    mounted: function() {
+      debug && console.log('MOUNTED', this.uni);
     },
-    destroyed: function(x) {
-      debug && console.log('DESTROYED', x);
+    destroyed: function() {
+      debug && console.log('DESTROYED', this.uni);
     },
-    updated: function(x) {
-      debug && console.log('UPDATED', x);
+    updated: function() {
+      debug && console.log('UPDATED', this.uni);
     },
     events: {
       userMessage : function(e) {
@@ -176,18 +176,19 @@
         return this.currentId;
       },
       refresh: function() {
-        debug && console.log('REFRESHING');
+        debug && console.log('REFRESHING', this.uni);
         var self = this;
         self.items = [];
+        var d = new Date();
         self.model.list( function(res) {
           _.each(res.rows, function(doc) {
             self.items.push(self.docToRow(doc.doc));
           });
-          self.renderTable();
+          self.renderTable(d.getMilliseconds());
         });
       },
-      renderTable: function() {
-        debug && console.log('RENDER');
+      renderTable: function(x) {
+        debug && console.log('RENDER', this.uni, x);
         var columns = [];
         _.each(this.columns, function(col) {
           columns.push({title:col});

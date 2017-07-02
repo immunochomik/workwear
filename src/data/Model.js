@@ -12,7 +12,7 @@ var makeKey = function(parts, doc) {
   return key.join('_').replace(/_$/g, '');
 };
 
-var debug;
+var debug = 0;
 // TODO use fields or fieldsObject only
 var Model = (function() {
   function Model(settings) {
