@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  const debug = 0;
+  const debug = 1;
   const Crud = {
     name: 'Crud',
     props : {
@@ -131,7 +131,14 @@
       });
     },
     mounted: function() {
+      var self = this;
+      const onTimeChange = function(event) {
+        var target = $(event.currentTarget);
+        self.fieldsObject[target.attr('name')].value = target.val();
+      };
       debug && console.log('MOUNTED', this.uni);
+      $('.date').datetimepicker({timepicker: false, format: 'Y-m-d'}).on('change', onTimeChange);
+      $('.datetime').datetimepicker({format: 'Y-m-d H:i:s'}).on('change', onTimeChange);
     },
     destroyed: function() {
       debug && console.log('DESTROYED', this.uni);

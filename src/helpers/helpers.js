@@ -187,11 +187,5 @@ export default {
   routerCall : function(obj) {
     document.title = obj.title;
     toggleTopNavActive('topNavLi' + obj.title.replace(/ /g, ''));
-    obj.$nextTick(function() {
-      obj.$nextTick(function () {
-        $('.date').datetimepicker({timepicker: false, format: 'Y-m-d'});
-        $('.datetime').datetimepicker({format: 'Y-m-d H:i:s'});
-      });
-    });
   }
 }
