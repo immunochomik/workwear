@@ -237,7 +237,7 @@
           event.preEdit[key] = this.preEdit[key];
           event.postEdit[key] = this.fieldsObject[key].value;
         }
-        this.$emit('crudSubmit', event);
+        this.$emit('crudsubmit', event);
       },
       submit: function() {
         var data = {};

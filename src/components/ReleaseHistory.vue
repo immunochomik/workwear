@@ -3,7 +3,7 @@
     <crud
         :model="model"
         :extension="extension"
-        v-on:crudSubmit="crudSubmit"
+        v-on:crudsubmit="crudSubmit"
         ref="crud"
         ></crud>
   </div>

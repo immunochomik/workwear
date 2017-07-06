@@ -2,7 +2,12 @@
 <template>
   <div id="app">
     <top-nav></top-nav>
-    <router-view></router-view>
+    <router-view
+        class="view"
+        keep-alive
+        transition
+        transition-mode="out-in">
+    </router-view>
   </div>
 </template>
 
